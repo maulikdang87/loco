@@ -163,6 +163,7 @@ class LLMManager:
     
     def list_available_providers(self) -> dict:
         """Returns which providers are currently available"""
+        print(bool(settings.GROQ_API_KEY))   
         return {
             "ollama": True,  # Assume always available if running
             "groq": bool(settings.GROQ_API_KEY),

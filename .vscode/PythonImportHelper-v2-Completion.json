@@ -136,6 +136,14 @@
         "documentation": {}
     },
     {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
         "label": "StrOutputParser",
         "importPath": "langchain_core.output_parsers",
         "description": "langchain_core.output_parsers",
@@ -159,14 +167,6 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "PromptTemplate",
-        "importPath": "langchain.prompts",
-        "description": "langchain.prompts",
-        "isExtraImport": true,
-        "detail": "langchain.prompts",
         "documentation": {}
     },
     {
@@ -284,27 +284,11 @@
         "documentation": {}
     },
     {
-        "label": "StreamingResponse",
-        "importPath": "fastapi.responses",
-        "description": "fastapi.responses",
-        "isExtraImport": true,
-        "detail": "fastapi.responses",
-        "documentation": {}
-    },
-    {
         "label": "BaseSettings",
         "importPath": "pydantic_settings",
         "description": "pydantic_settings",
         "isExtraImport": true,
         "detail": "pydantic_settings",
-        "documentation": {}
-    },
-    {
-        "label": "CORSMiddleware",
-        "importPath": "fastapi.middleware.cors",
-        "description": "fastapi.middleware.cors",
-        "isExtraImport": true,
-        "detail": "fastapi.middleware.cors",
         "documentation": {}
     },
     {
@@ -322,6 +306,22 @@
         "importPath": "pytest",
         "description": "pytest",
         "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "CodeCompletionAgent",
+        "importPath": "src.agents.code_completion_agent",
+        "description": "src.agents.code_completion_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionRequest",
+        "importPath": "src.models.schemas",
+        "description": "src.models.schemas",
+        "isExtraImport": true,
+        "detail": "src.models.schemas",
         "documentation": {}
     },
     {
@@ -620,29 +620,11 @@
         "documentation": {}
     },
     {
-        "label": "build_completion_prompt",
-        "kind": 2,
-        "importPath": "backend.src.main",
-        "description": "backend.src.main",
-        "peekOfCode": "def build_completion_prompt(prefix: str, suffix: str, language: str) -> str:\n    \"\"\"\n    Build a prompt for code completion\n    Args:\n        prefix: Code before cursor\n        suffix: Code after cursor\n        language: Programming language\n    Returns:\n        str: Formatted prompt\n    \"\"\"",
-        "detail": "backend.src.main",
-        "documentation": {}
-    },
-    {
-        "label": "clean_completion",
-        "kind": 2,
-        "importPath": "backend.src.main",
-        "description": "backend.src.main",
-        "peekOfCode": "def clean_completion(text: str) -> str:\n    \"\"\"\n    Clean up LLM completion output\n    Args:\n        text: Raw LLM output\n    Returns:\n        str: Cleaned completion\n    \"\"\"\n    # Preserve whether the raw completion started with a newline\n    had_leading_newline = text.startswith(\"\\n\")",
-        "detail": "backend.src.main",
-        "documentation": {}
-    },
-    {
         "label": "logger",
         "kind": 5,
         "importPath": "backend.src.main",
         "description": "backend.src.main",
-        "peekOfCode": "logger = logging.getLogger(__name__)\n# Initialize FastAPI app\napp = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant powered by Ollama\",\n    version=\"0.1.0\",\n    debug=settings.DEBUG\n)\napp.add_exception_handler(Exception, global_exception_handler)\n# Add CORS middleware for VS Code extension communication",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Initialize FastAPI\napp = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(",
         "detail": "backend.src.main",
         "documentation": {}
     },
@@ -651,7 +633,7 @@
         "kind": 5,
         "importPath": "backend.src.main",
         "description": "backend.src.main",
-        "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant powered by Ollama\",\n    version=\"0.1.0\",\n    debug=settings.DEBUG\n)\napp.add_exception_handler(Exception, global_exception_handler)\n# Add CORS middleware for VS Code extension communication\n@app.get(\"/\")\nasync def root():",
+        "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],",
         "detail": "backend.src.main",
         "documentation": {}
     }
