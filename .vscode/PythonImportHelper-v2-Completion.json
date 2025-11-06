@@ -1,0 +1,658 @@
+[
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGenerator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain.prompts",
+        "description": "langchain.prompts",
+        "isExtraImport": true,
+        "detail": "langchain.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaLLM",
+        "importPath": "langchain_ollama",
+        "description": "langchain_ollama",
+        "isExtraImport": true,
+        "detail": "langchain_ollama",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaLLM",
+        "importPath": "langchain_ollama",
+        "description": "langchain_ollama",
+        "isExtraImport": true,
+        "detail": "langchain_ollama",
+        "documentation": {}
+    },
+    {
+        "label": "ChatGroq",
+        "importPath": "langchain_groq",
+        "description": "langchain_groq",
+        "isExtraImport": true,
+        "detail": "langchain_groq",
+        "documentation": {}
+    },
+    {
+        "label": "ChatGoogleGenerativeAI",
+        "importPath": "langchain_google_genai",
+        "description": "langchain_google_genai",
+        "isExtraImport": true,
+        "detail": "langchain_google_genai",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "BaseLanguageModel",
+        "importPath": "langchain_core.language_models",
+        "description": "langchain_core.language_models",
+        "isExtraImport": true,
+        "detail": "langchain_core.language_models",
+        "documentation": {}
+    },
+    {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "StreamingResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaClient",
+        "importPath": "src.llm.ollama_client",
+        "description": "src.llm.ollama_client",
+        "isExtraImport": true,
+        "detail": "src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaConnectionError",
+        "importPath": "src.utils.error_handler",
+        "description": "src.utils.error_handler",
+        "isExtraImport": true,
+        "detail": "src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "CodeCompletionAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "class CodeCompletionAgent:\n    def __init__(\n        self,\n        provider: Optional[ProviderType] = None,\n        model: Optional[str] = None\n    ):\n        self.provider = provider\n        self.model = model\n        self.prompt_template = self._create_prompt_template()\n        self.output_parser = StrOutputParser()",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CodeCompletionAgent:\n    def __init__(\n        self,\n        provider: Optional[ProviderType] = None,\n        model: Optional[str] = None\n    ):\n        self.provider = provider\n        self.model = model\n        self.prompt_template = self._create_prompt_template()",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "completion_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "completion_agent = CodeCompletionAgent()",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "get_completion_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_completion_prompt() -> PromptTemplate:\n    return CODE_COMPLETION_PROMPT\ndef get_debug_prompt() -> PromptTemplate:\n    return DEBUG_PROMPT\ndef get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "get_debug_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_debug_prompt() -> PromptTemplate:\n    return DEBUG_PROMPT\ndef get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "get_documentation_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "CODE_COMPLETION_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "CODE_COMPLETION_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"prefix\", \"suffix\", \"imports\", \"function_context\"],\n    template=\"\"\"You are an expert {language} code completion assistant. Your task is to generate ONLY the missing code that should appear at the cursor position.\nCONTEXT:\n- Language: {language}\n- Current imports:\n{imports}\n- Function/class context:\n{function_context}\nCODE BEFORE CURSOR:",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "DEBUG_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"code\", \"error_message\", \"traceback\"],\n    template=\"\"\"You are an expert {language} debugging assistant.\nCODE WITH ERROR:\n{code}\nERROR MESSAGE:\n{error_message}\nTRACEBACK:\n{traceback}\nAnalyze this error and provide:",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "DOCUMENTATION_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "DOCUMENTATION_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"code\", \"doc_style\"],\n    template=\"\"\"You are an expert {language} documentation generator.\nGenerate a comprehensive docstring for this code using {doc_style} style:\n{code}\nInclude:\n- Brief description\n- Parameters with types\n- Return value with type\n- Raises (if applicable)",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "LLMManager",
+        "kind": 6,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "class LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self._validate_api_keys()\n    def _validate_api_keys(self):\n        \"\"\"Warn if API keys are missing for enabled providers\"\"\"",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nProviderType = Literal[\"ollama\", \"groq\", \"gemini\", \"openai\"]\nclass LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self._validate_api_keys()",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "ProviderType",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "ProviderType = Literal[\"ollama\", \"groq\", \"gemini\", \"openai\"]\nclass LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self._validate_api_keys()\n    def _validate_api_keys(self):",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "llm_manager",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "llm_manager = LLMManager()",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaClient",
+        "kind": 6,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "class OllamaClient:\n    \"\"\"\n    Manages Ollama connections and LLM instances\n    Handles model verification, streaming, and error recovery\n    \"\"\"\n    def __init__(\n        self, \n        base_url: str = settings.OLLAMA_BASE_URL,\n        default_model: str = settings.OLLAMA_DEFAULT_MODEL\n    ):",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass OllamaClient:\n    \"\"\"\n    Manages Ollama connections and LLM instances\n    Handles model verification, streaming, and error recovery\n    \"\"\"\n    def __init__(\n        self, \n        base_url: str = settings.OLLAMA_BASE_URL,\n        default_model: str = settings.OLLAMA_DEFAULT_MODEL",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "ollama_client",
+        "kind": 5,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "ollama_client = OllamaClient()",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionRequest",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class CompletionRequest(BaseModel):\n    \"\"\"Request model for code completion\"\"\"\n    prefix: str  # Code before cursor\n    suffix: str  # Code after cursor\n    language: str  # python, typescript, etc.\n    filepath: str  # Current file path\n    cursor_line: int\n    cursor_column: int\n    additional_context: Optional[List[str]] = None\nclass CompletionResponse(BaseModel):",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionResponse",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class CompletionResponse(BaseModel):\n    \"\"\"Response model for code completion\"\"\"\n    completion: str\n    confidence: float  # 0.0 - 1.0\n    model_used: str  # Which LLM generated it\n    latency_ms: int\nclass HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "HealthResponse",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool\n    models_loaded: List[str]",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "extract_imports",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def extract_imports(code: str, language: str) -> List[str]:\n    \"\"\"\n    Extract import statements from code\n    Args:\n        code: Source code\n        language: Programming language\n    Returns:\n        List of import statements\n    \"\"\"\n    imports = []",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "extract_function_context",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def extract_function_context(prefix: str, language: str) -> Optional[str]:\n    \"\"\"\n    Extract the current function or class definition context\n    Args:\n        prefix: Code before cursor\n        language: Programming language\n    Returns:\n        Function/class signature or None\n    \"\"\"\n    if language == \"python\":",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "get_indentation",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def get_indentation(line: str) -> str:\n    \"\"\"\n    Extract indentation from a line of code\n    Args:\n        line: Line of code\n    Returns:\n        Leading whitespace\n    \"\"\"\n    match = re.match(r'^(\\s*)', line)\n    return match.group(1) if match else \"\"",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "count_indentation_level",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def count_indentation_level(code: str) -> int:\n    \"\"\"\n    Count the indentation level based on the last line\n    Args:\n        code: Code snippet\n    Returns:\n        Number of indentation units\n    \"\"\"\n    if not code.strip():\n        return 0",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "build_context_dict",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def build_context_dict(\n    prefix: str,\n    suffix: str,\n    language: str\n) -> Dict[str, str]:\n    \"\"\"\n    Build a context dictionary for the prompt\n    Args:\n        prefix: Code before cursor\n        suffix: Code after cursor",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "clean_completion",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def clean_completion(completion: str, language: str) -> str:\n    \"\"\"\n    Clean up LLM-generated completion\n    Args:\n        completion: Raw LLM output\n        language: Programming language\n    Returns:\n        Cleaned completion\n    \"\"\"\n    # Remove markdown code fences",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "LocoException",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class LocoException(Exception):\n    \"\"\"Base exception for Loco errors\"\"\"\n    pass\nclass OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaConnectionError",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):\n    \"\"\"Global error handler for all exceptions\"\"\"\n    if isinstance(exc, OllamaConnectionError):\n        logger.error(f\"Ollama connection failed: {exc}\")",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "ModelNotFoundError",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):\n    \"\"\"Global error handler for all exceptions\"\"\"\n    if isinstance(exc, OllamaConnectionError):\n        logger.error(f\"Ollama connection failed: {exc}\")\n        return JSONResponse(\n            status_code=503,\n            content={",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass LocoException(Exception):\n    \"\"\"Base exception for Loco errors\"\"\"\n    pass\nclass OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "backend.src.config",
+        "description": "backend.src.config",
+        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"Loco Backend Configuration\"\"\"\n    # Server\n    HOST: str = \"0.0.0.0\"\n    PORT: int = 8000\n    DEBUG: bool = True\n    # Ollama (Local)\n    OLLAMA_BASE_URL: str = \"http://localhost:11434\"\n    OLLAMA_DEFAULT_MODEL: str = \"qwen2.5-coder:7b\"\n    # Cloud API Keys",
+        "detail": "backend.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "backend.src.config",
+        "description": "backend.src.config",
+        "peekOfCode": "settings = Settings()",
+        "detail": "backend.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "build_completion_prompt",
+        "kind": 2,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "def build_completion_prompt(prefix: str, suffix: str, language: str) -> str:\n    \"\"\"\n    Build a prompt for code completion\n    Args:\n        prefix: Code before cursor\n        suffix: Code after cursor\n        language: Programming language\n    Returns:\n        str: Formatted prompt\n    \"\"\"",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "clean_completion",
+        "kind": 2,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "def clean_completion(text: str) -> str:\n    \"\"\"\n    Clean up LLM completion output\n    Args:\n        text: Raw LLM output\n    Returns:\n        str: Cleaned completion\n    \"\"\"\n    # Preserve whether the raw completion started with a newline\n    had_leading_newline = text.startswith(\"\\n\")",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Initialize FastAPI app\napp = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant powered by Ollama\",\n    version=\"0.1.0\",\n    debug=settings.DEBUG\n)\napp.add_exception_handler(Exception, global_exception_handler)\n# Add CORS middleware for VS Code extension communication",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant powered by Ollama\",\n    version=\"0.1.0\",\n    debug=settings.DEBUG\n)\napp.add_exception_handler(Exception, global_exception_handler)\n# Add CORS middleware for VS Code extension communication\n@app.get(\"/\")\nasync def root():",
+        "detail": "backend.src.main",
+        "documentation": {}
+    }
+]
