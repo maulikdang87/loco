@@ -128,6 +128,14 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "PromptTemplate",
         "importPath": "langchain_core.prompts",
         "description": "langchain_core.prompts",
@@ -224,6 +232,14 @@
         "importPath": "httpx",
         "description": "httpx",
         "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
         "documentation": {}
     },
     {
@@ -338,6 +354,24 @@
         "description": "src.utils.error_handler",
         "isExtraImport": true,
         "detail": "src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
         "documentation": {}
     },
     {
@@ -620,6 +654,24 @@
         "documentation": {}
     },
     {
+        "label": "ChatRequest",
+        "kind": 6,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "class ChatRequest(BaseModel):\n    message: str\n    code: Optional[str] = None\n    language: Optional[str] = None\n    context: Optional[str] = None\nclass ChatResponse(BaseModel):\n    message: str\n    code: Optional[str] = None\n# Configure logging\nlogging.basicConfig(",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "ChatResponse",
+        "kind": 6,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "class ChatResponse(BaseModel):\n    message: str\n    code: Optional[str] = None\n# Configure logging\nlogging.basicConfig(\n    level=logging.INFO if settings.DEBUG else logging.WARNING,\n    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'\n)\nlogger = logging.getLogger(__name__)\n# Initialize FastAPI",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
         "label": "logger",
         "kind": 5,
         "importPath": "backend.src.main",
@@ -635,6 +687,42 @@
         "description": "backend.src.main",
         "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],",
         "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "loco.node_modules.flatted.python.flatted",
+        "description": "loco.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0",
+        "detail": "loco.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "loco.node_modules.flatted.python.flatted",
+        "description": "loco.node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0\n    for _ in value:\n        keys.append(i)\n        i += 1\n    return keys",
+        "detail": "loco.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "loco.node_modules.flatted.python.flatted",
+        "description": "loco.node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "loco.node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "loco.node_modules.flatted.python.flatted",
+        "description": "loco.node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "loco.node_modules.flatted.python.flatted",
         "documentation": {}
     }
 ]

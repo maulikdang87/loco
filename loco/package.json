@@ -1,0 +1,176 @@
+{
+  "name": "loco",
+  "displayName": "Loco - AI Assistant",
+  "description": "AI code assistant with contextual chat and inline completions",
+  "version": "0.1.0",
+  "publisher": "your-name",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "ai",
+    "copilot",
+    "chat",
+    "code-completion",
+    "groq"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "loco.openChat",
+        "title": "Loco: Open Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "loco.toggleInlineCompletions",
+        "title": "Loco: Toggle Inline Completions"
+      },
+      {
+        "command": "loco.clearChat",
+        "title": "Loco: Clear Chat History"
+      },
+      {
+        "command": "loco.addFileReference",
+        "title": "Loco: Add File to Chat Context"
+      },
+      {
+        "command": "loco.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "loco.openChat",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "loco-panel",
+          "title": "Loco",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "loco-panel": [
+        {
+          "type": "webview",
+          "id": "loco.chatView",
+          "name": "Loco Chat"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Loco",
+      "properties": {
+        "loco.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Loco AI assistant"
+        },
+        "loco.backendUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Backend server URL"
+        },
+        "loco.defaultProvider": {
+          "type": "string",
+          "enum": [
+            "groq",
+            "ollama",
+            "gemini",
+            "openai"
+          ],
+          "default": "groq",
+          "description": "Default LLM provider for chat and completions"
+        },
+        "loco.inlineCompletions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show inline code completions"
+        },
+        "loco.completionDelay": {
+          "type": "number",
+          "default": 250,
+          "minimum": 100,
+          "maximum": 1000,
+          "description": "Delay before triggering completions (ms)"
+        },
+        "loco.chatModel": {
+          "type": "string",
+          "default": "llama-3.3-70b-versatile",
+          "description": "Model for chat conversations"
+        },
+        "loco.theme": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "light",
+            "dark"
+          ],
+          "default": "auto",
+          "description": "Chat UI theme"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "loco.addFileReference",
+          "when": "editorFocus",
+          "group": "loco@1"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "loco.clearChat",
+          "when": "view == loco.chatView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/marked": "^6.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.105.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.10",
+    "eslint": "^9.36.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "marked": "^11.2.0"
+  }
+}

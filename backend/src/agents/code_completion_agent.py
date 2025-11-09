@@ -21,16 +21,24 @@ class CodeCompletionAgent:
         self.model = model
         self.prompt_template = self._create_prompt_template()
         self.output_parser = StrOutputParser()
-    
     def _create_prompt_template(self) -> PromptTemplate:
+        """
+        Create optimized prompt template for code completion with proper indentation
+        """
         template = """You are an expert {language} code completion assistant.
 
-Your task is to complete the code at the cursor position. Generate ONLY the missing code that should appear at <CURSOR>.
+    Your task: Complete the code at <CURSOR> position. Generate ONLY the missing code.
 
-CODE BEFORE CURSOR:
+    CRITICAL RULES:
+    1. Match EXACT indentation level of the line where cursor is
+    2. If completing a block (function, class, loop), include proper indentation for inner lines
+    3. Do NOT include the line that already exists before cursor
+    4. Do NOT add extra blank lines
+    5. PRESERVE existing code style (spaces/tabs, naming conventions)
+
+    CODE BEFORE CURSOR:
+
 {prefix}
-
-
 
 <CURSOR>
 
@@ -38,44 +46,86 @@ CODE AFTER CURSOR:
 {suffix}
 
 
-INSTRUCTIONS:
-1. Analyze the context carefully - understand what code should come next
-2. Generate ONLY the missing code, nothing else
-3. Match the existing code style, indentation, and naming conventions
-4. Be concise - generate only what's needed to complete the immediate context
-5. Do NOT include markdown code fences, explanations, or comments in your response
-6. If the completion requires multiple lines, include proper indentation
+EXAMPLES:
 
-COMPLETION:"""
-        
+Example 1 - Single line completion:
+Before: "def add(a, b):\n    "
+Complete with: "return a + b"
+
+Example 2 - Multi-line block:
+Before: "for i in range(10):\n    "
+Complete with: "print(i)\n    sum += i"
+
+Example 3 - Class method:
+Before: "class Circle:\n    def area(self):\n        "
+Complete with: "return 3.14159 * self.radius ** 2"
+
+YOUR COMPLETION (NO explanations, NO markdown, ONLY code):"""
+    
         return PromptTemplate(
             input_variables=["language", "prefix", "suffix"],
             template=template
         )
-    
-    def _clean_completion(self, text: str) -> str:
+
+    def _clean_completion(self, text: str, prefix: str) -> str:
         """
-        Clean up LLM output for code completion
+        Clean up LLM output and preserve indentation
         
         Args:
             text: Raw LLM output
+            prefix: Code before cursor (for indentation detection)
             
         Returns:
-            Cleaned completion text
+            Cleaned completion with proper indentation
         """
         import re
-        
         # Remove markdown code fences
-        text = re.sub(r'```[\w+]*\n?', '', text)
-        text = re.sub(r'```', '', text)
+        text = re.sub(r'```\w*\n?', '', text)  # Remove opening fences with optional language
+        text = re.sub(r'```', '', text)         # Remove closing fences
         
-        # Remove common LLM artifacts
-        text = re.sub(r'^(Here\'s|Here is|The completion is).*?:\s*', '', text, flags=re.IGNORECASE)
+        # Remove explanatory prefixes
+        text = re.sub(r'^(Here\'s|Here is|The completion is|Complete with).*?:\s*', '', text, flags=re.IGNORECASE | re.MULTILINE)
         
-        # Strip leading/trailing whitespace (but preserve internal formatting)
-        text = text.strip()
+        # Detect indentation from last line of prefix
+        lines = prefix.split('\n')
+        if lines:
+            last_line = lines[-1]
+            # Count leading spaces/tabs
+            indent_match = re.match(r'^(\s+)', last_line)
+            current_indent = indent_match.group(1) if indent_match else ''
+            
+            # If last line ends with : (Python) or { (C-like), increase indent
+            if last_line.rstrip().endswith((':', '{')):
+                # Add one level of indentation (4 spaces or 1 tab)
+                if '\t' in current_indent:
+                    current_indent += '\t'
+                else:
+                    current_indent += '    '  # 4 spaces
+            
+            # Apply indentation to completion if it doesn't have any
+            completion_lines = text.split('\n')
+            if len(completion_lines) > 0 and not completion_lines[0].startswith((' ', '\t')):
+                # First line gets current indent
+                completion_lines[0] = current_indent + completion_lines[0].lstrip()
+                
+                # Subsequent lines maintain relative indentation
+                for i in range(1, len(completion_lines)):
+                    if completion_lines[i].strip():  # Non-empty line
+                        # Detect any existing indent
+                        line_indent_match = re.match(r'^(\s+)', completion_lines[i])
+                        line_indent = line_indent_match.group(1) if line_indent_match else ''
+                        
+                        # Apply base indent + relative indent
+                        completion_lines[i] = current_indent + completion_lines[i].lstrip()
+                
+                text = '\n'.join(completion_lines)
         
-        return text
+        # Remove duplicate start
+        if prefix.endswith(text[:20]):
+            text = text[20:]
+        
+        return text.strip()
+
     
     def _calculate_confidence(
         self, 
