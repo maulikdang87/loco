@@ -18,45 +18,9 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
         context: vscode.InlineCompletionContext,
         token: vscode.CancellationToken
     ): Promise<vscode.InlineCompletionItem[] | null> {
-        
-        // Check if enabled
-        const config = vscode.workspace.getConfiguration('loco');
-        if (!config.get<boolean>('enabled') || 
-            !config.get<boolean>('inlineCompletions')) {
-            return null;
-        }
-
-        // Debounce: prevent too frequent requests
-        const now = Date.now();
-        const delay = config.get<number>('completionDelay') || 250;
-        
-        if (now - this.lastTriggerTime < delay) {
-            return null;
-        }
-
-        // Don't trigger in comments or strings (simple heuristic)
-        const line = document.lineAt(position.line).text;
-        const beforeCursor = line.substring(0, position.character);
-        if (this.isInCommentOrString(beforeCursor, document.languageId)) {
-            return null;
-        }
-
-        // Extract context
+        // Ensure proper indentation and spaces are sent to the LLM
         const prefix = this.getPrefix(document, position);
         const suffix = this.getSuffix(document, position);
-
-        // Check cache
-        const cacheKey = this.getCacheKey(prefix, suffix, document.languageId);
-        if (this.cache.has(cacheKey)) {
-            const cached = this.cache.get(cacheKey)!;
-            return [new vscode.InlineCompletionItem(cached)];
-        }
-
-        // Abort previous request if still pending
-        if (this.abortController) {
-            this.abortController.abort();
-        }
-        this.abortController = new AbortController();
 
         // Build request
         const request: CompletionRequest = {
@@ -69,8 +33,6 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
         };
 
         // Call backend
-        this.lastTriggerTime = now;
-        
         try {
             const response = await this.backend.complete(request);
 
@@ -78,24 +40,14 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
                 return null;
             }
 
-            // Get current line for indentation context
-            const currentLine = document.lineAt(position.line).text;
-            
-            // Clean with indentation awareness
-            const cleaned = this.cleanCompletion(
-                response.completion, 
-                currentLine,
-                position
-            );
-            
+            // Clean and format the response
+            const cleaned = this.cleanCompletion(response.completion, document.lineAt(position.line).text, position);
+
             if (!cleaned || cleaned.length === 0) {
                 return null;
             }
 
-            // Cache and return
-            this.cache.set(cacheKey, cleaned);
-            this.trimCache();
-
+            // Return the inline completion item
             return [
                 new vscode.InlineCompletionItem(
                     cleaned,
@@ -104,8 +56,6 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
             ];
         } catch (error) {
             console.error('Completion error:', error);
-            // Don't show error message for every completion failure (too noisy)
-            // Errors are already handled by BackendClient
             return null;
         }
     }
@@ -131,55 +81,19 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
     }
 
     private cleanCompletion(completion: string, line: string, position: vscode.Position): string {
-        // Remove markdown code fences
-        completion = completion.replace(/```\w*\n?/g, '');  // Remove opening fences with optional language
-        completion = completion.replace(/```/g, '');        // Remove closing fences
-        
-        // Remove explanatory text
-        completion = completion.replace(/^(Here's|Here is|The completion is|Complete with).*?:\s*/i, '');
-        
-        // Get current line's indentation
-        const indentMatch = line.match(/^(\s*)/);
-        const currentIndent = indentMatch ? indentMatch[1] : '';
-        
-        // If completion doesn't start with whitespace, apply current indent
+        // Ensure proper indentation
+        const indentMatch = line.match(/^\s*/);
+        const currentIndent = indentMatch ? indentMatch[0] : '';
+
         const lines = completion.split('\n');
-        if (lines.length > 0 && !lines[0].match(/^\s/)) {
-            // Check if we're after a colon or opening brace
-            const beforeCursor = line.substring(0, position.character);
-            const needsExtraIndent = beforeCursor.trim().endsWith(':') || 
-                                    beforeCursor.trim().endsWith('{');
-            
-            const baseIndent = needsExtraIndent 
-                ? currentIndent + '    '  // Add 4 spaces
-                : currentIndent;
-            
-            // Apply indentation to all lines
-            const indentedLines = lines.map((l, i) => {
-                if (l.trim() === '') {
-                    return '';  // Preserve empty lines
-                }
-                if (i === 0) {
-                    return baseIndent + l.trimStart();
-                }
-                
-                // Maintain relative indentation for subsequent lines
-                const relativeIndent = l.match(/^(\s*)/)?.[1] || '';
-                return baseIndent + relativeIndent + l.trimStart();
-            });
-            
-            completion = indentedLines.join('\n');
-        }
-        
-        // Remove duplicate of what's already typed
-        const trimmedBefore = line.substring(0, position.character).trimEnd();
-        const lastWord = trimmedBefore.split(/\s+/).pop() || '';
-        
-        if (completion.startsWith(lastWord)) {
-            completion = completion.substring(lastWord.length);
-        }
-        
-        return completion.trimEnd();
+        const indentedLines = lines.map((l, i) => {
+            if (i === 0) {
+                return currentIndent + l.trimStart();
+            }
+            return currentIndent + l;
+        });
+
+        return indentedLines.join('\n');
     }
 
     private isInCommentOrString(text: string, lang: string): boolean {

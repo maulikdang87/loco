@@ -23,3 +23,9 @@ class HealthResponse(BaseModel):
     status: str
     ollama_available: bool
     models_loaded: List[str]
+
+class LocoSettings(BaseModel):
+    default_provider: str
+    default_model: Optional[str] = None
+    temperature: Optional[float] = 0.3
+    available_providers: list[str] = ["ollama", "groq", "gemini", "openai"]

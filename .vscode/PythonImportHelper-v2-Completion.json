@@ -292,6 +292,14 @@
         "documentation": {}
     },
     {
+        "label": "Body",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "JSONResponse",
         "importPath": "fastapi.responses",
         "description": "fastapi.responses",
@@ -541,7 +549,16 @@
         "kind": 6,
         "importPath": "backend.src.models.schemas",
         "description": "backend.src.models.schemas",
-        "peekOfCode": "class HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool\n    models_loaded: List[str]",
+        "peekOfCode": "class HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool\n    models_loaded: List[str]\nclass LocoSettings(BaseModel):\n    default_provider: str\n    default_model: Optional[str] = None\n    temperature: Optional[float] = 0.3\n    available_providers: list[str] = [\"ollama\", \"groq\", \"gemini\", \"openai\"]",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "LocoSettings",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class LocoSettings(BaseModel):\n    default_provider: str\n    default_model: Optional[str] = None\n    temperature: Optional[float] = 0.3\n    available_providers: list[str] = [\"ollama\", \"groq\", \"gemini\", \"openai\"]",
         "detail": "backend.src.models.schemas",
         "documentation": {}
     },

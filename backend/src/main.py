@@ -1,9 +1,9 @@
 from typing import Optional
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import time
-from .config import settings
+from .config import settings, PROVIDER_MODELS
 from .models.schemas import CompletionRequest, CompletionResponse, HealthResponse
 from .llm.ollama_client import ollama_client
 from .llm.llm_manager import llm_manager
@@ -163,25 +163,83 @@ async def startup_event():
             logger.info("✓ Ollama connection verified")
         except Exception as e:
             logger.warning(f"⚠ Ollama not available: {e}")
+
+@app.post("/api/v1/configure")
+async def configure_settings(settings_update: dict = Body(...)):
+    """
+    Endpoint to update loco settings dynamically.
+    Note: This endpoint is for future use. Currently settings are configured via environment variables.
+    """
+    logger.info(f"Settings update requested: {settings_update}")
+    return {
+        "message": "Settings update received. Note: Dynamic settings updates are not fully implemented yet.",
+        "current_settings": {
+            "default_provider": settings.DEFAULT_PROVIDER,
+            "available_providers": llm_manager.list_available_providers()
+        }
+    }
+
 @app.post("/api/v1/chat/{provider}")
 async def chat(
     provider: str,
     request: dict
 ):
     """
-    Chat endpoint with full conversation history
-    Supports file context via 'files' array
+    Chat endpoint with dynamic model and provider support.
     """
     logger.info(f"Chat request with provider: {provider}")
-    
-    if provider not in ["ollama", "groq", "gemini", "openai"]:
+    logger.info(f"Request payload: {request}")
+
+    available_providers = llm_manager.list_available_providers()
+    if provider not in available_providers:
         raise HTTPException(status_code=400, detail=f"Unknown provider: {provider}")
-    
+
     try:
+        # Get model from request or use provider's default model
+        model = request.get("model")
+        
+        # Validate that the model belongs to the provider
+        # If the model doesn't match the provider's patterns, use provider default
+        if model:
+            provider_models = PROVIDER_MODELS.get(provider, {})
+            valid_models = list(provider_models.values())
+            
+            # Check if it's a valid model for this provider
+            # For ollama, models contain ":" (e.g., "qwen2.5-coder:7b")
+            # For groq, models contain "llama" or "mixtral"
+            # For gemini, models start with "gemini"
+            # For openai, models start with "gpt"
+            is_valid = False
+            if provider == "ollama" and ":" in model:
+                is_valid = True
+            elif provider == "groq" and ("llama" in model.lower() or "mixtral" in model.lower()):
+                is_valid = True
+            elif provider == "gemini" and model.startswith("gemini"):
+                is_valid = True
+            elif provider == "openai" and model.startswith("gpt"):
+                is_valid = True
+            
+            if not is_valid:
+                logger.warning(f"Model '{model}' doesn't match provider '{provider}'. Using default.")
+                model = provider_models.get("balanced") or provider_models.get("fast")
+        else:
+            # Use provider-specific default model
+            provider_models = PROVIDER_MODELS.get(provider, {})
+            model = provider_models.get("balanced") or provider_models.get("fast")
+        
+        logger.info(f"Using model: {model}")
+        temperature = request.get("temperature", 0.3)
+
+        llm = llm_manager.get_llm(
+            provider=provider,
+            model=model,
+            temperature=temperature,
+            max_tokens=2048
+        )
+
         # Extract messages and files
         messages = request.get("messages", []) or []
         files = request.get("files") or []  # Handle None case
-        model = request.get("model")
         
         # Build context from files
         file_context = ""
@@ -194,14 +252,6 @@ async def chat(
                 if file_content:  # Only add file if it has content
                     file_context += f"\n### {file_name} ({file_language})\n"
                     file_context += f"```{file_language}\n{file_content}\n```\n"
-        
-        # Get LLM
-        llm = llm_manager.get_llm(
-            provider=provider,
-            model=model,
-            temperature=0.3,  # Higher for chat
-            max_tokens=2048
-        )
         
         # Build prompt from conversation history
         conversation = ""
@@ -245,9 +295,6 @@ async def chat(
 async def shutdown_event():
     """Run on shutdown"""
     logger.info("👋 Loco backend shutting down...")
-
-# Import PROVIDER_MODELS for the endpoint
-from .config import PROVIDER_MODELS
 
 if __name__ == "__main__":
     import uvicorn

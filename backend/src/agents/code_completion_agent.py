@@ -205,7 +205,7 @@ YOUR COMPLETION (NO explanations, NO markdown, ONLY code):"""
             })
             
             # Clean up output
-            cleaned_completion = self._clean_completion(raw_completion)
+            cleaned_completion = self._clean_completion(raw_completion, request.prefix)
             
             # Calculate metrics
             latency_ms = int((time.time() - start_time) * 1000)

@@ -1,20 +1,79 @@
+    // Command: Pick Inline Completion Model
+    const pickInlineModelCommand = vscode.commands.registerCommand('loco.pickInlineModel', async () => {
+        const { models } = await settingsService.fetchAvailableModels();
+        const provider = vscode.workspace.getConfiguration('loco').get<string>('providers.defaultProvider');
+        if (!provider) {
+            vscode.window.showWarningMessage('No provider selected. Please configure a default provider in settings.');
+            return;
+        }
+        const modelList = models[provider] || [];
+        if (!modelList.length) {
+            vscode.window.showWarningMessage('No models available for the selected provider.');
+            return;
+        }
+        const picked = await vscode.window.showQuickPick(modelList, {
+            placeHolder: 'Select model for inline completions',
+        });
+        if (picked) {
+            await vscode.workspace.getConfiguration('loco').update(`completions.model.${provider}`, picked, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Inline completion model set to: ${picked}`);
+        }
+    });
+
+    // Command: Pick Chat Model
+    const pickChatModelCommand = vscode.commands.registerCommand('loco.pickChatModel', async () => {
+        const { models } = await settingsService.fetchAvailableModels();
+        const provider = vscode.workspace.getConfiguration('loco').get<string>('providers.defaultProvider');
+        if (!provider) {
+            vscode.window.showWarningMessage('No provider selected. Please configure a default provider in settings.');
+            return;
+        }
+        const modelList = models[provider] || [];
+        if (!modelList.length) {
+            vscode.window.showWarningMessage('No models available for the selected provider.');
+            return;
+        }
+        const picked = await vscode.window.showQuickPick(modelList, {
+            placeHolder: 'Select model for chat',
+        });
+        if (picked) {
+            await vscode.workspace.getConfiguration('loco').update(`chat.model.${provider}`, picked, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Chat model set to: ${picked}`);
+        }
+    });
 import * as vscode from 'vscode';
 import { BackendClient } from './api/backendClient';
 import { InlineCompletionProvider } from './providers/completionProvider';
 import { ChatPanel } from './chat/chatPanel';
+import { SettingsService } from './services/settingsService';
 
 let backend: BackendClient;
 let completionProvider: InlineCompletionProvider;
 let chatPanel: ChatPanel;
+let settingsService: SettingsService;
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('🚀 Loco AI Assistant activating...');
 
-    // Initialize backend client
+    // Initialize services
+    settingsService = SettingsService.getInstance();
     backend = new BackendClient();
 
     // Initialize inline completion provider
     completionProvider = new InlineCompletionProvider(backend);
+
+    // Ensure inline completions are enabled in the configuration
+    const config = vscode.workspace.getConfiguration('loco');
+    const inlineCompletionsEnabled = config.get<boolean>('completions.enabled', true);
+
+    if (!inlineCompletionsEnabled) {
+        vscode.window.showWarningMessage('Inline completions are disabled in settings. Enable them to use this feature.');
+    } else {
+        console.log('Inline completions are enabled.');
+    }
+
+    // Debug log to confirm provider registration
+    console.log('Registering inline completion provider...');
     const completionDisposable = vscode.languages.registerInlineCompletionItemProvider(
         { pattern: '**' },
         completionProvider
@@ -81,8 +140,8 @@ export function activate(context: vscode.ExtensionContext) {
         'loco.toggleInlineCompletions',
         async () => {
             const config = vscode.workspace.getConfiguration('loco');
-            const current = config.get<boolean>('inlineCompletions');
-            await config.update('inlineCompletions', !current, vscode.ConfigurationTarget.Global);
+            const current = config.get<boolean>('completions.enabled');
+            await config.update('completions.enabled', !current, vscode.ConfigurationTarget.Global);
             
             vscode.window.showInformationMessage(
                 `Inline completions ${!current ? 'enabled ✓' : 'disabled ✗'}`
@@ -107,6 +166,22 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    const openSettingsCommand = vscode.commands.registerCommand(
+        'loco.openSettings',
+        () => {
+            vscode.commands.executeCommand('workbench.action.openSettings', 'loco');
+        }
+    );
+
+    const showModelsCommand = vscode.commands.registerCommand(
+        'loco.showAvailableModels',
+        () => {
+            settingsService.showModelInfo();
+        }
+    );
+
+
+
     // Add all to subscriptions
     context.subscriptions.push(
         completionDisposable,
@@ -115,7 +190,12 @@ export function activate(context: vscode.ExtensionContext) {
         toggleCompletionsCommand,
         clearCacheCommand,
         addFileCommand,
-        backend
+        openSettingsCommand,
+        showModelsCommand,
+        pickInlineModelCommand,
+        pickChatModelCommand,
+        backend,
+        settingsService
     );
 
     console.log('✅ Loco AI Assistant activated successfully');
@@ -129,6 +209,26 @@ export function activate(context: vscode.ExtensionContext) {
             vscode.commands.executeCommand('loco.openChat');
         }
     });
+    
+    // Debug log to confirm activation
+    console.log('Activating InlineCompletionProvider...');
+
+    // Ensure the backend client is initialized
+    if (!backend) {
+        console.error('Backend client is not initialized. Inline completions will not work.');
+    } else {
+        console.log('Backend client initialized successfully.');
+    }
+
+    // Debug log to confirm configuration settings
+    console.log('Loco configuration:', config);
+
+    // Check if inline completions are enabled
+    if (!inlineCompletionsEnabled) {
+        console.warn('Inline completions are disabled in the configuration.');
+    } else {
+        console.log('Inline completions are enabled in the configuration.');
+    }
 }
 
 export function deactivate() {

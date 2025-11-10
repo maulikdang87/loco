@@ -29,6 +29,7 @@
         "title": "Loco: Open Chat",
         "icon": "$(comment-discussion)"
       },
+
       {
         "command": "loco.toggleInlineCompletions",
         "title": "Loco: Toggle Inline Completions"
@@ -42,8 +43,14 @@
         "title": "Loco: Add File to Chat Context"
       },
       {
-        "command": "loco.helloWorld",
-        "title": "Hello World"
+        "command": "loco.openSettings",
+        "title": "Loco: Open Settings",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "loco.showAvailableModels",
+        "title": "Loco: Show Available Models",
+        "icon": "$(list-unordered)"
       }
     ],
     "keybindings": [
@@ -72,55 +79,151 @@
       ]
     },
     "configuration": {
-      "title": "Loco",
+      "title": "Loco AI Assistant",
       "properties": {
-        "loco.enabled": {
+        "loco.general.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable Loco AI assistant"
+          "description": "Enable Loco AI assistant",
+          "order": 1
         },
-        "loco.backendUrl": {
+        "loco.general.backendUrl": {
           "type": "string",
           "default": "http://localhost:8000",
-          "description": "Backend server URL"
+          "description": "Backend server URL",
+          "order": 2
         },
-        "loco.defaultProvider": {
+        "loco.providers.defaultProvider": {
           "type": "string",
           "enum": [
-            "groq",
             "ollama",
-            "gemini",
-            "openai"
+            "groq", 
+            "openai",
+            "gemini"
           ],
-          "default": "groq",
-          "description": "Default LLM provider for chat and completions"
+          "enumDescriptions": [
+            "Local Ollama models (privacy-first)",
+            "Groq (fast inference with Llama models)",
+            "OpenAI (GPT models)",
+            "Google Gemini (advanced reasoning)"
+          ],
+          "default": "ollama",
+          "description": "Default LLM provider for chat and completions",
+          "order": 10
         },
-        "loco.inlineCompletions": {
+        "loco.chat.model": {
+          "type": "string",
+          "default": "",
+          "description": "Model for chat conversations. Leave empty to use provider's default. Use commands to select models.",
+          "order": 20
+        },
+        "loco.chat.model.ollama": {
+          "type": "string",
+          "default": "qwen2.5-coder:7b",
+          "description": "Default Ollama model for chat",
+          "order": 21
+        },
+        "loco.chat.model.groq": {
+          "type": "string",
+          "default": "llama-3.3-70b-versatile",
+          "description": "Default Groq model for chat",
+          "order": 22
+        },
+        "loco.chat.model.gemini": {
+          "type": "string",
+          "default": "gemini-1.5-flash",
+          "description": "Default Gemini model for chat",
+          "order": 23
+        },
+        "loco.chat.model.openai": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "Default OpenAI model for chat",
+          "order": 24
+        },
+        "loco.chat.temperature": {
+          "type": "number",
+          "default": 0.3,
+          "minimum": 0.0,
+          "maximum": 2.0,
+          "description": "Temperature for chat responses (0.0 = deterministic, 2.0 = very creative)",
+          "order": 25
+        },
+        "loco.chat.maxTokens": {
+          "type": "number",
+          "default": 2048,
+          "minimum": 100,
+          "maximum": 8192,
+          "description": "Maximum tokens in chat responses",
+          "order": 22
+        },
+        "loco.completions.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Show inline code completions"
+          "description": "Enable inline code completions as you type",
+          "order": 30
         },
-        "loco.completionDelay": {
+        "loco.completions.model": {
+          "type": "string", 
+          "default": "",
+          "description": "Model for inline completions. Leave empty to use provider-specific defaults.",
+          "order": 31
+        },
+        "loco.completions.model.ollama": {
+          "type": "string",
+          "default": "qwen2.5-coder:7b",
+          "description": "Default Ollama model for completions",
+          "order": 32
+        },
+        "loco.completions.model.groq": {
+          "type": "string",
+          "default": "llama-3.1-8b-instant",
+          "description": "Default Groq model for completions",
+          "order": 33
+        },
+        "loco.completions.model.gemini": {
+          "type": "string",
+          "default": "gemini-1.5-flash",
+          "description": "Default Gemini model for completions",
+          "order": 34
+        },
+        "loco.completions.model.openai": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "Default OpenAI model for completions",
+          "order": 35
+        },
+        "loco.completions.delay": {
           "type": "number",
           "default": 250,
           "minimum": 100,
           "maximum": 1000,
-          "description": "Delay before triggering completions (ms)"
+          "description": "Delay before triggering completions (ms). Lower = faster but more API calls",
+          "order": 36
         },
-        "loco.chatModel": {
-          "type": "string",
-          "default": "llama-3.3-70b-versatile",
-          "description": "Model for chat conversations"
+        "loco.completions.temperature": {
+          "type": "number",
+          "default": 0.1,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Temperature for completions (0.0-0.3 recommended for code)",
+          "order": 37
         },
-        "loco.theme": {
+        "loco.ui.theme": {
           "type": "string",
           "enum": [
             "auto",
-            "light",
+            "light", 
             "dark"
           ],
+          "enumDescriptions": [
+            "Follow VS Code theme",
+            "Always use light theme",
+            "Always use dark theme"
+          ],
           "default": "auto",
-          "description": "Chat UI theme"
+          "description": "Chat panel theme",
+          "order": 40
         }
       }
     },
@@ -137,7 +240,13 @@
           "command": "loco.clearChat",
           "when": "view == loco.chatView",
           "group": "navigation"
+        },
+        {
+          "command": "loco.openSettings",
+          "when": "view == loco.chatView",
+          "group": "navigation"
         }
+
       ]
     }
   },

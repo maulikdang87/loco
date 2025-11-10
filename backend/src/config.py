@@ -48,8 +48,8 @@ PROVIDER_MODELS: Dict[str, Dict[str, Any]] = {
         "quality": "codestral:22b"
     },
     "groq": {
-        "fast": "llama-3.3-70b-versatile",
-        "balanced": "llama-3.1-70b-versatile",
+        "fast": "llama-3.1-8b-instant",
+        "balanced": "llama-3.3-70b-versatile",
         "quality": "llama-3.3-70b-versatile"
     },
     "gemini": {
