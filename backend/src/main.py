@@ -10,6 +10,8 @@ from .llm.llm_manager import llm_manager
 from .agents.code_completion_agent import completion_agent
 from .utils.error_handler import global_exception_handler
 from pydantic import BaseModel
+from src.agents.graph import agent_graph, AgentState
+from langchain_core.messages import HumanMessage
 
 class ChatRequest(BaseModel):
     message: str
@@ -289,6 +291,215 @@ async def chat(
         
     except Exception as e:
         logger.error(f"Chat failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/v1/agent/process")
+async def process_with_agent(request: dict):
+    """
+    Process request through multi-agent system
+    
+    Automatically routes to appropriate specialized agent
+    """
+    logger.info("Agent processing request")
+    
+    try:
+        # Build initial state
+        initial_state: AgentState = {
+            "messages": [HumanMessage(content=request.get("query", ""))],
+            "task_type": "",
+            "user_query": request.get("query", ""),
+            "current_file": request.get("file", ""),
+            "selected_code": request.get("code", ""),
+            "surrounding_context": request.get("context", ""),
+            "cursor_position": request.get("cursor", {}),
+            "file_references": request.get("files", []),
+            "errors": request.get("errors", []),
+            "warnings": request.get("warnings", []),
+            "parsed_ast": {},
+            "git_diff": "",
+            "recent_commits": [],
+            "next_agent": "",
+            "routing_reason": "",
+            "response": "",
+            "confidence": 0.0
+        }
+        
+        # Run agent graph
+        final_state = await agent_graph.run(initial_state)
+        
+        return {
+            "response": final_state.get("response", ""),
+            "agent_used": final_state.get("next_agent", "unknown"),
+            "confidence": final_state.get("confidence", 0.0),
+            "routing_reason": final_state.get("routing_reason", "")
+        }
+        
+    except Exception as e:
+        logger.error(f"Agent processing failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/v1/agent/debug")
+async def debug_code_endpoint(request: dict):
+    """
+    Debug code endpoint - directly calls debug agent
+    """
+    logger.info("Debug agent endpoint")
+    
+    try:
+        initial_state: AgentState = {
+            "messages": [HumanMessage(content="Debug this code")],
+            "task_type": "debug",
+            "user_query": "Debug this code",
+            "current_file": request.get("file", ""),
+            "selected_code": request.get("code", ""),
+            "surrounding_context": request.get("context", ""),
+            "cursor_position": {},
+            "file_references": [],
+            "errors": request.get("errors", []),
+            "warnings": [],
+            "parsed_ast": {},
+            "git_diff": "",
+            "recent_commits": [],
+            "next_agent": "debug",
+            "routing_reason": "Direct debug request",
+            "response": "",
+            "confidence": 0.0
+        }
+        
+        from src.agents.debug_agent import debug_agent
+        final_state = await debug_agent.debug(initial_state)
+        
+        return {
+            "response": final_state.get("response", ""),
+            "confidence": final_state.get("confidence", 0.0)
+        }
+        
+    except Exception as e:
+        logger.error(f"Debug failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/v1/agent/explain")
+async def explain_code_endpoint(request: dict):
+    """
+    Explain code endpoint - directly calls explain agent
+    """
+    logger.info("Explain agent endpoint")
+    
+    try:
+        initial_state: AgentState = {
+            "messages": [HumanMessage(content="Explain this code")],
+            "task_type": "explain",
+            "user_query": "Explain this code",
+            "current_file": request.get("file", ""),
+            "selected_code": request.get("code", ""),
+            "surrounding_context": request.get("context", ""),
+            "cursor_position": {},
+            "file_references": [],
+            "errors": [],
+            "warnings": [],
+            "parsed_ast": {},
+            "git_diff": "",
+            "recent_commits": [],
+            "next_agent": "explain",
+            "routing_reason": "Direct explain request",
+            "response": "",
+            "confidence": 0.0
+        }
+        
+        from src.agents.explain_agent import explain_agent
+        final_state = await explain_agent.explain(initial_state)
+        
+        return {
+            "response": final_state.get("response", ""),
+            "confidence": final_state.get("confidence", 0.0)
+        }
+        
+    except Exception as e:
+        logger.error(f"Explain failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/v1/agent/refactor")
+async def refactor_code_endpoint(request: dict):
+    """
+    Refactor code endpoint - directly calls refactor agent
+    """
+    logger.info("Refactor agent endpoint")
+    
+    try:
+        initial_state: AgentState = {
+            "messages": [HumanMessage(content="Refactor this code")],
+            "task_type": "refactor",
+            "user_query": "Refactor this code",
+            "current_file": request.get("file", ""),
+            "selected_code": request.get("code", ""),
+            "surrounding_context": "",
+            "cursor_position": {},
+            "file_references": [],
+            "errors": [],
+            "warnings": [],
+            "parsed_ast": {},
+            "git_diff": "",
+            "recent_commits": [],
+            "next_agent": "refactor",
+            "routing_reason": "Direct refactor request",
+            "response": "",
+            "confidence": 0.0
+        }
+        
+        from src.agents.refactor_agent import refactor_agent
+        final_state = await refactor_agent.refactor(initial_state)
+        
+        return {
+            "response": final_state.get("response", ""),
+            "confidence": final_state.get("confidence", 0.0)
+        }
+        
+    except Exception as e:
+        logger.error(f"Refactor failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/v1/agent/document")
+async def document_code_endpoint(request: dict):
+    """
+    Document code endpoint - directly calls documentation agent
+    """
+    logger.info("Documentation agent endpoint")
+    
+    try:
+        initial_state: AgentState = {
+            "messages": [HumanMessage(content="Document this code")],
+            "task_type": "documentation",
+            "user_query": "Document this code",
+            "current_file": request.get("file", ""),
+            "selected_code": request.get("code", ""),
+            "surrounding_context": "",
+            "cursor_position": {},
+            "file_references": [],
+            "errors": [],
+            "warnings": [],
+            "parsed_ast": {},
+            "git_diff": "",
+            "recent_commits": [],
+            "next_agent": "documentation",
+            "routing_reason": "Direct documentation request",
+            "response": "",
+            "confidence": 0.0
+        }
+        
+        from src.agents.documentation_agent import documentation_agent
+        final_state = await documentation_agent.generate_docs(initial_state)
+        
+        return {
+            "response": final_state.get("response", ""),
+            "confidence": final_state.get("confidence", 0.0)
+        }
+        
+    except Exception as e:
+        logger.error(f"Documentation failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.on_event("shutdown")
