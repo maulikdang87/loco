@@ -23,43 +23,43 @@ class DocumentationAgent:
     
     def _get_system_prompt(self) -> str:
         """Documentation agent system prompt"""
-        return """You are an expert technical documentation writer specialized in code documentation.
+        return """You are a technical documentation writer specialized in code documentation.
 
-Your role:
-- Generate clear, comprehensive docstrings
-- Write documentation that explains WHAT, WHY, and HOW
-- Follow language-specific documentation conventions
-- Include type hints, parameter descriptions, and examples
-- Consider edge cases and important notes
+IMPORTANT: Generate ONLY the docstring/comment, NOT the entire function.
 
-Documentation standards:
-Python: Google/NumPy style docstrings
-JavaScript/TypeScript: JSDoc format
-Java/C++: Javadoc/Doxygen style
+Your response should contain ONLY the documentation comment in the appropriate format:
+- Python: Triple-quoted docstring (Google/NumPy style)
+- JavaScript/TypeScript: JSDoc comment
+- Java/C++: Javadoc/Doxygen comment
 
-For functions, include:
+Include:
 1. Brief description (one line)
-2. Detailed explanation (if needed)
+2. Detailed explanation (if complex)
 3. Parameters with types and descriptions
 4. Return value with type and description
-5. Raises/Throws (if applicable)
-6. Examples (for complex functions)
-7. Notes about edge cases or performance
+5. Exceptions/Errors raised
+6. Examples (if helpful)
 
-For classes, include:
-1. Class purpose and responsibility
-2. Attributes with types
-3. Methods overview
-4. Usage examples
-5. Inheritance relationships
+Response format - ONLY the docstring in a code block:
+```python
+\"\"\"
+Brief description.
 
-Response format:
-[Complete, properly formatted docstring]
+Detailed explanation.
 
-**Explanation:**
-[Brief explanation of the documentation structure and any important notes]
+Args:
+    param1 (type): Description.
 
-Keep docstrings concise but complete. Focus on clarity and usefulness."""
+Returns:
+    type: Description.
+
+Examples:
+    >>> example()
+    result
+\"\"\"
+```
+
+Do NOT include the function signature or body. ONLY the docstring."""
     
     async def generate_documentation(self, state: dict) -> dict:
         """

@@ -8,6 +8,21 @@ import {
     BackendStatus
 } from '../types';
 
+export interface AgentRequest {
+    query: string;
+    code?: string;
+    file?: string;
+    context?: string;
+    errors?: Array<{ message: string }>;
+}
+
+export interface AgentResponse {
+    response: string;
+    agent_used?: string;
+    confidence: number;
+    routing_reason?: string;
+}
+
 export class BackendClient {
     private client: AxiosInstance;
     private statusBar: vscode.StatusBarItem;
@@ -99,6 +114,87 @@ export class BackendClient {
                     ...request,
                     model
                 }
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            return null;
+        }
+    }
+
+    /**
+     * Process request through multi-agent system
+     * Automatically routes to appropriate agent
+     */
+    async processWithAgent(request: AgentRequest): Promise<AgentResponse | null> {
+        try {
+            const response = await this.client.post<AgentResponse>(
+                '/api/v1/agent/process',
+                request
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            return null;
+        }
+    }
+
+    /**
+     * Debug code - analyze errors and suggest fixes
+     */
+    async debugCode(code: string, file: string, errors?: Array<{ message: string }>): Promise<AgentResponse | null> {
+        try {
+            const response = await this.client.post<AgentResponse>(
+                '/api/v1/agent/debug',
+                { code, file, errors }
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            return null;
+        }
+    }
+
+    /**
+     * Explain code in detail
+     */
+    async explainCode(code: string, file: string, context?: string): Promise<AgentResponse | null> {
+        try {
+            const response = await this.client.post<AgentResponse>(
+                '/api/v1/agent/explain',
+                { code, file, context }
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            return null;
+        }
+    }
+
+    /**
+     * Generate documentation/docstrings
+     */
+    async documentCode(code: string, file: string): Promise<AgentResponse | null> {
+        try {
+            const response = await this.client.post<AgentResponse>(
+                '/api/v1/agent/document',
+                { code, file }
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            return null;
+        }
+    }
+
+    /**
+     * Suggest refactorings
+     */
+    async refactorCode(code: string, file: string, context?: string): Promise<AgentResponse | null> {
+        try {
+            const response = await this.client.post<AgentResponse>(
+                '/api/v1/agent/refactor',
+                { code, file, context }
             );
             return response.data;
         } catch (error) {

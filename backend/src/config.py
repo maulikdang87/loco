@@ -1,5 +1,6 @@
+from typing import Optional, Dict, Any, Literal
 from pydantic_settings import BaseSettings
-from typing import Optional, Dict, Literal, Any
+
 
 class Settings(BaseSettings):
     """Loco Backend Configuration"""

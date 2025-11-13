@@ -6,6 +6,8 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
     private backend: BackendClient;
     private cache = new Map<string, string>();
     private lastTriggerTime = 0;
+    private lastRequestTime = 0;
+    private debounceTimer?: NodeJS.Timeout;
     private abortController?: AbortController;
 
     constructor(backend: BackendClient) {
@@ -18,6 +20,38 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
         context: vscode.InlineCompletionContext,
         token: vscode.CancellationToken
     ): Promise<vscode.InlineCompletionItem[] | null> {
+        
+        const config = vscode.workspace.getConfiguration('loco');
+        if (!config.get<boolean>('general.enabled') || !config.get<boolean>('completions.enabled')) {
+            return null;
+        }
+
+        // FIX: Proper debouncing - only trigger after user stops typing
+        const now = Date.now();
+        const delay = config.get<number>('completions.delay') || 500;  // Increased to 500ms
+        
+        // Cancel if still typing
+        if (now - this.lastTriggerTime < delay) {
+            return null;
+        }
+
+        // Don't trigger too frequently
+        if (now - this.lastRequestTime < 2000) {  // At least 2 seconds between requests
+            return null;
+        }
+
+        // Only trigger on significant triggers (not every character)
+        const line = document.lineAt(position.line).text;
+        const beforeCursor = line.substring(0, position.character);
+        
+        // Only trigger after: newline, dot, opening paren/bracket, or significant word
+        const significantTriggers = /[.\(\[\{]\s*$|^\s*$|^(if|for|while|def|function|class)\s/;
+        if (!significantTriggers.test(beforeCursor) && context.triggerKind !== vscode.InlineCompletionTriggerKind.Automatic) {
+            return null;
+        }
+
+        this.lastTriggerTime = now;
+
         // Ensure proper indentation and spaces are sent to the LLM
         const prefix = this.getPrefix(document, position);
         const suffix = this.getSuffix(document, position);
@@ -34,14 +68,15 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
 
         // Call backend
         try {
+            this.lastRequestTime = now;
             const response = await this.backend.complete(request);
 
             if (!response || token.isCancellationRequested) {
                 return null;
             }
 
-            // Clean and format the response
-            const cleaned = this.cleanCompletion(response.completion, document.lineAt(position.line).text, position);
+            // Clean with indentation awareness - pass document for proper formatting
+            const cleaned = this.cleanCompletion(response.completion, document, position);
 
             if (!cleaned || cleaned.length === 0) {
                 return null;
@@ -54,7 +89,12 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
                     new vscode.Range(position, position)
                 )
             ];
-        } catch (error) {
+        } catch (error: any) {
+            // Handle rate limit errors gracefully
+            if (error?.status === 429 || error?.response?.status === 429) {
+                console.warn('Rate limit reached, skipping completion');
+                return null;
+            }
             console.error('Completion error:', error);
             return null;
         }
@@ -80,20 +120,44 @@ export class InlineCompletionProvider implements vscode.InlineCompletionItemProv
         return `${lang}:${shortPrefix}:${suffix.slice(0, 100)}`;
     }
 
-    private cleanCompletion(completion: string, line: string, position: vscode.Position): string {
-        // Ensure proper indentation
-        const indentMatch = line.match(/^\s*/);
-        const currentIndent = indentMatch ? indentMatch[0] : '';
-
+    private cleanCompletion(completion: string, document: vscode.TextDocument, position: vscode.Position): string {
+        // Remove markdown
+        completion = completion.replace(/```[\w]*\n?/g, '').replace(/```/g, '').trim();
+        
+        // Get the line where cursor is
+        const currentLine = document.lineAt(position.line).text;
+        const beforeCursor = currentLine.substring(0, position.character);
+        
+        // Calculate base indentation (indent of current line)
+        const baseIndent = beforeCursor.match(/^(\s*)/)?.[1] || '';
+        
+        // Check if we're after a trigger that increases indent (: { ( [)
+        const needsExtraIndent = /[:{\(\[]$/.test(beforeCursor.trim());
+        
+        // Get tab settings from workspace configuration
+        const editorConfig = vscode.workspace.getConfiguration('editor', document.uri);
+        const useSpaces = editorConfig.get<boolean>('insertSpaces') !== false;
+        const tabSize = editorConfig.get<number>('tabSize') || 4;
+        const indentUnit = useSpaces ? ' '.repeat(tabSize) : '\t';
+        
+        // Calculate final base indent
+        const finalBaseIndent = needsExtraIndent ? baseIndent + indentUnit : baseIndent;
+        
+        // Split completion into lines
         const lines = completion.split('\n');
-        const indentedLines = lines.map((l, i) => {
+        
+        // Apply base indent to first line only
+        const result = lines.map((line, i) => {
             if (i === 0) {
-                return currentIndent + l.trimStart();
+                // First line: just add base indent if it doesn't have any
+                return line.startsWith(' ') || line.startsWith('\t') ? line : finalBaseIndent + line.trim();
+            } else {
+                // Subsequent lines: preserve as-is (LLM should handle relative indent)
+                return line;
             }
-            return currentIndent + l;
-        });
-
-        return indentedLines.join('\n');
+        }).join('\n');
+        
+        return result;
     }
 
     private isInCommentOrString(text: string, lang: string): boolean {

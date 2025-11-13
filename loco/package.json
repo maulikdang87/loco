@@ -29,10 +29,33 @@
         "title": "Loco: Open Chat",
         "icon": "$(comment-discussion)"
       },
-
       {
         "command": "loco.toggleInlineCompletions",
         "title": "Loco: Toggle Inline Completions"
+      },
+      {
+        "command": "loco.explainCode",
+        "title": "Loco: Explain Code",
+        "icon": "$(question)"
+      },
+      {
+        "command": "loco.debugCode",
+        "title": "Loco: Debug Code",
+        "icon": "$(bug)"
+      },
+      {
+        "command": "loco.documentCode",
+        "title": "Loco: Generate Documentation",
+        "icon": "$(book)"
+      },
+      {
+        "command": "loco.refactorCode",
+        "title": "Loco: Refactor Code",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "loco.clearCache",
+        "title": "Loco: Clear Cache"
       },
       {
         "command": "loco.clearChat",
@@ -58,26 +81,20 @@
         "command": "loco.openChat",
         "key": "ctrl+shift+l",
         "mac": "cmd+shift+l"
+      },
+      {
+        "command": "loco.explainCode",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "loco.debugCode",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "editorHasSelection"
       }
     ],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "loco-panel",
-          "title": "Loco",
-          "icon": "resources/icon.svg"
-        }
-      ]
-    },
-    "views": {
-      "loco-panel": [
-        {
-          "type": "webview",
-          "id": "loco.chatView",
-          "name": "Loco Chat"
-        }
-      ]
-    },
     "configuration": {
       "title": "Loco AI Assistant",
       "properties": {
@@ -159,9 +176,15 @@
         },
         "loco.completions.enabled": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Enable inline code completions as you type",
           "order": 30
+        },
+        "loco.inlineCompletions": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show inline code completions (temporary testing setting)",
+          "order": 31
         },
         "loco.completions.model": {
           "type": "string", 
@@ -230,9 +253,47 @@
     "menus": {
       "editor/context": [
         {
+          "command": "loco.explainCode",
+          "when": "editorHasSelection",
+          "group": "loco@1"
+        },
+        {
+          "command": "loco.debugCode",
+          "when": "editorHasSelection",
+          "group": "loco@2"
+        },
+        {
+          "command": "loco.documentCode",
+          "when": "editorHasSelection",
+          "group": "loco@3"
+        },
+        {
+          "command": "loco.refactorCode",
+          "when": "editorHasSelection",
+          "group": "loco@4"
+        },
+        {
           "command": "loco.addFileReference",
           "when": "editorFocus",
-          "group": "loco@1"
+          "group": "loco@5"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "loco.explainCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "loco.debugCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "loco.documentCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "loco.refactorCode",
+          "when": "editorHasSelection"
         }
       ],
       "view/title": [

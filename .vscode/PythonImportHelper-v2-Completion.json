@@ -8,7 +8,71 @@
         "documentation": {}
     },
     {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -72,6 +136,54 @@
         "documentation": {}
     },
     {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -112,7 +224,7 @@
         "documentation": {}
     },
     {
-        "label": "Literal",
+        "label": "Any",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -120,7 +232,7 @@
         "documentation": {}
     },
     {
-        "label": "Any",
+        "label": "Literal",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -144,11 +256,91 @@
         "documentation": {}
     },
     {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
         "label": "PromptTemplate",
         "importPath": "langchain_core.prompts",
         "description": "langchain_core.prompts",
         "isExtraImport": true,
         "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
         "documentation": {}
     },
     {
@@ -175,6 +367,119 @@
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
         "documentation": {}
     },
     {
@@ -251,12 +556,104 @@
         "documentation": {}
     },
     {
-        "label": "re",
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_python",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
+        "importPath": "tree_sitter_python",
+        "description": "tree_sitter_python",
+        "detail": "tree_sitter_python",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_javascript",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tree_sitter_javascript",
+        "description": "tree_sitter_javascript",
+        "detail": "tree_sitter_javascript",
+        "documentation": {}
+    },
+    {
+        "label": "Language",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Parser",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "difflib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "difflib",
+        "description": "difflib",
+        "detail": "difflib",
+        "documentation": {}
+    },
+    {
+        "label": "git",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "git",
+        "description": "git",
+        "detail": "git",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -324,12 +721,84 @@
         "documentation": {}
     },
     {
+        "label": "agent_graph",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "agent_graph",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
         "label": "pytest",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "pytest",
         "description": "pytest",
         "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "debug_agent",
+        "importPath": "src.agents.debug_agent",
+        "description": "src.agents.debug_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "documentation_agent",
+        "importPath": "src.agents.documentation_agent",
+        "description": "src.agents.documentation_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "explain_agent",
+        "importPath": "src.agents.explain_agent",
+        "description": "src.agents.explain_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "refactor_agent",
+        "importPath": "src.agents.refactor_agent",
+        "description": "src.agents.refactor_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "supervisor",
+        "importPath": "src.agents.supervisor",
+        "description": "src.agents.supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.supervisor",
         "documentation": {}
     },
     {
@@ -387,7 +856,7 @@
         "kind": 6,
         "importPath": "backend.src.agents.code_completion_agent",
         "description": "backend.src.agents.code_completion_agent",
-        "peekOfCode": "class CodeCompletionAgent:\n    def __init__(\n        self,\n        provider: Optional[ProviderType] = None,\n        model: Optional[str] = None\n    ):\n        self.provider = provider\n        self.model = model\n        self.prompt_template = self._create_prompt_template()\n        self.output_parser = StrOutputParser()",
+        "peekOfCode": "class CodeCompletionAgent:\n    def _build_enhanced_prompt(\n        self,\n        prefix: str,\n        suffix: str,\n        language: str,\n        filepath: str\n    ) -> str:\n        \"\"\"Build enhanced prompt with indentation detection\"\"\"\n        import re",
         "detail": "backend.src.agents.code_completion_agent",
         "documentation": {}
     },
@@ -396,7 +865,7 @@
         "kind": 5,
         "importPath": "backend.src.agents.code_completion_agent",
         "description": "backend.src.agents.code_completion_agent",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CodeCompletionAgent:\n    def __init__(\n        self,\n        provider: Optional[ProviderType] = None,\n        model: Optional[str] = None\n    ):\n        self.provider = provider\n        self.model = model\n        self.prompt_template = self._create_prompt_template()",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CodeCompletionAgent:\n    def _build_enhanced_prompt(\n        self,\n        prefix: str,\n        suffix: str,\n        language: str,\n        filepath: str\n    ) -> str:\n        \"\"\"Build enhanced prompt with indentation detection\"\"\"",
         "detail": "backend.src.agents.code_completion_agent",
         "documentation": {}
     },
@@ -407,6 +876,123 @@
         "description": "backend.src.agents.code_completion_agent",
         "peekOfCode": "completion_agent = CodeCompletionAgent()",
         "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "DebugAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "class DebugAgent:\n    \"\"\"\n    Specialized agent for debugging code\n    Inspired by Cursor's error analysis capabilities\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.tools = {\n            \"file_context\": FileContextTool(),",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass DebugAgent:\n    \"\"\"\n    Specialized agent for debugging code\n    Inspired by Cursor's error analysis capabilities\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.tools = {",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "debug_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "debug_agent = DebugAgent()",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "DocumentationAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "class DocumentationAgent:\n    \"\"\"\n    Specialized agent for generating documentation\n    Creates docstrings, README sections, and code explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass DocumentationAgent:\n    \"\"\"\n    Specialized agent for generating documentation\n    Creates docstrings, README sections, and code explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "documentation_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "documentation_agent = DocumentationAgent()",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "ExplainAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "class ExplainAgent:\n    \"\"\"\n    Specialized agent for explaining code\n    Breaks down complex logic into understandable explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ExplainAgent:\n    \"\"\"\n    Specialized agent for explaining code\n    Breaks down complex logic into understandable explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "explain_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "explain_agent = ExplainAgent()",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "class AgentState(TypedDict):\n    \"\"\"Shared state across all agents\"\"\"\n    # Messages\n    messages: Annotated[list[BaseMessage], add]\n    # Task info\n    task_type: str\n    user_query: str\n    # Code context\n    current_file: str\n    selected_code: str",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "LocoAgentGraph",
+        "kind": 6,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "class LocoAgentGraph:\n    \"\"\"\n    Multi-agent orchestration using LangGraph\n    Routes requests through supervisor to specialized agents\n    \"\"\"\n    def __init__(self):\n        self.graph = self._build_graph()\n    def _build_graph(self) -> StateGraph:\n        \"\"\"\n        Build LangGraph workflow",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Agent state definition\nclass AgentState(TypedDict):\n    \"\"\"Shared state across all agents\"\"\"\n    # Messages\n    messages: Annotated[list[BaseMessage], add]\n    # Task info\n    task_type: str\n    user_query: str\n    # Code context",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "agent_graph",
+        "kind": 5,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "agent_graph = LocoAgentGraph()",
+        "detail": "backend.src.agents.graph",
         "documentation": {}
     },
     {
@@ -461,6 +1047,78 @@
         "description": "backend.src.agents.prompts",
         "peekOfCode": "DOCUMENTATION_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"code\", \"doc_style\"],\n    template=\"\"\"You are an expert {language} documentation generator.\nGenerate a comprehensive docstring for this code using {doc_style} style:\n{code}\nInclude:\n- Brief description\n- Parameters with types\n- Return value with type\n- Raises (if applicable)",
         "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "RefactorAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "class RefactorAgent:\n    \"\"\"\n    Specialized agent for code refactoring\n    Suggests improvements, optimizations, and best practices\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass RefactorAgent:\n    \"\"\"\n    Specialized agent for code refactoring\n    Suggests improvements, optimizations, and best practices\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "refactor_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "refactor_agent = RefactorAgent()",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.state",
+        "description": "backend.src.agents.state",
+        "peekOfCode": "class AgentState(TypedDict):\n    \"\"\"\n    Shared state for multi-agent system\n    Inspired by Cursor's context-aware agent architecture\n    \"\"\"\n    # Conversation history\n    messages: Annotated[Sequence[BaseMessage], add]\n    # Current task classification\n    task_type: Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\n    # Code context",
+        "detail": "backend.src.agents.state",
+        "documentation": {}
+    },
+    {
+        "label": "SupervisorAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "class SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nTaskType = Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\nclass SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "TaskType",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "TaskType = Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\nclass SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "supervisor",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "supervisor = SupervisorAgent()",
+        "detail": "backend.src.agents.supervisor",
         "documentation": {}
     },
     {
@@ -560,6 +1218,96 @@
         "description": "backend.src.models.schemas",
         "peekOfCode": "class LocoSettings(BaseModel):\n    default_provider: str\n    default_model: Optional[str] = None\n    temperature: Optional[float] = 0.3\n    available_providers: list[str] = [\"ollama\", \"groq\", \"gemini\", \"openai\"]",
         "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ASTParserTool",
+        "kind": 6,
+        "importPath": "backend.src.tools.ast_parser_tool",
+        "description": "backend.src.tools.ast_parser_tool",
+        "peekOfCode": "class ASTParserTool:\n    \"\"\"\n    Parse code into Abstract Syntax Tree using Tree-sitter\n    Enables semantic code understanding\n    \"\"\"\n    def __init__(self):\n        # Initialize parsers for different languages\n        self.parsers = {\n            'python': self._init_parser(tspython.language()),\n            'javascript': self._init_parser(tsjavascript.language()),",
+        "detail": "backend.src.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "ast_parser",
+        "kind": 5,
+        "importPath": "backend.src.tools.ast_parser_tool",
+        "description": "backend.src.tools.ast_parser_tool",
+        "peekOfCode": "ast_parser = ASTParserTool()",
+        "detail": "backend.src.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "CodeSearchTool",
+        "kind": 6,
+        "importPath": "backend.src.tools.code_search_tool",
+        "description": "backend.src.tools.code_search_tool",
+        "peekOfCode": "class CodeSearchTool:\n    \"\"\"\n    Search for similar code patterns across files\n    Uses semantic similarity and pattern matching\n    \"\"\"\n    @staticmethod\n    def _tokenize_code(code: str) -> List[str]:\n        \"\"\"Extract meaningful tokens from code\"\"\"\n        # Remove comments and strings for better matching\n        code = re.sub(r'#.*$', '', code, flags=re.MULTILINE)  # Python comments",
+        "detail": "backend.src.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "code_search_tool",
+        "kind": 5,
+        "importPath": "backend.src.tools.code_search_tool",
+        "description": "backend.src.tools.code_search_tool",
+        "peekOfCode": "code_search_tool = CodeSearchTool()",
+        "detail": "backend.src.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "FileContextTool",
+        "kind": 6,
+        "importPath": "backend.src.tools.file_context_tool",
+        "description": "backend.src.tools.file_context_tool",
+        "peekOfCode": "class FileContextTool:\n    \"\"\"\n    Extracts surrounding code context (20 lines before/after cursor)\n    Similar to Cursor's context extraction\n    \"\"\"\n    @staticmethod\n    @tool\n    def get_surrounding_context(\n        file_content: str,\n        cursor_line: int,",
+        "detail": "backend.src.tools.file_context_tool",
+        "documentation": {}
+    },
+    {
+        "label": "GitTools",
+        "kind": 6,
+        "importPath": "backend.src.tools.git_tools",
+        "description": "backend.src.tools.git_tools",
+        "peekOfCode": "class GitTools:\n    \"\"\"\n    Tools for extracting git repository context\n    Helps agents understand recent changes\n    \"\"\"\n    @staticmethod\n    def _get_repo(file_path: str) -> Optional[git.Repo]:\n        \"\"\"Find git repo for a file\"\"\"\n        try:\n            # Walk up directory tree to find .git",
+        "detail": "backend.src.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "git_tools",
+        "kind": 5,
+        "importPath": "backend.src.tools.git_tools",
+        "description": "backend.src.tools.git_tools",
+        "peekOfCode": "git_tools = GitTools()",
+        "detail": "backend.src.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationMemory",
+        "kind": 6,
+        "importPath": "backend.src.tools.memory_tool",
+        "description": "backend.src.tools.memory_tool",
+        "peekOfCode": "class ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):\n        \"\"\"Add message to conversation history\"\"\"",
+        "detail": "backend.src.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.tools.memory_tool",
+        "description": "backend.src.tools.memory_tool",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):",
+        "detail": "backend.src.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "conversation_memory",
+        "kind": 5,
+        "importPath": "backend.src.tools.memory_tool",
+        "description": "backend.src.tools.memory_tool",
+        "peekOfCode": "conversation_memory = ConversationMemory()",
+        "detail": "backend.src.tools.memory_tool",
         "documentation": {}
     },
     {

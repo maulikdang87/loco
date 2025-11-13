@@ -2,74 +2,111 @@ import * as vscode from 'vscode';
 import { BackendClient } from '../api/backendClient';
 import { ChatMessage, ChatRequest, FileReference } from '../types';
 
-export class ChatPanel implements vscode.WebviewViewProvider {
-    public static readonly viewType = 'loco.chatView';
-    private _view?: vscode.WebviewView;
-    private openPanels: Set<vscode.Webview> = new Set();
+export class ChatPanel {
+    private static currentPanel: ChatPanel | undefined;
+    private readonly panel: vscode.WebviewPanel;
     private backend: BackendClient;
     private chatHistory: ChatMessage[] = [];
     private fileReferences: FileReference[] = [];
+    private disposables: vscode.Disposable[] = [];
 
-    constructor(
+    private constructor(
+        panel: vscode.WebviewPanel,
         private readonly extensionUri: vscode.Uri,
         backend: BackendClient
     ) {
+        this.panel = panel;
         this.backend = backend;
-    }
 
-    public resolveWebviewView(
-        webviewView: vscode.WebviewView,
-        context: vscode.WebviewViewResolveContext,
-        _token: vscode.CancellationToken
-    ) {
-        this._view = webviewView;
+        // Set webview content
+        this.panel.webview.html = this.getHtmlContent(this.panel.webview);
 
-        webviewView.webview.options = {
-            enableScripts: true,
-            localResourceRoots: [this.extensionUri]
-        };
-
-        webviewView.webview.html = this.getHtmlContent(webviewView.webview);
+        // Handle panel disposal
+        this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
 
         // Handle messages from webview
-        webviewView.webview.onDidReceiveMessage(async (data) => {
-            console.log('Received message:', data);  // Debug log
-            
-            switch (data.type) {
-                case 'sendMessage':
-                    // Use current fileReferences instead of data.files
-                    await this.handleUserMessage(data.text, this.fileReferences);
-                    break;
-                case 'addFile':
-                    await this.handleAddFileRequest();
-                    break;
-                case 'addFileByPath':
-                    await this.addFileByPath(data.path);
-                    break;
-                case 'searchFiles':
-                    const files = await this.handleFileSearch(data.query);
-                    this._view?.webview.postMessage({
-                        type: 'fileSearchResults',
-                        files: files
-                    });
-                    break;
-                case 'removeFile':
-                    this.removeFileReference(data.path, data.lineStart);
-                    break;
-                case 'clearChat':
-                    this.clearChat();
-                    break;
-                case 'copyCode':
-                    await vscode.env.clipboard.writeText(data.code);
-                    vscode.window.showInformationMessage('Code copied!');
-                    break;
-                case 'webviewReady':
-                    // Webview is ready, send initial state
-                    this.updateChat();
-                    this.updateFileReferences();
-                    break;
+        this.panel.webview.onDidReceiveMessage(
+            async (data) => {
+                console.log('Received message:', data);
+                
+                switch (data.type) {
+                    case 'sendMessage':
+                        await this.handleUserMessage(data.text, this.fileReferences);
+                        break;
+                    case 'addFile':
+                        await this.handleAddFileRequest();
+                        break;
+                    case 'addFileByPath':
+                        await this.addFileByPath(data.path);
+                        break;
+                    case 'searchFiles':
+                        const files = await this.handleFileSearch(data.query);
+                        this.panel.webview.postMessage({
+                            type: 'fileSearchResults',
+                            files: files
+                        });
+                        break;
+                    case 'removeFile':
+                        this.removeFileReference(data.path, data.lineStart);
+                        break;
+                    case 'clearChat':
+                        this.clearChat();
+                        break;
+                    case 'copyCode':
+                        await vscode.env.clipboard.writeText(data.code);
+                        vscode.window.showInformationMessage('Code copied!');
+                        break;
+                    case 'webviewReady':
+                        // Webview is ready, send initial state
+                        this.updateChat();
+                        this.updateFileReferences();
+                        break;
+                }
+            },
+            null,
+            this.disposables
+        );
+    }
+
+    /**
+     * Create or reveal the chat panel (singleton pattern)
+     */
+    public static createOrShow(extensionUri: vscode.Uri, backend: BackendClient) {
+        // If panel already exists, just reveal it
+        if (ChatPanel.currentPanel) {
+            ChatPanel.currentPanel.panel.reveal(vscode.ViewColumn.Beside);
+            return;
+        }
+
+        // Create new panel beside the active editor
+        const panel = vscode.window.createWebviewPanel(
+            'locoChatPanel',
+            'Loco Chat',
+            vscode.ViewColumn.Beside,
+            {
+                enableScripts: true,
+                retainContextWhenHidden: true,
+                localResourceRoots: [extensionUri]
             }
-        });
+        );
+
+        ChatPanel.currentPanel = new ChatPanel(panel, extensionUri, backend);
+    }
+
+    /**
+     * Dispose the panel
+     */
+    private dispose() {
+        ChatPanel.currentPanel = undefined;
+
+        this.panel.dispose();
+
+        while (this.disposables.length) {
+            const disposable = this.disposables.pop();
+            if (disposable) {
+                disposable.dispose();
+            }
+        }
     }
 
     private async handleUserMessage(text: string, files: FileReference[]) {
@@ -299,13 +336,7 @@ export class ChatPanel implements vscode.WebviewViewProvider {
             messages: serializedMessages
         };
 
-        // Update sidebar view
-        this._view?.webview.postMessage(message);
-        
-        // Update all open panels
-        this.openPanels.forEach(webview => {
-            webview.postMessage(message);
-        });
+        this.panel.webview.postMessage(message);
     }
 
     private updateFileReferences() {
@@ -314,72 +345,7 @@ export class ChatPanel implements vscode.WebviewViewProvider {
             files: this.fileReferences
         };
 
-        // Update sidebar view
-        this._view?.webview.postMessage(message);
-        
-        // Update all open panels
-        this.openPanels.forEach(webview => {
-            webview.postMessage(message);
-        });
-    }
-
-    // Methods for panel mode (right side)
-    public getHtmlContentForPanel(webview: vscode.Webview): string {
-        return this.getHtmlContent(webview);
-    }
-
-    public registerPanel(webview: vscode.Webview) {
-        this.openPanels.add(webview);
-        // Send initial state
-        this.updateChat();
-        this.updateFileReferences();
-    }
-
-    public unregisterPanel(webview: vscode.Webview) {
-        this.openPanels.delete(webview);
-    }
-
-    public async handleWebviewMessage(data: any, webview: vscode.Webview): Promise<void> {
-        console.log('Received message:', data);
-        
-        switch (data.type) {
-            case 'sendMessage':
-                await this.handleUserMessage(data.text, this.fileReferences);
-                // updateChat() will update all views
-                break;
-            case 'addFile':
-                await this.handleAddFileRequest();
-                // updateFileReferences() will update all views
-                break;
-            case 'addFileByPath':
-                await this.addFileByPath(data.path);
-                // updateFileReferences() will update all views
-                break;
-            case 'searchFiles':
-                const files = await this.handleFileSearch(data.query);
-                webview.postMessage({
-                    type: 'fileSearchResults',
-                    files: files
-                });
-                break;
-            case 'removeFile':
-                this.removeFileReference(data.path, data.lineStart);
-                // updateFileReferences() will update all views
-                break;
-            case 'clearChat':
-                this.clearChat();
-                // updateChat() and updateFileReferences() will update all views
-                break;
-            case 'copyCode':
-                await vscode.env.clipboard.writeText(data.code);
-                vscode.window.showInformationMessage('Code copied!');
-                break;
-            case 'webviewReady':
-                // This is called from panels, not sidebar view
-                // Sidebar view handles webviewReady in resolveWebviewView
-                this.registerPanel(webview);
-                break;
-        }
+        this.panel.webview.postMessage(message);
     }
 
     private showThinking(show: boolean) {
@@ -388,13 +354,7 @@ export class ChatPanel implements vscode.WebviewViewProvider {
             show
         };
 
-        // Update sidebar view
-        this._view?.webview.postMessage(message);
-        
-        // Update all open panels
-        this.openPanels.forEach(webview => {
-            webview.postMessage(message);
-        });
+        this.panel.webview.postMessage(message);
     }
 
     private clearChat() {

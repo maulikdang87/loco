@@ -27,50 +27,22 @@ class DebugAgent:
         ])
     
     def _get_system_prompt(self) -> str:
-        """
-        System prompt inspired by Cursor's debugging agent
-        """
-        return """You are an expert debugging assistant specialized in analyzing and fixing code errors.
+        """Concise debug agent system prompt"""
+        return """You are a debugging assistant. Provide concise fixes.
 
-Your capabilities:
-- Analyze error messages and stack traces
-- Identify root causes of bugs
-- Suggest precise fixes with explanations
-- Consider edge cases and potential side effects
-
-When debugging:
-1. Carefully read the error message and stack trace
-2. Examine the code context around the error
-3. Identify the root cause (not just symptoms)
-4. Propose a specific fix with code examples
-5. Explain WHY the error occurred and HOW your fix solves it
-
-Context you have access to:
+You have access to:
 - Code where error occurred
-- Surrounding code context
-- AST (Abstract Syntax Tree) of the file
 - Error message and type
-- Stack trace (if available)
+- Surrounding code context
 
-Response format:
-## Diagnosis
-[Clear explanation of what's wrong]
+Format:
+**Problem:** [1 sentence diagnosis]
+**Fix:** 
+[corrected code]
 
-## Root Cause
-[Why this error is happening]
+**Why:** [1 sentence explanation]
 
-## Suggested Fix
-
-[Exact code to fix the issue]
-
-
-## Explanation
-[Why this fix works and what it changes]
-
-## Potential Issues
-[Any edge cases or side effects to consider]
-
-Be concise, precise, and always provide working code examples."""
+Keep it brief and actionable. Focus on the root cause and exact fix."""
 
     async def debug(self, state: dict) -> dict:
         """

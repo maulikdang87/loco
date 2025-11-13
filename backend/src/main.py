@@ -101,10 +101,19 @@ async def complete_code(request: CompletionRequest):
         return result
         
     except Exception as e:
-        logger.error(f"Completion failed: {e}")
+        error_msg = str(e)
+        logger.error(f"Completion failed: {error_msg}")
+        
+        # Check for rate limit errors
+        if "rate_limit_exceeded" in error_msg or "429" in error_msg:
+            raise HTTPException(
+                status_code=429,
+                detail=f"Rate limit exceeded. Please wait a moment and try again. {error_msg}"
+            )
+        
         raise HTTPException(
             status_code=500,
-            detail=f"Completion error: {str(e)}"
+            detail=f"Completion error: {error_msg}"
         )
 
 @app.post("/api/v1/complete/{provider}")
@@ -131,10 +140,19 @@ async def complete_with_provider(
         return result
         
     except Exception as e:
-        logger.error(f"Completion failed: {e}")
+        error_msg = str(e)
+        logger.error(f"Completion failed: {error_msg}")
+        
+        # Check for rate limit errors
+        if "rate_limit_exceeded" in error_msg or "429" in error_msg:
+            raise HTTPException(
+                status_code=429,
+                detail=f"Rate limit exceeded. Please wait a moment and try again. {error_msg}"
+            )
+        
         raise HTTPException(
             status_code=500,
-            detail=f"Completion error: {str(e)}"
+            detail=f"Completion error: {error_msg}"
         )
 
 @app.get("/api/v1/providers")
@@ -491,7 +509,7 @@ async def document_code_endpoint(request: dict):
         }
         
         from src.agents.documentation_agent import documentation_agent
-        final_state = await documentation_agent.generate_docs(initial_state)
+        final_state = await documentation_agent.generate_documentation(initial_state)
         
         return {
             "response": final_state.get("response", ""),

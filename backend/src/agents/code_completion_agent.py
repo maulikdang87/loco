@@ -11,6 +11,52 @@ from ..models.schemas import CompletionRequest, CompletionResponse
 logger = logging.getLogger(__name__)
 
 class CodeCompletionAgent:
+    def _build_enhanced_prompt(
+        self,
+        prefix: str,
+        suffix: str,
+        language: str,
+        filepath: str
+    ) -> str:
+        """Build enhanced prompt with indentation detection"""
+        import re
+        # Detect indentation style
+        lines = prefix.split('\n')
+        last_line = lines[-1] if lines else ''
+        # Count leading spaces/tabs
+        indent_match = re.match(r'^(\s+)', last_line)
+        current_indent = indent_match.group(1) if indent_match else ''
+        uses_tabs = '\t' in current_indent
+        indent_size = len(current_indent)
+        # Detect if we need extra indent (after : or {)
+        needs_extra_indent = last_line.rstrip().endswith((':', '{', '(', '['))
+        indent_info = f"- Indentation: {'tabs' if uses_tabs else f'{indent_size} spaces'}"
+        if needs_extra_indent:
+            indent_info += f"\n- Next line needs +1 indent level"
+        prompt = f"""You are an expert {language} code completion assistant.
+
+File: {filepath}
+Language: {language}
+{indent_info}
+
+CRITICAL INDENTATION RULES:
+1. Match EXACT indentation of cursor line: {repr(current_indent)}
+2. If line ends with : or {{ or ( or [, ADD one indent level to next line
+3. Use {'TABS' if uses_tabs else 'SPACES'} for indentation
+4. Preserve existing style precisely
+
+CODE BEFORE CURSOR:
+{prefix}
+<CURSOR>
+
+CODE AFTER CURSOR:
+{suffix}
+
+Generate ONLY the code completion. NO markdown, NO explanations.
+Start immediately with the code at the correct indentation level.
+
+COMPLETION:"""
+        return prompt
     
     def __init__(
         self,
@@ -22,45 +68,26 @@ class CodeCompletionAgent:
         self.prompt_template = self._create_prompt_template()
         self.output_parser = StrOutputParser()
     def _create_prompt_template(self) -> PromptTemplate:
-        """
-        Create optimized prompt template for code completion with proper indentation
-        """
-        template = """You are an expert {language} code completion assistant.
+        """Create prompt template for code completion"""
+        template = """You are a code completion engine. Generate ONLY the missing code at the cursor position.
 
-    Your task: Complete the code at <CURSOR> position. Generate ONLY the missing code.
+CRITICAL RULES:
+1. Output ONLY code - NO markdown, NO explanations, NO code fences
+2. Start with the FIRST CHARACTER of code needed
+3. Do NOT repeat code that already exists before the cursor
+4. Match the indentation style shown (spaces or tabs)
+5. For multi-line completions, use the SAME indent level for all lines (the editor will adjust)
 
-    CRITICAL RULES:
-    1. Match EXACT indentation level of the line where cursor is
-    2. If completing a block (function, class, loop), include proper indentation for inner lines
-    3. Do NOT include the line that already exists before cursor
-    4. Do NOT add extra blank lines
-    5. PRESERVE existing code style (spaces/tabs, naming conventions)
+Language: {language}
 
-    CODE BEFORE CURSOR:
-
+CODE BEFORE CURSOR:
 {prefix}
-
 <CURSOR>
 
 CODE AFTER CURSOR:
 {suffix}
 
-
-EXAMPLES:
-
-Example 1 - Single line completion:
-Before: "def add(a, b):\n    "
-Complete with: "return a + b"
-
-Example 2 - Multi-line block:
-Before: "for i in range(10):\n    "
-Complete with: "print(i)\n    sum += i"
-
-Example 3 - Class method:
-Before: "class Circle:\n    def area(self):\n        "
-Complete with: "return 3.14159 * self.radius ** 2"
-
-YOUR COMPLETION (NO explanations, NO markdown, ONLY code):"""
+YOUR COMPLETION (code only, no formatting):"""
     
         return PromptTemplate(
             input_variables=["language", "prefix", "suffix"],
@@ -176,13 +203,34 @@ YOUR COMPLETION (NO explanations, NO markdown, ONLY code):"""
         """
         start_time = time.time()
         
+        # FIX: Detect language from filename
+        language = request.language
+        if not language and request.filepath:
+            # Infer from extension
+            ext_to_lang = {
+                '.py': 'python',
+                '.js': 'javascript',
+                '.ts': 'typescript',
+                '.jsx': 'javascript',
+                '.tsx': 'typescript',
+                '.java': 'java',
+                '.cpp': 'cpp',
+                '.c': 'c',
+                '.go': 'go',
+                '.rs': 'rust',
+                '.rb': 'ruby',
+                '.php': 'php'
+            }
+            ext = '.' + request.filepath.split('.')[-1] if '.' in request.filepath else ''
+            language = ext_to_lang.get(ext, 'python')
+        
         # Select provider and model
         selected_provider = provider or self.provider
         selected_model = model or self.model
         
         logger.info(
             f"Generating completion: provider={selected_provider}, "
-            f"model={selected_model}, language={request.language}"
+            f"model={selected_model}, language={language}"
         )
         
         try:
@@ -199,7 +247,7 @@ YOUR COMPLETION (NO explanations, NO markdown, ONLY code):"""
             
             # Generate completion
             raw_completion = await chain.ainvoke({
-                "language": request.language,
+                "language": language,
                 "prefix": request.prefix,
                 "suffix": request.suffix
             })
