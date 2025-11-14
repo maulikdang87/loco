@@ -68,6 +68,7 @@ export class AgentCommands {
         const selection = editor.selection;
         const code = editor.document.getText(selection);
 
+        // Get diagnostics
         const diagnostics = vscode.languages.getDiagnostics(editor.document.uri);
         const errors = diagnostics
             .filter(d => d.severity === vscode.DiagnosticSeverity.Error)
@@ -85,6 +86,7 @@ export class AgentCommands {
             const fixedCode = this.extractCodeFromMarkdown(result.response);
             
             if (fixedCode && fixedCode !== code) {
+                // Show diff
                 const edit: DiffEdit = {
                     range: selection,
                     newText: fixedCode,
@@ -93,17 +95,30 @@ export class AgentCommands {
 
                 this.diffProvider.showDiff(editor, [edit]);
 
-                const acceptCmd = this.registerTempCommand('loco.acceptFix', async () => {
+                // Register BOTH commands with proper cleanup
+                const acceptDisposable = vscode.commands.registerCommand('loco.acceptFix', async () => {
+                    console.log('Accept button clicked');
                     await this.diffProvider.applyEdits(editor);
                     this.popupProvider.clear();
                     vscode.window.showInformationMessage('✓ Fix applied');
+                    
+                    // Cleanup
+                    acceptDisposable.dispose();
+                    rejectDisposable.dispose();
                 });
 
-                const rejectCmd = this.registerTempCommand('loco.rejectFix', () => {
+                const rejectDisposable = vscode.commands.registerCommand('loco.rejectFix', () => {
+                    console.log('Reject button clicked');
                     this.diffProvider.clearDecorations(editor);
                     this.popupProvider.clear();
+                    vscode.window.showInformationMessage('Changes rejected');
+                    
+                    // Cleanup
+                    acceptDisposable.dispose();
+                    rejectDisposable.dispose();
                 });
 
+                // Show popup
                 await this.popupProvider.showPopup(
                     editor,
                     selection,
@@ -115,11 +130,13 @@ export class AgentCommands {
                     ]
                 );
 
+                // Auto-cleanup after 15 seconds
                 setTimeout(() => {
-                    acceptCmd.dispose();
-                    rejectCmd.dispose();
+                    acceptDisposable.dispose();
+                    rejectDisposable.dispose();
                 }, 15000);
             } else {
+                // No code fix, just show analysis
                 await this.popupProvider.showPopup(
                     editor,
                     selection,
@@ -127,6 +144,8 @@ export class AgentCommands {
                     result.response
                 );
             }
+        } else {
+            vscode.window.showErrorMessage('Failed to debug code. Check backend.');
         }
     }
 

@@ -23,31 +23,34 @@ export class InlinePopupProvider implements vscode.HoverProvider {
         content: string,
         actions?: Array<{ label: string; command: string }>
     ) {
-        // Create markdown string with proper settings
         const markdown = new vscode.MarkdownString('', true);
         markdown.isTrusted = true;
-        markdown.supportHtml = false;  // Changed to false for better compatibility
-        markdown.supportThemeIcons = true;  // This enables $(icon) syntax
+        markdown.supportThemeIcons = true;
 
-        // Build content
+        // Title
         let mdContent = `**${title}**\n\n`;
+        
+        // Content
         mdContent += `${content}\n\n`;
 
-        // Add action buttons
+        // Actions
         if (actions && actions.length > 0) {
             mdContent += '---\n\n';
+            
             const buttons = actions.map(action => {
                 const icon = this.getIcon(action.label);
                 const isPrimary = action.label.toLowerCase().includes('accept') || 
                                 action.label.toLowerCase().includes('apply');
+                
                 // Format: [$(icon) Label](command:commandId)
                 const button = `[$(${icon}) ${action.label}](command:${action.command})`;
+                
                 return isPrimary ? `**${button}**` : button;
-            }).join(' &nbsp; • &nbsp; ');  // Use non-breaking spaces for better spacing
+            }).join('  •  ');
+            
             mdContent += buttons;
         }
 
-        // Set the value
         markdown.value = mdContent;
 
         // Store and display
