@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     
     # Cloud API Keys
     GROQ_API_KEY: Optional[str] = None
-    GOOGLE_API_KEY: Optional[str] = None  # Gemini
+    GEMINI_API_KEY: Optional[str] = None  # Gemini
     OPENAI_API_KEY: Optional[str] = None
     OPENROUTER_API_KEY: Optional[str] = None
     GITHUB_TOKEN: Optional[str] = None

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import axios from 'axios';
 import { BackendClient } from '../api/backendClient';
 import { ChatMessage, ChatRequest, FileReference } from '../types';
 
@@ -9,6 +10,8 @@ export class ChatPanel {
     private chatHistory: ChatMessage[] = [];
     private fileReferences: FileReference[] = [];
     private disposables: vscode.Disposable[] = [];
+    private currentMode: string = 'normal';  // ADD THIS
+    private pendingChanges: any[] = [];      // ADD THIS
 
     private constructor(
         panel: vscode.WebviewPanel,
@@ -36,7 +39,21 @@ export class ChatPanel {
                 
                 switch (data.type) {
                     case 'sendMessage':
-                        await this.handleUserMessage(data.text, this.fileReferences);
+                        if (this.currentMode === 'agent') {
+                            await this.handleAgentTask(data.text);
+                        } else {
+                            await this.handleUserMessage(data.text, this.fileReferences);
+                        }
+                        break;
+                    case 'setMode':
+                        this.currentMode = data.mode;
+                        console.log(`Mode changed to: ${this.currentMode}`);
+                        break;
+                    case 'approveAction':
+                        await this.handleApproveAction();
+                        break;
+                    case 'denyAction':
+                        await this.handleDenyAction();
                         break;
                     case 'addFile':
                         await this.handleAddFileRequest();
@@ -567,6 +584,239 @@ export class ChatPanel {
         return uniqueFiles.slice(0, 10);
     }
 
+    private async handleAgentTask(task: string) {
+        if (!this.panel) {
+            return;
+        }
+
+        console.log('Handling agent task:', task);
+
+        // Add user message
+        this.chatHistory.push({
+            role: 'user',
+            content: task,
+            timestamp: new Date(),
+            files: this.fileReferences || []
+        });
+
+        this.updateChat();
+
+        // Show thinking
+        this.panel.webview.postMessage({ type: 'thinking', show: true });
+
+        try {
+            // Get workspace path
+            const workspaceFolders = vscode.workspace.workspaceFolders;
+            const workspacePath = workspaceFolders ? workspaceFolders[0].uri.fsPath : '.';
+
+            console.log('Calling agent endpoint with workspace:', workspacePath);
+
+            // Build enhanced task with file context
+            let enhancedTask = task;
+            if (this.fileReferences && this.fileReferences.length > 0) {
+                // Convert absolute paths to relative paths
+                const fileContexts = this.fileReferences.map(ref => {
+                    const relativePath = ref.path.startsWith(workspacePath) 
+                        ? ref.path.substring(workspacePath.length + 1) 
+                        : ref.name;
+                    return `File: ${relativePath}`;
+                }).join('\n');
+                
+                enhancedTask = `${task}\n\nContext Files:\n${fileContexts}`;
+                console.log('Enhanced task with file paths:', enhancedTask);
+            }
+
+            // Call backend agent endpoint
+            const response = await axios.post(`${this.backend.baseUrl}/api/v1/agent/task`, {
+                task: enhancedTask,
+                workspace_path: workspacePath,
+                provider: "gemini",
+                model: "gemini-2.5-flash"
+            }, {
+                timeout: 120000
+            });
+
+            const result = response.data;
+            
+            console.log('Agent result:', result);
+
+            // Show agent steps
+            if (result.steps && result.steps.length > 0) {
+                console.log(`Showing ${result.steps.length} agent steps`);
+                for (const step of result.steps) {
+                    this.panel.webview.postMessage({
+                        type: 'agentStep',
+                        step: {
+                            title: `🔧 ${step.action}`,
+                            description: step.input ? step.input.substring(0, 150) : 'Processing...'
+                        }
+                    });
+                }
+            }
+
+            // Add assistant response with the ACTUAL output
+            const assistantMessage = result.output || result.response || 'Task completed';
+            
+            console.log('Adding assistant message:', assistantMessage);
+            
+            this.chatHistory.push({
+                role: 'assistant',
+                content: assistantMessage,
+                timestamp: new Date()
+            });
+
+            this.updateChat();
+
+            // Hide agent activity panel after showing the final message
+            this.panel.webview.postMessage({ type: 'agentComplete' });
+
+            // Handle proposed changes
+            if (result.proposed_changes && result.proposed_changes.length > 0) {
+                console.log('Proposed changes:', result.proposed_changes);
+                this.pendingChanges = result.proposed_changes;
+                
+                const changesSummary = result.proposed_changes.map((change: any, index: number) => `
+                    <div style="margin: 12px 0; padding: 12px; background: var(--vscode-editor-inactiveSelectionBackground); border-radius: 4px;">
+                        <div style="font-weight: 600; color: var(--vscode-textLink-foreground); margin-bottom: 8px;">
+                            Change ${index + 1}: ${this.escapeHtml(change.file)}
+                        </div>
+                        <div style="margin-bottom: 8px; color: var(--vscode-descriptionForeground);">
+                            ${this.escapeHtml(change.description)}
+                        </div>
+                        <div style="margin-top: 8px;">
+                            <strong>New code:</strong>
+                            <pre style="margin-top: 4px; padding: 8px; background: var(--vscode-editor-background); border-radius: 3px; overflow-x: auto;"><code>${this.escapeHtml(change.new_code.substring(0, 300))}${change.new_code.length > 300 ? '...' : ''}</code></pre>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.panel.webview.postMessage({
+                    type: 'requestApproval',
+                    content: `
+                        <h3 style="margin: 0 0 12px 0;">🤖 Agent proposes ${result.proposed_changes.length} change(s)</h3>
+                        ${changesSummary}
+                    `
+                });
+            }
+
+        } catch (error: any) {
+            console.error('Agent task error:', error);
+            
+            // Show detailed error
+            const errorMessage = error.response?.data?.detail || error.message || 'Unknown error';
+            
+            this.chatHistory.push({
+                role: 'assistant',
+                content: `❌ Agent task failed: ${errorMessage}`,
+                timestamp: new Date()
+            });
+            this.updateChat();
+        } finally {
+            this.panel.webview.postMessage({ type: 'thinking', show: false });
+        }
+    }
+
+    private async handleApproveAction() {
+        console.log('handleApproveAction called, pending changes:', this.pendingChanges);
+        
+        if (!this.pendingChanges || this.pendingChanges.length === 0) {
+            vscode.window.showWarningMessage('No pending changes to approve');
+            return;
+        }
+        
+        let successCount = 0;
+        
+        for (const change of this.pendingChanges) {
+            try {
+                console.log('Applying change to file:', change.file);
+                
+                // Ensure file path is absolute
+                let filePath = change.file;
+                if (!filePath.startsWith('/')) {
+                    const workspaceFolders = vscode.workspace.workspaceFolders;
+                    if (workspaceFolders) {
+                        filePath = `${workspaceFolders[0].uri.fsPath}/${filePath}`;
+                    }
+                }
+                
+                const uri = vscode.Uri.file(filePath);
+                console.log('Opening document:', uri.fsPath);
+                
+                const document = await vscode.workspace.openTextDocument(uri);
+                const edit = new vscode.WorkspaceEdit();
+                
+                if (change.old_code) {
+                    // Replace existing code
+                    const text = document.getText();
+                    const index = text.indexOf(change.old_code);
+                    console.log('Looking for old code, found at index:', index);
+                    
+                    if (index !== -1) {
+                        const startPos = document.positionAt(index);
+                        const endPos = document.positionAt(index + change.old_code.length);
+                        edit.replace(uri, new vscode.Range(startPos, endPos), change.new_code);
+                    } else {
+                        vscode.window.showWarningMessage(`Could not find code to replace in ${change.file}`);
+                        console.warn('Old code not found in document');
+                        continue;
+                    }
+                } else {
+                    // Insert new code at the beginning
+                    console.log('Inserting new code at beginning of file');
+                    edit.insert(uri, new vscode.Position(0, 0), change.new_code + '\n\n');
+                }
+                
+                console.log('Applying edit...');
+                const success = await vscode.workspace.applyEdit(edit);
+                console.log('Edit applied:', success);
+                
+                if (success) {
+                    await document.save();
+                    console.log('Document saved');
+                    successCount++;
+                    vscode.window.showInformationMessage(`✅ Applied change to ${change.file}`);
+                } else {
+                    vscode.window.showErrorMessage(`Failed to apply edit to ${change.file}`);
+                }
+            } catch (error: any) {
+                console.error('Failed to apply change:', error);
+                vscode.window.showErrorMessage(`Failed to apply change to ${change.file}: ${error.message}`);
+            }
+        }
+        
+        if (successCount > 0) {
+            vscode.window.showInformationMessage(`✅ Applied ${successCount} of ${this.pendingChanges.length} change(s)`);
+        }
+        
+        this.pendingChanges = [];
+        
+        // Hide the approval panel
+        this.panel.webview.postMessage({ type: 'hideApproval' });
+    }
+
+    private escapeHtml(text: string): string {
+        const map: { [key: string]: string } = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, (m) => map[m]);
+    }
+
+    private async handleDenyAction() {
+        console.log('handleDenyAction called, pending changes:', this.pendingChanges?.length || 0);
+        
+        if (this.pendingChanges && this.pendingChanges.length > 0) {
+            vscode.window.showInformationMessage(`❌ Rejected ${this.pendingChanges.length} change(s)`);
+        }
+        this.pendingChanges = [];
+        
+        // Hide the approval panel
+        this.panel.webview.postMessage({ type: 'hideApproval' });
+    }
+
     private getHtmlContent(webview: vscode.Webview): string {
         const nonce = this.getNonce();
 
@@ -677,6 +927,40 @@ export class ChatPanel {
                 }
                 .file-chip .remove:hover {
                     opacity: 1;
+                }
+
+                /* MODE TOGGLE */
+                .mode-toggle {
+                    display: flex;
+                    gap: 4px;
+                    padding: 8px 16px;
+                    background: var(--jet-panel);
+                    border-bottom: 1px solid var(--jet-border);
+                    flex-shrink: 0;
+                }
+
+                .mode-btn {
+                    flex: 1;
+                    padding: 8px 12px;
+                    background: #111;
+                    color: #888;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    font-weight: 500;
+                    transition: var(--transition);
+                }
+
+                .mode-btn:hover {
+                    background: #1a1a1a;
+                    color: #ccc;
+                }
+
+                .mode-btn.active {
+                    background: var(--msg-user);
+                    color: #ffffff;
+                    box-shadow: var(--glow);
                 }
 
                 /* CHAT AREA */
@@ -1010,6 +1294,130 @@ export class ChatPanel {
                     40% { opacity: 1; }
                 }
 
+                /* AGENT ACTIVITY PANEL */
+                .agent-activity {
+                    display: none;
+                    padding: 12px 16px;
+                    background: rgba(11, 98, 255, 0.05);
+                    border-bottom: 1px solid var(--jet-border);
+                    max-height: 200px;
+                    overflow-y: auto;
+                    flex-shrink: 0;
+                }
+
+                .agent-activity.show {
+                    display: block;
+                }
+
+                .mode-indicator {
+                    display: inline-block;
+                    padding: 4px 12px;
+                    background: var(--msg-user);
+                    color: #ffffff;
+                    border-radius: 4px;
+                    font-size: 11px;
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                }
+
+                .agent-step {
+                    padding: 8px 12px;
+                    margin: 6px 0;
+                    background: #0e0e0e;
+                    border-left: 3px solid var(--msg-user);
+                    border-radius: 4px;
+                    animation: slideIn 0.3s ease-out;
+                }
+
+                @keyframes slideIn {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                .agent-step .step-title {
+                    font-weight: 600;
+                    color: #4fc3f7;
+                    margin-bottom: 4px;
+                    font-size: 12px;
+                }
+
+                .agent-step .step-description {
+                    color: #888;
+                    font-size: 11px;
+                }
+
+                /* APPROVAL PANEL */
+                .approval-panel {
+                    display: none;
+                    padding: 16px;
+                    background: var(--jet-panel);
+                    border-top: 2px solid var(--msg-user);
+                    flex-shrink: 0;
+                }
+
+                .approval-panel.show {
+                    display: block;
+                    animation: slideUp 0.3s ease-out;
+                }
+
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .approval-content {
+                    margin-bottom: 16px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                }
+
+                .approval-actions {
+                    display: flex;
+                    gap: 12px;
+                }
+
+                .approve-btn,
+                .deny-btn {
+                    flex: 1;
+                    padding: 10px 16px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    font-size: 13px;
+                    transition: var(--transition);
+                }
+
+                .approve-btn {
+                    background: #0e7a0d;
+                    color: #ffffff;
+                }
+
+                .approve-btn:hover {
+                    background: #0f9b0f;
+                }
+
+                .deny-btn {
+                    background: #a1260d;
+                    color: #ffffff;
+                }
+
+                .deny-btn:hover {
+                    background: #c9320f;
+                }
+
                 /* INPUT AREA */
                 .input-area {
                     border-top: 1px solid var(--jet-border);
@@ -1170,12 +1578,40 @@ export class ChatPanel {
                 <button class="icon-btn" id="clearChatBtn" title="Clear chat">🗑️</button>
             </div>
 
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="normalModeBtn">
+                    💬 Chat Mode
+                </button>
+                <button class="mode-btn" id="agentModeBtn">
+                    🤖 Agent Mode
+                </button>
+            </div>
+
+            <!-- Agent Activity Panel -->
+            <div class="agent-activity" id="agentActivity">
+                <div class="mode-indicator">🤖 AGENT ACTIVE</div>
+                <div id="agentSteps"></div>
+            </div>
+
             <div class="file-references" id="fileRefs"></div>
 
             <div class="chat-container" id="chatContainer">
                 <div class="empty-state">
                     <div style="font-size: 32px; margin-bottom: 8px;">💬</div>
-                    <div>Ask Loco anything...</div>
+                    <div style="line-height: 1.6;">
+                        <strong>Chat Mode:</strong> Ask questions, get answers<br>
+                        <strong>Agent Mode:</strong> Give tasks, let AI execute autonomously
+                    </div>
+                </div>
+            </div>
+
+            <!-- Approval Panel -->
+            <div class="approval-panel" id="approvalPanel">
+                <div class="approval-content" id="approvalContent"></div>
+                <div class="approval-actions">
+                    <button class="approve-btn" id="approveBtn">✓ Approve</button>
+                    <button class="deny-btn" id="denyBtn">✗ Deny</button>
                 </div>
             </div>
 
@@ -1212,6 +1648,7 @@ export class ChatPanel {
                 let mentionSuggestions = [];
                 let selectedSuggestionIndex = -1;
                 let isMentionActive = false;
+                let currentMode = 'normal';  // ADD MODE TRACKING
 
                 // Get DOM elements
                 const textarea = document.getElementById('messageInput');
@@ -1220,12 +1657,20 @@ export class ChatPanel {
                 const addFileBtn = document.getElementById('addFileBtn');
                 const addCurrentFileBtn = document.getElementById('addCurrentFileBtn');
                 const clearChatBtn = document.getElementById('clearChatBtn');
+                const normalModeBtn = document.getElementById('normalModeBtn');
+                const agentModeBtn = document.getElementById('agentModeBtn');
+                const approveBtn = document.getElementById('approveBtn');
+                const denyBtn = document.getElementById('denyBtn');
 
                 // Add event listeners
                 sendBtn.addEventListener('click', sendMessage);
                 addFileBtn.addEventListener('click', addFile);
                 addCurrentFileBtn.addEventListener('click', addCurrentFile);
                 clearChatBtn.addEventListener('click', clearChat);
+                normalModeBtn.addEventListener('click', () => setMode('normal'));
+                agentModeBtn.addEventListener('click', () => setMode('agent'));
+                approveBtn.addEventListener('click', approveChange);
+                denyBtn.addEventListener('click', denyChange);
 
                 // Auto-resize textarea
                 textarea.addEventListener('input', function() {
@@ -1376,12 +1821,14 @@ export class ChatPanel {
                     if (!text) return;
 
                     console.log('Sending message:', text);
+                    console.log('Current mode:', currentMode);
                     console.log('Current file refs:', fileRefs);
 
-                    // Send message - backend will use fileRefs from extension state
+                    // Send message with mode info
                     vscode.postMessage({
                         type: 'sendMessage',
-                        text
+                        text: text,
+                        mode: currentMode
                     });
 
                     textarea.value = '';
@@ -1405,10 +1852,112 @@ export class ChatPanel {
 
                 function clearChat() {
                     vscode.postMessage({ type: 'clearChat' });
+                    
+                    // Clear agent steps
+                    const agentSteps = document.getElementById('agentSteps');
+                    if (agentSteps) {
+                        agentSteps.innerHTML = '';
+                    }
+                    
+                    // Hide agent activity
+                    const agentActivity = document.getElementById('agentActivity');
+                    if (agentActivity) {
+                        agentActivity.classList.remove('show');
+                    }
                 }
 
                 function copyCode(code) {
                     vscode.postMessage({ type: 'copyCode', code });
+                }
+
+                function approveChange() {
+                    console.log('approveChange() called in webview');
+                    vscode.postMessage({ type: 'approveAction' });
+                    hideApprovalPanel();
+                }
+
+                function denyChange() {
+                    console.log('denyChange() called in webview');
+                    vscode.postMessage({ type: 'denyAction' });
+                    hideApprovalPanel();
+                }
+
+                function hideApprovalPanel() {
+                    const panel = document.getElementById('approvalPanel');
+                    if (panel) {
+                        panel.classList.remove('show');
+                    }
+                }
+
+                function setMode(mode) {
+                    console.log('Setting mode to:', mode);
+                    currentMode = mode;
+                    
+                    // Update UI
+                    const normalBtn = document.getElementById('normalModeBtn');
+                    const agentBtn = document.getElementById('agentModeBtn');
+                    
+                    if (normalBtn && agentBtn) {
+                        normalBtn.classList.toggle('active', mode === 'normal');
+                        agentBtn.classList.toggle('active', mode === 'agent');
+                    }
+                    
+                    // Update placeholder
+                    if (mode === 'agent') {
+                        textarea.placeholder = '🤖 Give a task (e.g., "Add error handling to all API calls in src/")...';
+                    } else {
+                        textarea.placeholder = 'Ask about your code... @ to reference files';
+                    }
+                    
+                    // Show/hide agent activity
+                    if (mode === 'normal') {
+                        const agentActivity = document.getElementById('agentActivity');
+                        if (agentActivity) {
+                            agentActivity.classList.remove('show');
+                        }
+                    }
+                    
+                    // Notify extension
+                    vscode.postMessage({ type: 'setMode', mode: mode });
+                }
+
+                function showAgentStep(step) {
+                    const agentActivity = document.getElementById('agentActivity');
+                    const agentSteps = document.getElementById('agentSteps');
+                    
+                    if (!agentActivity || !agentSteps) return;
+                    
+                    agentActivity.classList.add('show');
+                    
+                    const stepDiv = document.createElement('div');
+                    stepDiv.className = 'agent-step';
+                    stepDiv.innerHTML = 
+                        '<div class="step-title">' + escapeHtml(step.title || step.action || 'Step') + '</div>' +
+                        '<div class="step-description">' + escapeHtml(step.description || '') + '</div>';
+                    
+                    agentSteps.appendChild(stepDiv);
+                    agentSteps.scrollTop = agentSteps.scrollHeight;
+                }
+
+                function hideAgentActivity() {
+                    const agentActivity = document.getElementById('agentActivity');
+                    const agentSteps = document.getElementById('agentSteps');
+                    if (agentActivity) {
+                        agentActivity.classList.remove('show');
+                    }
+                    if (agentSteps) {
+                        agentSteps.innerHTML = '';
+                    }
+                }
+
+                function showApproval(content) {
+                    const panel = document.getElementById('approvalPanel');
+                    const contentDiv = document.getElementById('approvalContent');
+                    
+                    if (panel && contentDiv) {
+                        contentDiv.innerHTML = content;
+                        panel.classList.add('show');
+                    }
                 }
 
                 function updateCurrentFileButton(fileName, isInContext, filePath) {
@@ -1460,6 +2009,46 @@ export class ChatPanel {
                             break;
                         case 'updateCurrentFileButton':
                             updateCurrentFileButton(message.fileName, message.isInContext, message.filePath);
+                            break;
+                        case 'agentStep':
+                            showAgentStep(message.step);
+                            break;
+                        case 'agentComplete':
+                            hideAgentActivity();
+                            break;
+                        case 'requestApproval':
+                            const approvalPanel = document.getElementById('approvalPanel');
+                            const approvalContent = document.getElementById('approvalContent');
+                            if (approvalPanel && approvalContent) {
+                                if (message.content) {
+                                    // New format: HTML content is already formatted
+                                    approvalContent.innerHTML = message.content;
+                                } else if (message.change) {
+                                    // Old format: single change object
+                                    const change = message.change;
+                                    approvalContent.innerHTML = \`
+                                        <div style="background: #0e0e0e; padding: 12px; border-radius: 6px; border: 1px solid #222;">
+                                            <div style="color: #4fc3f7; font-weight: 600; margin-bottom: 8px;">
+                                                📄 \${escapeHtml(change.file)}
+                                            </div>
+                                            <div style="color: #888; font-size: 12px; margin-bottom: 12px;">
+                                                \${escapeHtml(change.description || 'Code changes')}
+                                            </div>
+                                            <div style="background: #0a0a0a; padding: 10px; border-radius: 4px; border: 1px solid #1a1a1a; max-height: 200px; overflow-y: auto;">
+                                                <div style="color: #6ec96e; font-size: 11px; font-weight: 600; margin-bottom: 6px;">New code:</div>
+                                                <pre style="margin: 0; font-size: 11px; color: #d4d4d4; white-space: pre-wrap; word-wrap: break-word;">\${escapeHtml(change.new_code || '')}</pre>
+                                            </div>
+                                        </div>
+                                    \`;
+                                }
+                                approvalPanel.classList.add('show');
+                            }
+                            break;
+                        case 'hideApproval':
+                            const panel = document.getElementById('approvalPanel');
+                            if (panel) {
+                                panel.classList.remove('show');
+                            }
                             break;
                     }
                 });

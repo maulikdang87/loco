@@ -49,6 +49,10 @@ export class BackendClient {
         this.checkConnection();
     }
 
+    get baseUrl(): string {
+        return this.baseURL;
+    }
+
     private getConfig<T>(key: string): T {
         return vscode.workspace.getConfiguration('loco').get<T>(key) as T;
     }
@@ -200,6 +204,27 @@ export class BackendClient {
         } catch (error) {
             this.handleError(error);
             return null;
+        }
+    }
+
+    /**
+     * Execute agentic task with autonomous tool usage
+     */
+    async executeAgentTask(request: {
+        task: string;
+        workspace_path: string;
+        provider?: string;
+        model?: string;
+    }): Promise<any> {
+        try {
+            const response = await this.client.post(
+                '/api/v1/agent/task',
+                request
+            );
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+            throw error;
         }
     }
 

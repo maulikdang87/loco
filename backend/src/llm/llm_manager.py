@@ -27,7 +27,7 @@ class LLMManager:
         """Warn if API keys are missing for enabled providers"""
         if self.default_provider == "groq" and not settings.GROQ_API_KEY:
             logger.warning("GROQ_API_KEY not set. Groq will not be available.")
-        if self.default_provider == "gemini" and not settings.GOOGLE_API_KEY:
+        if self.default_provider == "gemini" and not settings.GEMINI_API_KEY:
             logger.warning("GOOGLE_API_KEY not set. Gemini will not be available.")
         if self.default_provider == "openai" and not settings.OPENAI_API_KEY:
             logger.warning("OPENAI_API_KEY not set. OpenAI will not be available.")
@@ -123,18 +123,21 @@ class LLMManager:
         **kwargs
     ) -> ChatGoogleGenerativeAI:
         """Create Gemini LLM instance"""
-        if not settings.GOOGLE_API_KEY:
+        if not settings.GEMINI_API_KEY:
             raise ModelNotFoundError(
                 "GOOGLE_API_KEY not configured. Add to .env file."
             )
-        
-        model_name = model or PROVIDER_MODELS["gemini"]["fast"]
-        
+        # Use 'gemini-pro' as default for tool calling
+        model_name = model or "gemini-pro"
+        # Remove version prefix if present
+        if model_name.startswith("models/"):
+            model_name = model_name.replace("models/", "")
         return ChatGoogleGenerativeAI(
-            google_api_key=settings.GOOGLE_API_KEY,
             model=model_name,
+            google_api_key=settings.GEMINI_API_KEY,
             temperature=temperature,
             max_output_tokens=max_tokens,
+            convert_system_message_to_human=True,
             **kwargs
         )
     
@@ -167,7 +170,7 @@ class LLMManager:
         return {
             "ollama": True,  # Assume always available if running
             "groq": bool(settings.GROQ_API_KEY),
-            "gemini": bool(settings.GOOGLE_API_KEY),
+            "gemini": bool(settings.GEMINI_API_KEY),
             "openai": bool(settings.OPENAI_API_KEY)
         }
     

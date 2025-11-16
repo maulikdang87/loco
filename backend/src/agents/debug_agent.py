@@ -1,8 +1,8 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from ..llm.llm_manager import llm_manager
-from ..tools.ast_parser_tool import ast_parser
-from ..tools.file_context_tool import FileContextTool
+from .tools.ast_parser_tool import ast_parser
+from .tools.file_context_tool import FileContextTool
 import logging
 
 logger = logging.getLogger(__name__)

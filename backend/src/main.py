@@ -1,3 +1,4 @@
+
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +13,7 @@ from .utils.error_handler import global_exception_handler
 from pydantic import BaseModel
 from src.agents.graph import agent_graph, AgentState
 from langchain_core.messages import HumanMessage
+from src.agents.agentic_supervisor import agentic_supervisor
 
 class ChatRequest(BaseModel):
     message: str
@@ -519,6 +521,73 @@ async def document_code_endpoint(request: dict):
     except Exception as e:
         logger.error(f"Documentation failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@app.post("/api/v1/agent/task")
+async def execute_agentic_task(request: dict):
+    """
+    Execute agentic task with autonomous tool usage
+    
+    Request:
+    {
+        "task": "Add logging to all API endpoints",
+        "workspace_path": ".",
+        "provider": "groq",  // optional
+        "model": "llama-3.3-70b-versatile"  // optional
+    }
+    
+    Response:
+    {
+        "success": true,
+        "output": "I've analyzed the codebase and...",
+        "steps": [
+            {
+                "action": "search_files",
+                "input": "**/*.py",
+                "output": "Found 15 files..."
+            }
+        ],
+        "proposed_changes": [
+            {
+                "file": "src/main.py",
+                "description": "Add logging to health endpoint",
+                "old_code": "return {...}",
+                "new_code": "logger.info('Health check')\nreturn {...}"
+            }
+        ]
+    }
+    """
+    logger.info("Agentic task endpoint called")
+    
+    task = request.get("task", "")
+    workspace_path = request.get("workspace_path", ".")
+    provider = request.get("provider", "gemini")
+    model = request.get("model")
+    
+    if not task:
+        raise HTTPException(status_code=400, detail="Task is required")
+    
+    result = await agentic_supervisor.execute_task(
+        task=task,
+        workspace_path=workspace_path,
+        provider=provider,
+        model=model
+    )
+    
+    return result
+@app.post("/api/v1/agent/execute")
+async def execute_agent_task(request: dict):
+    """Execute agentic workflow"""
+    task = request.get("task", "")
+    
+    result = await agentic_workflow.run(task)
+    
+    return {
+        "plan": result["plan"],
+        "logs": result["agent_logs"],
+        "proposed_changes": result.get("proposed_changes", [])
+    }
 
 @app.on_event("shutdown")
 async def shutdown_event():

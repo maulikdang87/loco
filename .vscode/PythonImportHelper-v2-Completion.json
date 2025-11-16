@@ -1,5 +1,191 @@
 [
     {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_python",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tree_sitter_python",
+        "description": "tree_sitter_python",
+        "detail": "tree_sitter_python",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_javascript",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tree_sitter_javascript",
+        "description": "tree_sitter_javascript",
+        "detail": "tree_sitter_javascript",
+        "documentation": {}
+    },
+    {
+        "label": "Language",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Parser",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Type",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -136,54 +322,6 @@
         "documentation": {}
     },
     {
-        "label": "Literal",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -248,107 +386,151 @@
         "documentation": {}
     },
     {
-        "label": "PromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "re",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
         "documentation": {}
     },
     {
-        "label": "ChatPromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "difflib",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "importPath": "difflib",
+        "description": "difflib",
+        "detail": "difflib",
         "documentation": {}
     },
     {
-        "label": "ChatPromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "git",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "importPath": "git",
+        "description": "git",
+        "detail": "git",
         "documentation": {}
     },
     {
-        "label": "ChatPromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "os",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
-        "label": "PromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "ChatPromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "ChatPromptTemplate",
-        "importPath": "langchain_core.prompts",
-        "description": "langchain_core.prompts",
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.prompts",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "SystemMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
         "documentation": {}
     },
     {
@@ -361,12 +543,60 @@
         "documentation": {}
     },
     {
-        "label": "time",
+        "label": "BaseTool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "create_agent",
+        "importPath": "langchain.agents",
+        "description": "langchain.agents",
+        "isExtraImport": true,
+        "detail": "langchain.agents",
         "documentation": {}
     },
     {
@@ -386,100 +616,172 @@
         "documentation": {}
     },
     {
-        "label": "BaseMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langgraph.graph",
         "documentation": {}
     },
     {
-        "label": "HumanMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langgraph.graph",
         "documentation": {}
     },
     {
-        "label": "AIMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "FileReaderTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "tools.workspace_tools",
         "documentation": {}
     },
     {
-        "label": "BaseMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "FileSearchTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "tools.workspace_tools",
         "documentation": {}
     },
     {
-        "label": "BaseMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "CodeEditorTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "tools.workspace_tools",
         "documentation": {}
     },
     {
-        "label": "HumanMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "AIMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "HumanMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "HumanMessage",
-        "importPath": "langchain_core.messages",
-        "description": "langchain_core.messages",
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "langchain_core.messages",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "add",
-        "importPath": "operator",
-        "description": "operator",
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "operator",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "add",
-        "importPath": "operator",
-        "description": "operator",
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
         "isExtraImport": true,
-        "detail": "operator",
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
-        "label": "re",
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "time",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
         "documentation": {}
     },
     {
@@ -537,123 +839,6 @@
         "importPath": "httpx",
         "description": "httpx",
         "detail": "httpx",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain_core.tools",
-        "description": "langchain_core.tools",
-        "isExtraImport": true,
-        "detail": "langchain_core.tools",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain_core.tools",
-        "description": "langchain_core.tools",
-        "isExtraImport": true,
-        "detail": "langchain_core.tools",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain_core.tools",
-        "description": "langchain_core.tools",
-        "isExtraImport": true,
-        "detail": "langchain_core.tools",
-        "documentation": {}
-    },
-    {
-        "label": "tool",
-        "importPath": "langchain_core.tools",
-        "description": "langchain_core.tools",
-        "isExtraImport": true,
-        "detail": "langchain_core.tools",
-        "documentation": {}
-    },
-    {
-        "label": "tree_sitter_python",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "tree_sitter_python",
-        "description": "tree_sitter_python",
-        "detail": "tree_sitter_python",
-        "documentation": {}
-    },
-    {
-        "label": "tree_sitter_javascript",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "tree_sitter_javascript",
-        "description": "tree_sitter_javascript",
-        "detail": "tree_sitter_javascript",
-        "documentation": {}
-    },
-    {
-        "label": "Language",
-        "importPath": "tree_sitter",
-        "description": "tree_sitter",
-        "isExtraImport": true,
-        "detail": "tree_sitter",
-        "documentation": {}
-    },
-    {
-        "label": "Parser",
-        "importPath": "tree_sitter",
-        "description": "tree_sitter",
-        "isExtraImport": true,
-        "detail": "tree_sitter",
-        "documentation": {}
-    },
-    {
-        "label": "Node",
-        "importPath": "tree_sitter",
-        "description": "tree_sitter",
-        "isExtraImport": true,
-        "detail": "tree_sitter",
-        "documentation": {}
-    },
-    {
-        "label": "difflib",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "difflib",
-        "description": "difflib",
-        "detail": "difflib",
-        "documentation": {}
-    },
-    {
-        "label": "git",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "git",
-        "description": "git",
-        "detail": "git",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
         "documentation": {}
     },
     {
@@ -753,6 +938,48 @@
         "documentation": {}
     },
     {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
         "label": "pytest",
         "kind": 6,
         "isExtraImport": true,
@@ -843,12 +1070,237 @@
         "documentation": {}
     },
     {
-        "label": "sys",
+        "label": "ASTParserTool",
         "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
+        "importPath": "backend.src.agents.tools.ast_parser_tool",
+        "description": "backend.src.agents.tools.ast_parser_tool",
+        "peekOfCode": "class ASTParserTool:\n    \"\"\"\n    Parse code into Abstract Syntax Tree using Tree-sitter\n    Enables semantic code understanding\n    \"\"\"\n    def __init__(self):\n        # Initialize parsers for different languages\n        self.parsers = {\n            'python': self._init_parser(tspython.language()),\n            'javascript': self._init_parser(tsjavascript.language()),",
+        "detail": "backend.src.agents.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "ast_parser",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.ast_parser_tool",
+        "description": "backend.src.agents.tools.ast_parser_tool",
+        "peekOfCode": "ast_parser = ASTParserTool()",
+        "detail": "backend.src.agents.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "CodeSearchTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.code_search_tool",
+        "description": "backend.src.agents.tools.code_search_tool",
+        "peekOfCode": "class CodeSearchTool:\n    \"\"\"\n    Search for similar code patterns across files\n    Uses semantic similarity and pattern matching\n    \"\"\"\n    @staticmethod\n    def _tokenize_code(code: str) -> List[str]:\n        \"\"\"Extract meaningful tokens from code\"\"\"\n        # Remove comments and strings for better matching\n        code = re.sub(r'#.*$', '', code, flags=re.MULTILINE)  # Python comments",
+        "detail": "backend.src.agents.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "code_search_tool",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.code_search_tool",
+        "description": "backend.src.agents.tools.code_search_tool",
+        "peekOfCode": "code_search_tool = CodeSearchTool()",
+        "detail": "backend.src.agents.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "FileContextTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.file_context_tool",
+        "description": "backend.src.agents.tools.file_context_tool",
+        "peekOfCode": "class FileContextTool:\n    \"\"\"\n    Extracts surrounding code context (20 lines before/after cursor)\n    Similar to Cursor's context extraction\n    \"\"\"\n    @staticmethod\n    @tool\n    def get_surrounding_context(\n        file_content: str,\n        cursor_line: int,",
+        "detail": "backend.src.agents.tools.file_context_tool",
+        "documentation": {}
+    },
+    {
+        "label": "GitTools",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.git_tools",
+        "description": "backend.src.agents.tools.git_tools",
+        "peekOfCode": "class GitTools:\n    \"\"\"\n    Tools for extracting git repository context\n    Helps agents understand recent changes\n    \"\"\"\n    @staticmethod\n    def _get_repo(file_path: str) -> Optional[git.Repo]:\n        \"\"\"Find git repo for a file\"\"\"\n        try:\n            # Walk up directory tree to find .git",
+        "detail": "backend.src.agents.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "git_tools",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.git_tools",
+        "description": "backend.src.agents.tools.git_tools",
+        "peekOfCode": "git_tools = GitTools()",
+        "detail": "backend.src.agents.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationMemory",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "class ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):\n        \"\"\"Add message to conversation history\"\"\"",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "conversation_memory",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "conversation_memory = ConversationMemory()",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "FileReaderInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileReaderInput(BaseModel):\n    \"\"\"Input schema for file reader tool\"\"\"\n    file_path: str = Field(description=\"Path to file to read relative to workspace root\")\nclass FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"\n        try:",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileReaderTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"\n        try:\n            # Security: prevent path traversal\n            if '..' in file_path or file_path.startswith('/'):\n                return f\"Error: Invalid file path (security violation)\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileSearchInput(BaseModel):\n    \"\"\"Input schema for file search tool\"\"\"\n    pattern: str = Field(description=\"Glob pattern to search (e.g., '*.py', 'src/**/*.ts')\")\n    max_results: int = Field(default=20, description=\"Maximum number of results\")\nclass FileSearchTool(BaseTool):\n    name: str = \"search_files\"\n    description: str = \"Search for files matching a glob pattern. Use wildcards: *.py, **/*.ts, etc.\"\n    args_schema: Type[BaseModel] = FileSearchInput\n    def _run(self, pattern: str, max_results: int = 20) -> str:\n        \"\"\"Search for files\"\"\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileSearchTool(BaseTool):\n    name: str = \"search_files\"\n    description: str = \"Search for files matching a glob pattern. Use wildcards: *.py, **/*.ts, etc.\"\n    args_schema: Type[BaseModel] = FileSearchInput\n    def _run(self, pattern: str, max_results: int = 20) -> str:\n        \"\"\"Search for files\"\"\"\n        try:\n            files = glob.glob(pattern, recursive=True)\n            # Filter out common directories to ignore\n            ignore_dirs = {'.git', 'node_modules', '__pycache__', '.venv', 'venv', 'dist', 'build'}",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ListDirectoryInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ListDirectoryInput(BaseModel):\n    \"\"\"Input schema for directory listing\"\"\"\n    directory: str = Field(default=\".\", description=\"Directory to list\")\nclass ListDirectoryTool(BaseTool):\n    name: str = \"list_directory\"\n    description: str = \"List contents of a directory to understand project structure\"\n    args_schema: Type[BaseModel] = ListDirectoryInput\n    def _run(self, directory: str = \".\") -> str:\n        \"\"\"List directory contents\"\"\"\n        try:",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ListDirectoryTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ListDirectoryTool(BaseTool):\n    name: str = \"list_directory\"\n    description: str = \"List contents of a directory to understand project structure\"\n    args_schema: Type[BaseModel] = ListDirectoryInput\n    def _run(self, directory: str = \".\") -> str:\n        \"\"\"List directory contents\"\"\"\n        try:\n            if '..' in directory or directory.startswith('/'):\n                return \"Error: Invalid directory path\"\n            if not os.path.exists(directory):",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ProposeEditInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ProposeEditInput(BaseModel):\n    \"\"\"Input schema for code edit proposal\"\"\"\n    file_path: str = Field(description=\"Path to file to edit\")\n    description: str = Field(description=\"Description of what change to make and why\")\n    old_code: Optional[str] = Field(default=None, description=\"Code snippet to replace (if editing existing code)\")\n    new_code: str = Field(description=\"New code to insert or use as replacement\")\nclass ProposeEditTool(BaseTool):\n    name: str = \"propose_edit\"\n    description: str = \"Propose a code change that requires human approval before applying\"\n    args_schema: Type[BaseModel] = ProposeEditInput",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ProposeEditTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ProposeEditTool(BaseTool):\n    name: str = \"propose_edit\"\n    description: str = \"Propose a code change that requires human approval before applying\"\n    args_schema: Type[BaseModel] = ProposeEditInput\n    def _run(self, file_path: str, description: str, new_code: str, old_code: Optional[str] = None) -> str:\n        \"\"\"Propose an edit (returns special format for approval)\"\"\"\n        logger.info(f\"Proposing edit to {file_path}\")\n        # Return special format that frontend will parse\n        return f\"APPROVAL_REQUIRED|{file_path}|{description}|{old_code or ''}|{new_code}\"\n# Export all tools",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_workspace_tools",
+        "kind": 2,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "def get_workspace_tools() -> List[BaseTool]:\n    \"\"\"Get all workspace tools\"\"\"\n    return [\n        FileReaderTool(),\n        FileSearchTool(),\n        ListDirectoryTool(),\n        ProposeEditTool()\n    ]",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass FileReaderInput(BaseModel):\n    \"\"\"Input schema for file reader tool\"\"\"\n    file_path: str = Field(description=\"Path to file to read relative to workspace root\")\nclass FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "AgenticSupervisor",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "class AgenticSupervisor:\n    \"\"\"\n    Enhanced agentic supervisor with:\n    - Stronger prompts for tool usage\n    - Passive response detection\n    - Forced tool calling when needed\n    \"\"\"\n    def __init__(self):\n        self.tools = get_workspace_tools()\n        logger.info(f\"Initialized agentic supervisor with {len(self.tools)} tools: {[t.name for t in self.tools]}\")",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass AgenticSupervisor:\n    \"\"\"\n    Enhanced agentic supervisor with:\n    - Stronger prompts for tool usage\n    - Passive response detection\n    - Forced tool calling when needed\n    \"\"\"\n    def __init__(self):\n        self.tools = get_workspace_tools()",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "agentic_supervisor = AgenticSupervisor()",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "class AgentState(TypedDict):\n    messages: List\n    task: str\n    plan: List[str]\n    current_step: int\n    files_read: List[str]\n    proposed_changes: List[dict]\n    approved: bool\n    agent_logs: List[dict]\nclass AgenticWorkflow:",
+        "detail": "backend.src.agents.agentic_workflow",
+        "documentation": {}
+    },
+    {
+        "label": "AgenticWorkflow",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "class AgenticWorkflow:\n    def __init__(self):\n        self.tools = [\n            FileReaderTool(),\n            FileSearchTool(),\n            CodeEditorTool()\n        ]\n        self.graph = self._build_graph()\n    def _build_graph(self):\n        workflow = StateGraph(AgentState)",
+        "detail": "backend.src.agents.agentic_workflow",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_workflow",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "agentic_workflow = AgenticWorkflow()",
+        "detail": "backend.src.agents.agentic_workflow",
         "documentation": {}
     },
     {
@@ -1221,96 +1673,6 @@
         "documentation": {}
     },
     {
-        "label": "ASTParserTool",
-        "kind": 6,
-        "importPath": "backend.src.tools.ast_parser_tool",
-        "description": "backend.src.tools.ast_parser_tool",
-        "peekOfCode": "class ASTParserTool:\n    \"\"\"\n    Parse code into Abstract Syntax Tree using Tree-sitter\n    Enables semantic code understanding\n    \"\"\"\n    def __init__(self):\n        # Initialize parsers for different languages\n        self.parsers = {\n            'python': self._init_parser(tspython.language()),\n            'javascript': self._init_parser(tsjavascript.language()),",
-        "detail": "backend.src.tools.ast_parser_tool",
-        "documentation": {}
-    },
-    {
-        "label": "ast_parser",
-        "kind": 5,
-        "importPath": "backend.src.tools.ast_parser_tool",
-        "description": "backend.src.tools.ast_parser_tool",
-        "peekOfCode": "ast_parser = ASTParserTool()",
-        "detail": "backend.src.tools.ast_parser_tool",
-        "documentation": {}
-    },
-    {
-        "label": "CodeSearchTool",
-        "kind": 6,
-        "importPath": "backend.src.tools.code_search_tool",
-        "description": "backend.src.tools.code_search_tool",
-        "peekOfCode": "class CodeSearchTool:\n    \"\"\"\n    Search for similar code patterns across files\n    Uses semantic similarity and pattern matching\n    \"\"\"\n    @staticmethod\n    def _tokenize_code(code: str) -> List[str]:\n        \"\"\"Extract meaningful tokens from code\"\"\"\n        # Remove comments and strings for better matching\n        code = re.sub(r'#.*$', '', code, flags=re.MULTILINE)  # Python comments",
-        "detail": "backend.src.tools.code_search_tool",
-        "documentation": {}
-    },
-    {
-        "label": "code_search_tool",
-        "kind": 5,
-        "importPath": "backend.src.tools.code_search_tool",
-        "description": "backend.src.tools.code_search_tool",
-        "peekOfCode": "code_search_tool = CodeSearchTool()",
-        "detail": "backend.src.tools.code_search_tool",
-        "documentation": {}
-    },
-    {
-        "label": "FileContextTool",
-        "kind": 6,
-        "importPath": "backend.src.tools.file_context_tool",
-        "description": "backend.src.tools.file_context_tool",
-        "peekOfCode": "class FileContextTool:\n    \"\"\"\n    Extracts surrounding code context (20 lines before/after cursor)\n    Similar to Cursor's context extraction\n    \"\"\"\n    @staticmethod\n    @tool\n    def get_surrounding_context(\n        file_content: str,\n        cursor_line: int,",
-        "detail": "backend.src.tools.file_context_tool",
-        "documentation": {}
-    },
-    {
-        "label": "GitTools",
-        "kind": 6,
-        "importPath": "backend.src.tools.git_tools",
-        "description": "backend.src.tools.git_tools",
-        "peekOfCode": "class GitTools:\n    \"\"\"\n    Tools for extracting git repository context\n    Helps agents understand recent changes\n    \"\"\"\n    @staticmethod\n    def _get_repo(file_path: str) -> Optional[git.Repo]:\n        \"\"\"Find git repo for a file\"\"\"\n        try:\n            # Walk up directory tree to find .git",
-        "detail": "backend.src.tools.git_tools",
-        "documentation": {}
-    },
-    {
-        "label": "git_tools",
-        "kind": 5,
-        "importPath": "backend.src.tools.git_tools",
-        "description": "backend.src.tools.git_tools",
-        "peekOfCode": "git_tools = GitTools()",
-        "detail": "backend.src.tools.git_tools",
-        "documentation": {}
-    },
-    {
-        "label": "ConversationMemory",
-        "kind": 6,
-        "importPath": "backend.src.tools.memory_tool",
-        "description": "backend.src.tools.memory_tool",
-        "peekOfCode": "class ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):\n        \"\"\"Add message to conversation history\"\"\"",
-        "detail": "backend.src.tools.memory_tool",
-        "documentation": {}
-    },
-    {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "backend.src.tools.memory_tool",
-        "description": "backend.src.tools.memory_tool",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):",
-        "detail": "backend.src.tools.memory_tool",
-        "documentation": {}
-    },
-    {
-        "label": "conversation_memory",
-        "kind": 5,
-        "importPath": "backend.src.tools.memory_tool",
-        "description": "backend.src.tools.memory_tool",
-        "peekOfCode": "conversation_memory = ConversationMemory()",
-        "detail": "backend.src.tools.memory_tool",
-        "documentation": {}
-    },
-    {
         "label": "extract_imports",
         "kind": 2,
         "importPath": "backend.src.utils.context",
@@ -1452,6 +1814,78 @@
         "description": "backend.src.main",
         "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],",
         "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_agentic_supervisor",
+        "description": "backend.tests.test_agentic_supervisor",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nfrom src.agents.agentic_supervisor import agentic_supervisor\nasync def test_simple_exploration():\n    \"\"\"Test agent exploring the codebase\"\"\"\n    print(\"=\"*70)\n    print(\"TEST 1: Simple Codebase Exploration\")\n    print(\"=\"*70 + \"\\n\")\n    result = await agentic_supervisor.execute_task(\n        task=\"List all Python files in the src directory and tell me what the main.py file does\",",
+        "detail": "backend.tests.test_agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_improved_agent",
+        "description": "backend.tests.test_improved_agent",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nfrom src.agents.agentic_supervisor import agentic_supervisor\nasync def test_forced_tool_usage():\n    \"\"\"Test that agent actually uses propose_edit instead of being passive\"\"\"\n    print(\"=\"*70)\n    print(\"TEST: Forced Tool Usage (Propose Edit)\")\n    print(\"=\"*70 + \"\\n\")\n    # Create test file\n    test_file = \"test_for_docstring.py\"",
+        "detail": "backend.tests.test_improved_agent",
+        "documentation": {}
+    },
+    {
+        "label": "test_file_reader_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_file_reader_tool():\n    \"\"\"Test reading a file\"\"\"\n    print(\"📝 Testing FileReaderTool...\")\n    # Create test file in current directory\n    test_file = \"test_temp.txt\"\n    test_content = \"Hello, World!\"\n    try:\n        with open(test_file, 'w') as f:\n            f.write(test_content)\n        print(f\"  Created test file: {test_file}\")",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_file_search_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_file_search_tool():\n    \"\"\"Test searching for files\"\"\"\n    print(\"🔍 Testing FileSearchTool...\")\n    try:\n        tool = FileSearchTool()\n        result = tool._run(\"*.py\", max_results=5)\n        print(f\"  Tool result:\\n{result}\\n\")\n        if \"Found\" in result or \"No files\" in result:\n            print(\"  ✓ File search tool works\\n\")\n            return True",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_list_directory_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_list_directory_tool():\n    \"\"\"Test listing directory\"\"\"\n    print(\"📁 Testing ListDirectoryTool...\")\n    try:\n        tool = ListDirectoryTool()\n        result = tool._run(\".\")\n        print(f\"  Tool result:\\n{result}\\n\")\n        if \"Directory:\" in result:\n            print(\"  ✓ List directory tool works\\n\")\n            return True",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_propose_edit_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_propose_edit_tool():\n    \"\"\"Test proposing an edit\"\"\"\n    print(\"✏️  Testing ProposeEditTool...\")\n    try:\n        tool = ProposeEditTool()\n        result = tool._run(\n            file_path=\"test.py\",\n            description=\"Add error handling\",\n            new_code=\"try:\\n    pass\\nexcept Exception as e:\\n    print(e)\",\n            old_code=\"pass\"",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"=\"*70)\n    print(\"🧪 WORKSPACE TOOLS TEST SUITE\")\n    print(\"=\"*70 + \"\\n\")\n    results = []\n    try:\n        results.append((\"FileReaderTool\", test_file_reader_tool()))\n        results.append((\"FileSearchTool\", test_file_search_tool()))\n        results.append((\"ListDirectoryTool\", test_list_directory_tool()))",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nprint(f\"Python path: {backend_dir}\")\nprint(f\"Current working directory: {os.getcwd()}\\n\")\ntry:\n    from src.agents.tools.workspace_tools import (\n        FileReaderTool,\n        FileSearchTool,\n        ListDirectoryTool,\n        ProposeEditTool",
+        "detail": "backend.tests.test_workspace_tools",
         "documentation": {}
     },
     {
