@@ -12,6 +12,8 @@ export class ChatPanel {
     private disposables: vscode.Disposable[] = [];
     private currentMode: string = 'normal';  // ADD THIS
     private pendingChanges: any[] = [];      // ADD THIS
+    private lastActiveEditor: vscode.TextEditor | undefined; // Track last active editor
+    private currentProvider: string = 'groq'; // Track selected provider (groq, gemini, ollama)
 
     private constructor(
         panel: vscode.WebviewPanel,
@@ -28,9 +30,18 @@ export class ChatPanel {
         this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
 
         // Listen for active editor changes
-        vscode.window.onDidChangeActiveTextEditor(() => {
+        vscode.window.onDidChangeActiveTextEditor((editor) => {
+            // Track the last active text editor (ignore when it's undefined)
+            if (editor) {
+                this.lastActiveEditor = editor;
+            }
             this.updateCurrentFileButton();
         }, null, this.disposables);
+
+        // Set initial last active editor
+        if (vscode.window.activeTextEditor) {
+            this.lastActiveEditor = vscode.window.activeTextEditor;
+        }
 
         // Handle messages from webview
         this.panel.webview.onDidReceiveMessage(
@@ -48,6 +59,11 @@ export class ChatPanel {
                     case 'setMode':
                         this.currentMode = data.mode;
                         console.log(`Mode changed to: ${this.currentMode}`);
+                        break;
+                    case 'setProvider':
+                        this.currentProvider = data.provider;
+                        console.log(`Provider changed to: ${this.currentProvider}`);
+                        vscode.window.showInformationMessage(`Switched to ${data.provider.toUpperCase()} provider`);
                         break;
                     case 'approveAction':
                         await this.handleApproveAction();
@@ -169,7 +185,8 @@ export class ChatPanel {
 
             // Build chat request - use current fileReferences, not the files parameter
             const request: ChatRequest = {
-                messages: serializedMessages
+                messages: serializedMessages,
+                provider: this.currentProvider  // Use selected provider
             };
             
             // Only include files if we have any
@@ -177,7 +194,8 @@ export class ChatPanel {
                 request.files = this.fileReferences;
             }
 
-            console.log('Sending chat request:', JSON.stringify(request, null, 2));
+            console.log('Sending chat request with provider:', this.currentProvider);
+            console.log('Request:', JSON.stringify(request, null, 2));
 
             // Get response from backend
             const response = await this.backend.chat(request);
@@ -185,9 +203,18 @@ export class ChatPanel {
             this.showThinking(false);
 
             if (response) {
+                // Check if response used fallback
+                let content = response.message;
+                
+                // Add fallback notice if applicable
+                if (response.fallback && response.original_error) {
+                    const fallbackNotice = `\n\n> ⚠️ Note: ${response.original_error}. Response generated using fallback provider.`;
+                    content = content + fallbackNotice;
+                }
+                
                 const assistantMessage: ChatMessage = {
                     role: 'assistant',
-                    content: response.message,
+                    content: content,
                     timestamp: new Date()
                 };
 
@@ -226,7 +253,8 @@ export class ChatPanel {
     }
 
     private async addCurrentFile() {
-        const editor = vscode.window.activeTextEditor;
+        // Use current active editor, or fall back to last active editor
+        const editor = vscode.window.activeTextEditor || this.lastActiveEditor;
         
         if (!editor) {
             vscode.window.showWarningMessage('No active file to add');
@@ -412,7 +440,8 @@ export class ChatPanel {
     }
 
     private updateCurrentFileButton() {
-        const editor = vscode.window.activeTextEditor;
+        // Use current active editor, or fall back to last active editor
+        const editor = vscode.window.activeTextEditor || this.lastActiveEditor;
         
         let fileName = '';
         let isInContext = false;
@@ -630,8 +659,8 @@ export class ChatPanel {
             const response = await axios.post(`${this.backend.baseUrl}/api/v1/agent/task`, {
                 task: enhancedTask,
                 workspace_path: workspacePath,
-                provider: "gemini",
-                model: "gemini-2.5-flash"
+                provider: this.currentProvider,  // Use selected provider
+                model: this.getModelForProvider(this.currentProvider)  // Get appropriate model
             }, {
                 timeout: 120000
             });
@@ -644,11 +673,38 @@ export class ChatPanel {
             if (result.steps && result.steps.length > 0) {
                 console.log(`Showing ${result.steps.length} agent steps`);
                 for (const step of result.steps) {
+                    // Map action names to friendly titles with icons
+                    let title = step.action;
+                    let icon = '🔧';
+                    
+                    switch(step.action) {
+                        case 'read_file':
+                            icon = '📖';
+                            title = 'Reading file';
+                            break;
+                        case 'search_files':
+                            icon = '🔍';
+                            title = 'Searching files';
+                            break;
+                        case 'list_directory':
+                            icon = '📁';
+                            title = 'Listing directory';
+                            break;
+                        case 'propose_edit':
+                            icon = '✏️';
+                            title = 'Proposing changes';
+                            break;
+                        default:
+                            icon = '⚡';
+                            title = step.action;
+                    }
+                    
                     this.panel.webview.postMessage({
                         type: 'agentStep',
                         step: {
-                            title: `🔧 ${step.action}`,
-                            description: step.input ? step.input.substring(0, 150) : 'Processing...'
+                            title: `${icon} ${title}`,
+                            description: step.input ? step.input.substring(0, 150) : 'Processing...',
+                            output: step.output ? step.output.substring(0, 100) : null
                         }
                     });
                 }
@@ -803,6 +859,20 @@ export class ChatPanel {
             "'": '&#039;'
         };
         return text.replace(/[&<>"']/g, (m) => map[m]);
+    }
+
+    private getModelForProvider(provider: string): string {
+        // Return appropriate model for each provider
+        switch(provider) {
+            case 'ollama':
+                return 'qwen2.5-coder:7b';
+            case 'gemini':
+                return 'gemini-2.5-flash';
+            case 'groq':
+                return 'llama-3.1-8b-instant';
+            default:
+                return 'gemini-2.5-flash';
+        }
     }
 
     private async handleDenyAction() {
@@ -961,6 +1031,47 @@ export class ChatPanel {
                     background: var(--msg-user);
                     color: #ffffff;
                     box-shadow: var(--glow);
+                }
+
+                /* PROVIDER DROPDOWN */
+                .provider-dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .provider-select {
+                    padding: 8px 30px 8px 12px;
+                    background: #0c0c0c;
+                    color: #e0e0e0;
+                    border: 1px solid #222;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    font-weight: 500;
+                    transition: var(--transition);
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23888" d="M6 9L1 4h10z"/></svg>');
+                    background-repeat: no-repeat;
+                    background-position: right 8px center;
+                }
+
+                .provider-select:hover {
+                    background-color: #151515;
+                    border-color: #333;
+                }
+
+                .provider-select:focus {
+                    outline: none;
+                    border-color: #0b62ff;
+                    box-shadow: 0 0 0 1px rgba(11, 98, 255, 0.3);
+                }
+
+                .provider-select option {
+                    background: #0c0c0c;
+                    color: #e0e0e0;
+                    padding: 8px;
                 }
 
                 /* CHAT AREA */
@@ -1298,35 +1409,66 @@ export class ChatPanel {
                 .agent-activity {
                     display: none;
                     padding: 12px 16px;
-                    background: rgba(11, 98, 255, 0.05);
+                    background: linear-gradient(135deg, rgba(11, 98, 255, 0.08) 0%, rgba(11, 98, 255, 0.02) 100%);
                     border-bottom: 1px solid var(--jet-border);
-                    max-height: 200px;
+                    border-top: 1px solid rgba(11, 98, 255, 0.2);
+                    max-height: 250px;
                     overflow-y: auto;
                     flex-shrink: 0;
                 }
 
                 .agent-activity.show {
                     display: block;
+                    animation: slideDown 0.3s ease-out;
+                }
+
+                @keyframes slideDown {
+                    from {
+                        opacity: 0;
+                        max-height: 0;
+                        padding: 0 16px;
+                    }
+                    to {
+                        opacity: 1;
+                        max-height: 250px;
+                        padding: 12px 16px;
+                    }
                 }
 
                 .mode-indicator {
-                    display: inline-block;
-                    padding: 4px 12px;
-                    background: var(--msg-user);
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 6px 14px;
+                    background: linear-gradient(135deg, var(--msg-user) 0%, #0850cc 100%);
                     color: #ffffff;
-                    border-radius: 4px;
+                    border-radius: 6px;
                     font-size: 11px;
                     font-weight: 600;
-                    margin-bottom: 8px;
+                    margin-bottom: 10px;
+                    box-shadow: 0 2px 8px rgba(11, 98, 255, 0.3);
+                }
+
+                .mode-indicator::before {
+                    content: '🤖';
+                    font-size: 14px;
                 }
 
                 .agent-step {
-                    padding: 8px 12px;
-                    margin: 6px 0;
-                    background: #0e0e0e;
+                    padding: 10px 14px;
+                    margin: 8px 0;
+                    background: rgba(14, 14, 14, 0.8);
                     border-left: 3px solid var(--msg-user);
-                    border-radius: 4px;
+                    border-radius: 6px;
                     animation: slideIn 0.3s ease-out;
+                    backdrop-filter: blur(10px);
+                    transition: all 0.2s ease;
+                }
+
+                .agent-step:hover {
+                    background: rgba(14, 14, 14, 0.95);
+                    border-left-color: #4fc3f7;
+                    transform: translateX(2px);
                 }
 
                 @keyframes slideIn {
@@ -1343,13 +1485,30 @@ export class ChatPanel {
                 .agent-step .step-title {
                     font-weight: 600;
                     color: #4fc3f7;
-                    margin-bottom: 4px;
+                    margin-bottom: 6px;
                     font-size: 12px;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
                 }
 
                 .agent-step .step-description {
-                    color: #888;
+                    color: #999;
                     font-size: 11px;
+                    line-height: 1.4;
+                    margin-bottom: 4px;
+                }
+
+                .agent-step .step-output {
+                    color: #6c6;
+                    font-size: 10px;
+                    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+                    background: rgba(0, 0, 0, 0.3);
+                    padding: 6px 8px;
+                    border-radius: 4px;
+                    margin-top: 6px;
+                    border-left: 2px solid #6c6;
+                    overflow-x: auto;
                 }
 
                 /* APPROVAL PANEL */
@@ -1431,6 +1590,7 @@ export class ChatPanel {
                     display: flex;
                     gap: 8px;
                     margin-bottom: 8px;
+                    align-items: center;
                 }
 
                 .action-btn {
@@ -1620,15 +1780,16 @@ export class ChatPanel {
                     <button class="action-btn" id="addCurrentFileBtn" title="Toggle current file in context" disabled>
                         + No file
                     </button>
-                    <button class="action-btn" id="addCurrentFileBtn" title="Toggle current file in context" disabled>
-                        + No file
-                    </button>
-                    <button class="action-btn" id="addCurrentFileBtn" title="Toggle current file in context" disabled>
-                        + No file
-                    </button>
                     <button class="action-btn icon-only" id="addFileBtn" title="Browse and add file">
                         📎
                     </button>
+                    <div class="provider-dropdown">
+                        <select class="provider-select" id="providerSelect" title="Select AI provider">
+                            <option value="groq">⚡ Groq</option>
+                            <option value="gemini">🌟 Gemini</option>
+                            <option value="ollama">🏠 Ollama</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="input-wrapper">
                     <div class="mention-suggestions" id="mentionSuggestions"></div>
@@ -1649,6 +1810,7 @@ export class ChatPanel {
                 let selectedSuggestionIndex = -1;
                 let isMentionActive = false;
                 let currentMode = 'normal';  // ADD MODE TRACKING
+                let currentProvider = 'groq';  // ADD PROVIDER TRACKING - default to groq
 
                 // Get DOM elements
                 const textarea = document.getElementById('messageInput');
@@ -1659,6 +1821,7 @@ export class ChatPanel {
                 const clearChatBtn = document.getElementById('clearChatBtn');
                 const normalModeBtn = document.getElementById('normalModeBtn');
                 const agentModeBtn = document.getElementById('agentModeBtn');
+                const providerSelect = document.getElementById('providerSelect');
                 const approveBtn = document.getElementById('approveBtn');
                 const denyBtn = document.getElementById('denyBtn');
 
@@ -1669,8 +1832,14 @@ export class ChatPanel {
                 clearChatBtn.addEventListener('click', clearChat);
                 normalModeBtn.addEventListener('click', () => setMode('normal'));
                 agentModeBtn.addEventListener('click', () => setMode('agent'));
+                providerSelect.addEventListener('change', (e) => setProvider(e.target.value));
                 approveBtn.addEventListener('click', approveChange);
                 denyBtn.addEventListener('click', denyChange);
+
+                // Initialize provider UI (set groq as default)
+                if (providerSelect) {
+                    providerSelect.value = 'groq';
+                }
 
                 // Auto-resize textarea
                 textarea.addEventListener('input', function() {
@@ -1921,6 +2090,20 @@ export class ChatPanel {
                     vscode.postMessage({ type: 'setMode', mode: mode });
                 }
 
+                function setProvider(provider) {
+                    console.log('Setting provider to:', provider);
+                    currentProvider = provider;
+                    
+                    // Update UI - set dropdown value
+                    const providerSelect = document.getElementById('providerSelect');
+                    if (providerSelect) {
+                        providerSelect.value = provider;
+                    }
+                    
+                    // Notify extension
+                    vscode.postMessage({ type: 'setProvider', provider: provider });
+                }
+
                 function showAgentStep(step) {
                     const agentActivity = document.getElementById('agentActivity');
                     const agentSteps = document.getElementById('agentSteps');
@@ -1931,9 +2114,18 @@ export class ChatPanel {
                     
                     const stepDiv = document.createElement('div');
                     stepDiv.className = 'agent-step';
-                    stepDiv.innerHTML = 
-                        '<div class="step-title">' + escapeHtml(step.title || step.action || 'Step') + '</div>' +
-                        '<div class="step-description">' + escapeHtml(step.description || '') + '</div>';
+                    
+                    let html = '<div class="step-title">' + escapeHtml(step.title || step.action || 'Step') + '</div>';
+                    
+                    if (step.description) {
+                        html += '<div class="step-description">' + escapeHtml(step.description) + '</div>';
+                    }
+                    
+                    if (step.output) {
+                        html += '<div class="step-output">✓ ' + escapeHtml(step.output) + '</div>';
+                    }
+                    
+                    stepDiv.innerHTML = html;
                     
                     agentSteps.appendChild(stepDiv);
                     agentSteps.scrollTop = agentSteps.scrollHeight;

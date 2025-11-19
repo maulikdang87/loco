@@ -208,15 +208,19 @@ async def chat(
 ):
     """
     Chat endpoint with dynamic model and provider support.
+    Accepts API keys from the request for cloud providers.
     """
     logger.info(f"Chat request with provider: {provider}")
-    logger.info(f"Request payload: {request}")
+    logger.info(f"Request payload keys: {request.keys()}")
 
     available_providers = llm_manager.list_available_providers()
     if provider not in available_providers:
         raise HTTPException(status_code=400, detail=f"Unknown provider: {provider}")
 
     try:
+        # Extract API keys from request if provided
+        api_keys = request.get("api_keys", {})
+        
         # Get model from request or use provider's default model
         model = request.get("model")
         
@@ -237,6 +241,10 @@ async def chat(
             elif provider == "groq" and ("llama" in model.lower() or "mixtral" in model.lower()):
                 is_valid = True
             elif provider == "gemini" and model.startswith("gemini"):
+                # CRITICAL: Only gemini-2.5-flash works with current API
+                if "2.5" not in model:
+                    logger.warning(f"Invalid Gemini model '{model}'. Only gemini-2.5-flash is supported. Using default.")
+                    model = "gemini-2.5-flash"
                 is_valid = True
             elif provider == "openai" and model.startswith("gpt"):
                 is_valid = True
@@ -256,7 +264,8 @@ async def chat(
             provider=provider,
             model=model,
             temperature=temperature,
-            max_tokens=2048
+            max_tokens=2048,
+            api_keys=api_keys  # Pass API keys to llm_manager
         )
 
         # Extract messages and files
@@ -310,8 +319,80 @@ async def chat(
         }
         
     except Exception as e:
-        logger.error(f"Chat failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        error_msg = str(e)
+        logger.error(f"Chat failed with {provider}: {error_msg}")
+        
+        # Check if it's a Groq API error (500 or rate limit)
+        if provider == "groq" and ("500" in error_msg or "Internal server error" in error_msg or "429" in error_msg):
+            logger.warning(f"Groq API failed, falling back to Gemini")
+            
+            try:
+                # Fallback to Gemini
+                fallback_model = "gemini-2.5-flash"
+                logger.info(f"Using fallback: gemini:{fallback_model}")
+                
+                llm = llm_manager.get_llm(
+                    provider="gemini",
+                    model=fallback_model,
+                    temperature=request.get("temperature", 0.3),
+                    max_tokens=2048
+                )
+                
+                # Rebuild context and conversation (same as above)
+                messages = request.get("messages", []) or []
+                files = request.get("files") or []
+                
+                file_context = ""
+                if files and len(files) > 0:
+                    file_context = "\n\nFile Context:\n"
+                    for file in files:
+                        file_name = file.get('name', 'file')
+                        file_language = file.get('language', '')
+                        file_content = file.get('content', '')
+                        if file_content:
+                            file_context += f"\n### {file_name} ({file_language})\n"
+                            file_context += f"```{file_language}\n{file_content}\n```\n"
+                
+                conversation = ""
+                for msg in messages:
+                    role = msg.get('role', 'user')
+                    content = msg.get('content', '')
+                    conversation += f"\n{role.upper()}: {content}\n"
+                
+                if file_context:
+                    conversation = file_context + "\n" + conversation
+                
+                # Generate response with fallback
+                start_time = time.time()
+                llm_response = await llm.ainvoke(conversation + "\nASSISTANT:")
+                latency_ms = int((time.time() - start_time) * 1000)
+                
+                if hasattr(llm_response, 'content'):
+                    response_text = llm_response.content
+                elif isinstance(llm_response, str):
+                    response_text = llm_response
+                else:
+                    response_text = str(llm_response)
+                
+                logger.info(f"✅ Fallback successful using Gemini")
+                
+                return {
+                    "message": response_text,
+                    "model_used": f"gemini:{fallback_model} (fallback from groq)",
+                    "latency_ms": latency_ms,
+                    "fallback": True,
+                    "original_error": "Groq API temporarily unavailable"
+                }
+                
+            except Exception as fallback_error:
+                logger.error(f"Fallback to Gemini also failed: {fallback_error}")
+                raise HTTPException(
+                    status_code=500, 
+                    detail=f"Primary provider (Groq) failed: {error_msg}. Fallback (Gemini) also failed: {str(fallback_error)}"
+                )
+        
+        # For other errors or providers, raise the original error
+        raise HTTPException(status_code=500, detail=error_msg)
 
 @app.post("/api/v1/agent/process")
 async def process_with_agent(request: dict):

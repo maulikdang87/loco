@@ -59,6 +59,34 @@ export class SettingsService {
         }
     }
 
+    getApiKey(provider: 'groq' | 'gemini' | 'openai'): string | undefined {
+        const config = vscode.workspace.getConfiguration('loco');
+        const apiKey = config.get<string>(`apiKeys.${provider}`, '');
+        return apiKey || undefined;
+    }
+
+    async setApiKey(provider: 'groq' | 'gemini' | 'openai', apiKey: string): Promise<void> {
+        await vscode.workspace.getConfiguration('loco').update(
+            `apiKeys.${provider}`, 
+            apiKey, 
+            vscode.ConfigurationTarget.Global
+        );
+        vscode.window.showInformationMessage(`${provider.toUpperCase()} API key updated successfully!`);
+    }
+
+    getModelForProvider(provider: string, context: 'chat' | 'completions'): string | undefined {
+        const config = vscode.workspace.getConfiguration('loco');
+        
+        // First check if there's a general model set for this context
+        const generalModel = config.get<string>(`${context}.model`, '');
+        if (generalModel) {
+            return generalModel;
+        }
+        
+        // Fall back to provider-specific model
+        return config.get<string>(`${context}.model.${provider}`, '');
+    }
+
     async fetchAvailableModels(): Promise<{ providers: string[], models: Record<string, string[]> }> {
         const config = vscode.workspace.getConfiguration('loco');
         const backendUrl = config.get<string>('general.backendUrl', 'http://localhost:8000');

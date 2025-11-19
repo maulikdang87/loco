@@ -49,6 +49,8 @@ export interface ChatRequest {
 }
 
 export interface ChatResponse {
+    original_error: any;
+    fallback: any;
     message: string;
     model_used: string;
     latency_ms: number;

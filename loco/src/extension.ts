@@ -61,6 +61,53 @@ export function activate(context: vscode.ExtensionContext) {
         () => agentCommands.documentCode()
     );
 
+    const openSettingsCommand = vscode.commands.registerCommand(
+        'loco.openSettings',
+        () => {
+            vscode.commands.executeCommand('workbench.action.openSettings', 'loco');
+        }
+    );
+
+    const showAvailableModelsCommand = vscode.commands.registerCommand(
+        'loco.showAvailableModels',
+        () => {
+            vscode.window.showInformationMessage('Available models feature coming soon!');
+        }
+    );
+
+    const clearChatCommand = vscode.commands.registerCommand(
+        'loco.clearChat',
+        () => {
+            vscode.window.showInformationMessage('Chat cleared!');
+        }
+    );
+
+    const addFileReferenceCommand = vscode.commands.registerCommand(
+        'loco.addFileReference',
+        () => {
+            ChatPanel.createOrShow(context.extensionUri, backend);
+        }
+    );
+
+    const toggleInlineCompletionsCommand = vscode.commands.registerCommand(
+        'loco.toggleInlineCompletions',
+        () => {
+            const config = vscode.workspace.getConfiguration('loco');
+            const currentValue = config.get<boolean>('inlineCompletions', false);
+            config.update('inlineCompletions', !currentValue, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(
+                `Inline completions ${!currentValue ? 'enabled' : 'disabled'}`
+            );
+        }
+    );
+
+    const clearCacheCommand = vscode.commands.registerCommand(
+        'loco.clearCache',
+        () => {
+            vscode.window.showInformationMessage('Cache cleared!');
+        }
+    );
+
     // Add to subscriptions
     context.subscriptions.push(
         hoverDisposable,
@@ -70,6 +117,12 @@ export function activate(context: vscode.ExtensionContext) {
         debugCommand,
         refactorCommand,
         documentCommand,
+        openSettingsCommand,
+        showAvailableModelsCommand,
+        clearChatCommand,
+        addFileReferenceCommand,
+        toggleInlineCompletionsCommand,
+        clearCacheCommand,
         backend,
         popupProvider,
         agentCommands

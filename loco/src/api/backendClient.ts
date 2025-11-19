@@ -57,6 +57,27 @@ export class BackendClient {
         return vscode.workspace.getConfiguration('loco').get<T>(key) as T;
     }
 
+    private getApiKeys(): Record<string, string> {
+        const config = vscode.workspace.getConfiguration('loco');
+        const apiKeys: Record<string, string> = {};
+        
+        const groqKey = config.get<string>('apiKeys.groq', '');
+        const geminiKey = config.get<string>('apiKeys.gemini', '');
+        const openaiKey = config.get<string>('apiKeys.openai', '');
+        
+        if (groqKey) {
+            apiKeys['groq'] = groqKey;
+        }
+        if (geminiKey) {
+            apiKeys['gemini'] = geminiKey;
+        }
+        if (openaiKey) {
+            apiKeys['openai'] = openaiKey;
+        }
+        
+        return apiKeys;
+    }
+
     async checkConnection(): Promise<boolean> {
         try {
             const response = await this.client.get<BackendStatus>('/health');
@@ -83,12 +104,16 @@ export class BackendClient {
         const model = this.getConfig<string>(`completions.model.${provider}`)
             || this.getConfig<string>('completions.model');
 
+        // Get API keys from settings
+        const apiKeys = this.getApiKeys();
+
         try {
             const response = await this.client.post<CompletionResponse>(
                 `/api/v1/complete/${provider}`,
                 {
                     ...request,
-                    model
+                    model,
+                    api_keys: apiKeys  // Send API keys to backend
                 }
             );
             return response.data;
@@ -106,17 +131,27 @@ export class BackendClient {
             || this.getConfig<string>(`chat.model.${provider}`)
             || this.getConfig<string>('chat.model');
 
+        // IMPORTANT: Validate Gemini model (only 2.5-flash works with current API)
+        if (provider === 'gemini' && model && !model.includes('2.5')) {
+            console.warn(`Invalid Gemini model ${model}, using gemini-2.5-flash instead`);
+            model = 'gemini-2.5-flash';
+        }
+
         // If still no model, get default from backend
         if (!model) {
             model = await this.getDefaultModelForProvider(provider);
         }
+
+        // Get API keys from settings
+        const apiKeys = this.getApiKeys();
 
         try {
             const response = await this.client.post<ChatResponse>(
                 `/api/v1/chat/${provider}`,
                 {
                     ...request,
-                    model
+                    model,
+                    api_keys: apiKeys  // Send API keys to backend
                 }
             );
             return response.data;
@@ -244,7 +279,7 @@ export class BackendClient {
         const fallbacks: Record<string, string> = {
             'ollama': 'qwen2.5-coder:7b',
             'groq': 'llama-3.3-70b-versatile',
-            'gemini': 'gemini-1.5-flash',
+            'gemini': 'gemini-2.5-flash',
             'openai': 'gpt-4o-mini'
         };
         return fallbacks[provider] || '';

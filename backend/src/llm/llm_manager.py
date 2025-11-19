@@ -38,6 +38,7 @@ class LLMManager:
         model: Optional[str] = None,
         temperature: Optional[float] = None,
         max_tokens: Optional[int] = None,
+        api_keys: Optional[dict] = None,
         **kwargs
     ) -> BaseLanguageModel:
         """
@@ -48,6 +49,7 @@ class LLMManager:
             model: Specific model name (optional, uses defaults)
             temperature: Sampling temperature (0.0-1.0)
             max_tokens: Maximum tokens to generate
+            api_keys: Optional dict of API keys from VS Code settings
             **kwargs: Provider-specific parameters
             
         Returns:
@@ -59,17 +61,18 @@ class LLMManager:
         provider = provider or self.default_provider
         temperature = temperature if temperature is not None else settings.TEMPERATURE
         max_tokens = max_tokens if max_tokens is not None else settings.MAX_TOKENS
+        api_keys = api_keys or {}
         
         logger.info(f"Creating LLM: provider={provider}, model={model}")
         
         if provider == "ollama":
             return self._get_ollama_llm(model, temperature, max_tokens, **kwargs)
         elif provider == "groq":
-            return self._get_groq_llm(model, temperature, max_tokens, **kwargs)
+            return self._get_groq_llm(model, temperature, max_tokens, api_keys, **kwargs)
         elif provider == "gemini":
-            return self._get_gemini_llm(model, temperature, max_tokens, **kwargs)
+            return self._get_gemini_llm(model, temperature, max_tokens, api_keys, **kwargs)
         elif provider == "openai":
-            return self._get_openai_llm(model, temperature, max_tokens, **kwargs)
+            return self._get_openai_llm(model, temperature, max_tokens, api_keys, **kwargs)
         else:
             raise ModelNotFoundError(f"Unknown provider: {provider}")
     
@@ -97,18 +100,22 @@ class LLMManager:
         model: Optional[str],
         temperature: float,
         max_tokens: int,
+        api_keys: dict,
         **kwargs
     ) -> ChatGroq:
         """Create Groq LLM instance"""
-        if not settings.GROQ_API_KEY:
+        # Use API key from request if provided, otherwise fall back to env variable
+        api_key = api_keys.get("groq") or settings.GROQ_API_KEY
+        
+        if not api_key:
             raise ModelNotFoundError(
-                "GROQ_API_KEY not configured. Add to .env file."
+                "GROQ_API_KEY not configured. Add to .env file or VS Code settings."
             )
         
         model_name = model or PROVIDER_MODELS["groq"]["fast"]
         
         return ChatGroq(
-            groq_api_key=settings.GROQ_API_KEY,
+            groq_api_key=api_key,
             model_name=model_name,
             temperature=temperature,
             max_tokens=max_tokens,
@@ -120,12 +127,16 @@ class LLMManager:
         model: Optional[str],
         temperature: float,
         max_tokens: int,
+        api_keys: dict,
         **kwargs
     ) -> ChatGoogleGenerativeAI:
         """Create Gemini LLM instance"""
-        if not settings.GEMINI_API_KEY:
+        # Use API key from request if provided, otherwise fall back to env variable
+        api_key = api_keys.get("gemini") or settings.GEMINI_API_KEY
+        
+        if not api_key:
             raise ModelNotFoundError(
-                "GOOGLE_API_KEY not configured. Add to .env file."
+                "GEMINI_API_KEY not configured. Add to .env file or VS Code settings."
             )
         # Use 'gemini-pro' as default for tool calling
         model_name = model or "gemini-pro"
@@ -134,7 +145,7 @@ class LLMManager:
             model_name = model_name.replace("models/", "")
         return ChatGoogleGenerativeAI(
             model=model_name,
-            google_api_key=settings.GEMINI_API_KEY,
+            google_api_key=api_key,
             temperature=temperature,
             max_output_tokens=max_tokens,
             convert_system_message_to_human=True,
@@ -146,18 +157,22 @@ class LLMManager:
         model: Optional[str],
         temperature: float,
         max_tokens: int,
+        api_keys: dict,
         **kwargs
     ) -> ChatOpenAI:
         """Create OpenAI LLM instance"""
-        if not settings.OPENAI_API_KEY:
+        # Use API key from request if provided, otherwise fall back to env variable
+        api_key = api_keys.get("openai") or settings.OPENAI_API_KEY
+        
+        if not api_key:
             raise ModelNotFoundError(
-                "OPENAI_API_KEY not configured. Add to .env file."
+                "OPENAI_API_KEY not configured. Add to .env file or VS Code settings."
             )
         
         model_name = model or PROVIDER_MODELS["openai"]["fast"]
         
         return ChatOpenAI(
-            openai_api_key=settings.OPENAI_API_KEY,
+            openai_api_key=api_key,
             model_name=model_name,
             temperature=temperature,
             max_tokens=max_tokens,

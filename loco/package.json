@@ -110,6 +110,27 @@
           "description": "Backend server URL",
           "order": 2
         },
+        "loco.apiKeys.groq": {
+          "type": "string",
+          "default": "",
+          "description": "Groq API Key (get from console.groq.com)",
+          "order": 5,
+          "markdownDescription": "Your Groq API key. [Get one here](https://console.groq.com/keys)"
+        },
+        "loco.apiKeys.gemini": {
+          "type": "string",
+          "default": "",
+          "description": "Google Gemini API Key (get from ai.google.dev)",
+          "order": 6,
+          "markdownDescription": "Your Google Gemini API key. [Get one here](https://aistudio.google.com/app/apikey)"
+        },
+        "loco.apiKeys.openai": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key (get from platform.openai.com)",
+          "order": 7,
+          "markdownDescription": "Your OpenAI API key. [Get one here](https://platform.openai.com/api-keys)"
+        },
         "loco.providers.defaultProvider": {
           "type": "string",
           "enum": [
@@ -148,7 +169,7 @@
         },
         "loco.chat.model.gemini": {
           "type": "string",
-          "default": "gemini-1.5-flash",
+          "default": "gemini-2.5-flash",
           "description": "Default Gemini model for chat",
           "order": 23
         },
@@ -206,7 +227,7 @@
         },
         "loco.completions.model.gemini": {
           "type": "string",
-          "default": "gemini-1.5-flash",
+          "default": "gemini-2.5-flash",
           "description": "Default Gemini model for completions",
           "order": 34
         },

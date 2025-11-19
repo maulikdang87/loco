@@ -54,9 +54,9 @@ PROVIDER_MODELS: Dict[str, Dict[str, Any]] = {
         "quality": "llama-3.3-70b-versatile"
     },
     "gemini": {
-        "fast": "gemini-1.5-flash",
-        "balanced": "gemini-1.5-pro",
-        "quality": "gemini-1.5-pro"
+        "fast": "gemini-2.5-flash",
+        "balanced": "gemini-2.5-flash",
+        "quality": "gemini-2.5-flash"
     },
     "openai": {
         "fast": "gpt-4o-mini",
