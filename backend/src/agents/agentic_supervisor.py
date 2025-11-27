@@ -93,13 +93,33 @@ If you cannot complete a task, explain why clearly."""
                     model = "gemini-2.5-flash"
                 elif provider == "openai":
                     model = "gpt-4o-mini"
+            # Get runtime API keys from LLM manager (set by main.py endpoint)
+            api_keys = getattr(llm_manager, 'runtime_api_keys', {}) or {}
+            logger.info(f"Retrieved API keys from LLM manager: {list(api_keys.keys())}")
+            
             llm = llm_manager.get_llm(
                 provider=provider,
                 model=model,
-                temperature=0.2
+                temperature=0.2,
+                api_keys=api_keys
             )
-            # Create agent with tools
-            agent = create_agent(llm, self.tools)
+            # Check if LLM supports tool binding before creating agent
+            if hasattr(llm, 'bind_tools'):
+                # LLM supports tools, create agent
+                try:
+                    logger.info("LLM has bind_tools method, creating agent...")
+                    agent = create_agent(llm, self.tools)
+                    use_tools = True
+                    logger.info("Successfully created agent with tool binding support")
+                except Exception as e:
+                    logger.warning(f"Failed to create agent despite bind_tools support ({e}), falling back")
+                    agent = None
+                    use_tools = False
+            else:
+                # LLM doesn't support tools, use fallback
+                logger.info(f"LLM type {type(llm).__name__} doesn't have bind_tools method, using enhanced prompting")
+                agent = None
+                use_tools = False
             # Build initial messages
             messages = [
                 SystemMessage(content=self._get_system_prompt()),
@@ -111,8 +131,15 @@ If you cannot complete a task, explain why clearly."""
             while attempt <= max_retries:
                 attempt += 1
                 logger.info(f"Attempt {attempt}/{max_retries + 1}")
-                # Execute agent
-                result = await agent.ainvoke({"messages": messages})
+                
+                if use_tools and agent:
+                    # Execute agent with tools
+                    logger.info(f"Executing with tool-enabled agent (attempt {attempt})")
+                    result = await agent.ainvoke({"messages": messages})
+                else:
+                    # Fallback: Manual tool handling for Ollama
+                    logger.info(f"Executing with enhanced prompting fallback (attempt {attempt})")
+                    result = await self._execute_without_tools(llm, task, workspace_path, messages)
                 
                 # Extract output messages
                 output_messages = result.get("messages", [])
@@ -366,6 +393,102 @@ EXECUTE THE ACTION NOW using the appropriate tool. Do not explain - ACT.""")
         
         logger.info(f"Total proposed changes extracted: {len(proposed_changes)}")
         return proposed_changes
+
+    async def _execute_without_tools(self, llm, task: str, workspace_path: str, messages: List) -> Dict:
+        """
+        Enhanced execution for Ollama with simulated tool calling
+        Uses structured prompting to simulate tool-like behavior
+        """
+        logger.info("Executing task with Ollama-optimized tool simulation")
+        
+        # Create an enhanced prompt that simulates tool usage
+        enhanced_prompt = f"""You are an autonomous coding assistant. Complete this task step by step:
+
+TASK: {task}
+
+AVAILABLE ACTIONS (simulate these as your responses):
+1. READ_FILE: Examine code files 
+2. SEARCH_FILES: Find relevant files
+3. LIST_DIR: Explore directory structure
+4. ANALYZE_CODE: Understand code patterns
+5. PROPOSE_CHANGES: Suggest specific modifications
+
+INSTRUCTIONS:
+- Break down the task into logical steps
+- For each step, specify which ACTION you would take
+- Provide specific file paths, search patterns, or code changes
+- Give detailed explanations for your decisions
+- Format your response clearly with step numbers
+
+EXAMPLE RESPONSE FORMAT:
+**Step 1: READ_FILE**
+- File: `src/main.py`  
+- Purpose: Understand current implementation
+- Expected findings: [describe what you're looking for]
+
+**Step 2: ANALYZE_CODE** 
+- Focus: Error handling patterns
+- Analysis: [provide specific observations]
+
+**Step 3: PROPOSE_CHANGES**
+- File: `src/main.py`
+- Change: [specific code modification]
+- Reason: [why this solves the problem]
+
+Now complete the task:"""
+
+        try:
+            # Get response from LLM
+            response = await llm.ainvoke([HumanMessage(content=enhanced_prompt)])
+            
+            # Handle different response formats
+            if hasattr(response, 'content'):
+                content = response.content
+            else:
+                content = str(response)
+            
+            # Add helpful footer
+            footer = f"""
+
+---
+**Note:** This response was generated using Ollama with simulated tool calling. 
+For direct file access and code modifications, consider using:
+- Groq (fastest, full tool support)  
+- Gemini (balanced, excellent tool integration)
+
+Current model: {getattr(llm, 'model', 'unknown')}
+Workspace: {workspace_path}"""
+            
+            final_content = content + footer
+                
+            return {
+                "messages": [
+                    SystemMessage(content=self._get_system_prompt()),
+                    HumanMessage(content=task),
+                    AIMessage(content=final_content)
+                ]
+            }
+            
+        except Exception as e:
+            logger.error(f"Ollama execution failed: {e}")
+            return {
+                "messages": [
+                    SystemMessage(content=self._get_system_prompt()),
+                    HumanMessage(content=task),
+                    AIMessage(content=f"""I encountered an error while processing your request: {e}
+
+**Recommendations:**
+1. **Try a different model:** `ollama pull qwen2.5-coder:7b` (best for coding)
+2. **Use cloud providers:** Groq or Gemini for full tool support
+3. **Check Ollama:** Ensure `ollama serve` is running
+
+**Available coding models (<8B parameters):**
+- `qwen2.5-coder:7b` - Best coding + reasoning
+- `llama3.2:3b` - Lightweight and fast  
+- `codegemma:7b` - Google's coding specialist
+- `granite-code:8b` - IBM's enterprise model""")
+                ]
+            }
 
 # Global instance
 agentic_supervisor = AgenticSupervisor()

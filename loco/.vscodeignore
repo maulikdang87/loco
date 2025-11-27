@@ -12,3 +12,20 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+
+# Exclude backend virtual environments
+backend/locovenv/**
+backend/venv/**
+backend/.venv/**
+backend/__pycache__/**
+backend/**/__pycache__/**
+backend/.env
+backend/.pytest_cache/**
+backend/tests/**
+backend/.deps_installed
+
+# Keep only essential backend files
+!backend/src/**
+!backend/requirements.txt
+!backend/__init__.py
+!backend/pytest.ini

@@ -1,0 +1,1927 @@
+[
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_python",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tree_sitter_python",
+        "description": "tree_sitter_python",
+        "detail": "tree_sitter_python",
+        "documentation": {}
+    },
+    {
+        "label": "tree_sitter_javascript",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tree_sitter_javascript",
+        "description": "tree_sitter_javascript",
+        "detail": "tree_sitter_javascript",
+        "documentation": {}
+    },
+    {
+        "label": "Language",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Parser",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "importPath": "tree_sitter",
+        "description": "tree_sitter",
+        "isExtraImport": true,
+        "detail": "tree_sitter",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Type",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TypedDict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncGenerator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Literal",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "difflib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "difflib",
+        "description": "difflib",
+        "detail": "difflib",
+        "documentation": {}
+    },
+    {
+        "label": "git",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "git",
+        "description": "git",
+        "detail": "git",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "SystemMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "AIMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "BaseMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "HumanMessage",
+        "importPath": "langchain_core.messages",
+        "description": "langchain_core.messages",
+        "isExtraImport": true,
+        "detail": "langchain_core.messages",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "BaseTool",
+        "importPath": "langchain.tools",
+        "description": "langchain.tools",
+        "isExtraImport": true,
+        "detail": "langchain.tools",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "create_agent",
+        "importPath": "langchain.agents",
+        "description": "langchain.agents",
+        "isExtraImport": true,
+        "detail": "langchain.agents",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "StateGraph",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "END",
+        "importPath": "langgraph.graph",
+        "description": "langgraph.graph",
+        "isExtraImport": true,
+        "detail": "langgraph.graph",
+        "documentation": {}
+    },
+    {
+        "label": "FileReaderTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
+        "isExtraImport": true,
+        "detail": "tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
+        "isExtraImport": true,
+        "detail": "tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "CodeEditorTool",
+        "importPath": "tools.workspace_tools",
+        "description": "tools.workspace_tools",
+        "isExtraImport": true,
+        "detail": "tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "StrOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "importPath": "operator",
+        "description": "operator",
+        "isExtraImport": true,
+        "detail": "operator",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaLLM",
+        "importPath": "langchain_ollama",
+        "description": "langchain_ollama",
+        "isExtraImport": true,
+        "detail": "langchain_ollama",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaLLM",
+        "importPath": "langchain_ollama",
+        "description": "langchain_ollama",
+        "isExtraImport": true,
+        "detail": "langchain_ollama",
+        "documentation": {}
+    },
+    {
+        "label": "ChatGroq",
+        "importPath": "langchain_groq",
+        "description": "langchain_groq",
+        "isExtraImport": true,
+        "detail": "langchain_groq",
+        "documentation": {}
+    },
+    {
+        "label": "ChatGoogleGenerativeAI",
+        "importPath": "langchain_google_genai",
+        "description": "langchain_google_genai",
+        "isExtraImport": true,
+        "detail": "langchain_google_genai",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "BaseLanguageModel",
+        "importPath": "langchain_core.language_models",
+        "description": "langchain_core.language_models",
+        "isExtraImport": true,
+        "detail": "langchain_core.language_models",
+        "documentation": {}
+    },
+    {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Body",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "agent_graph",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "agent_graph",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "importPath": "src.agents.graph",
+        "description": "src.agents.graph",
+        "isExtraImport": true,
+        "detail": "src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "importPath": "src.agents.agentic_supervisor",
+        "description": "src.agents.agentic_supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "debug_agent",
+        "importPath": "src.agents.debug_agent",
+        "description": "src.agents.debug_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "documentation_agent",
+        "importPath": "src.agents.documentation_agent",
+        "description": "src.agents.documentation_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "explain_agent",
+        "importPath": "src.agents.explain_agent",
+        "description": "src.agents.explain_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "refactor_agent",
+        "importPath": "src.agents.refactor_agent",
+        "description": "src.agents.refactor_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "supervisor",
+        "importPath": "src.agents.supervisor",
+        "description": "src.agents.supervisor",
+        "isExtraImport": true,
+        "detail": "src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "CodeCompletionAgent",
+        "importPath": "src.agents.code_completion_agent",
+        "description": "src.agents.code_completion_agent",
+        "isExtraImport": true,
+        "detail": "src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionRequest",
+        "importPath": "src.models.schemas",
+        "description": "src.models.schemas",
+        "isExtraImport": true,
+        "detail": "src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaClient",
+        "importPath": "src.llm.ollama_client",
+        "description": "src.llm.ollama_client",
+        "isExtraImport": true,
+        "detail": "src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaConnectionError",
+        "importPath": "src.utils.error_handler",
+        "description": "src.utils.error_handler",
+        "isExtraImport": true,
+        "detail": "src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "ASTParserTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.ast_parser_tool",
+        "description": "backend.src.agents.tools.ast_parser_tool",
+        "peekOfCode": "class ASTParserTool:\n    \"\"\"\n    Parse code into Abstract Syntax Tree using Tree-sitter\n    Enables semantic code understanding\n    \"\"\"\n    def __init__(self):\n        # Initialize parsers for different languages\n        self.parsers = {\n            'python': self._init_parser(tspython.language()),\n            'javascript': self._init_parser(tsjavascript.language()),",
+        "detail": "backend.src.agents.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "ast_parser",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.ast_parser_tool",
+        "description": "backend.src.agents.tools.ast_parser_tool",
+        "peekOfCode": "ast_parser = ASTParserTool()",
+        "detail": "backend.src.agents.tools.ast_parser_tool",
+        "documentation": {}
+    },
+    {
+        "label": "CodeSearchTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.code_search_tool",
+        "description": "backend.src.agents.tools.code_search_tool",
+        "peekOfCode": "class CodeSearchTool:\n    \"\"\"\n    Search for similar code patterns across files\n    Uses semantic similarity and pattern matching\n    \"\"\"\n    @staticmethod\n    def _tokenize_code(code: str) -> List[str]:\n        \"\"\"Extract meaningful tokens from code\"\"\"\n        # Remove comments and strings for better matching\n        code = re.sub(r'#.*$', '', code, flags=re.MULTILINE)  # Python comments",
+        "detail": "backend.src.agents.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "code_search_tool",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.code_search_tool",
+        "description": "backend.src.agents.tools.code_search_tool",
+        "peekOfCode": "code_search_tool = CodeSearchTool()",
+        "detail": "backend.src.agents.tools.code_search_tool",
+        "documentation": {}
+    },
+    {
+        "label": "FileContextTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.file_context_tool",
+        "description": "backend.src.agents.tools.file_context_tool",
+        "peekOfCode": "class FileContextTool:\n    \"\"\"\n    Extracts surrounding code context (20 lines before/after cursor)\n    Similar to Cursor's context extraction\n    \"\"\"\n    @staticmethod\n    @tool\n    def get_surrounding_context(\n        file_content: str,\n        cursor_line: int,",
+        "detail": "backend.src.agents.tools.file_context_tool",
+        "documentation": {}
+    },
+    {
+        "label": "GitTools",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.git_tools",
+        "description": "backend.src.agents.tools.git_tools",
+        "peekOfCode": "class GitTools:\n    \"\"\"\n    Tools for extracting git repository context\n    Helps agents understand recent changes\n    \"\"\"\n    @staticmethod\n    def _get_repo(file_path: str) -> Optional[git.Repo]:\n        \"\"\"Find git repo for a file\"\"\"\n        try:\n            # Walk up directory tree to find .git",
+        "detail": "backend.src.agents.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "git_tools",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.git_tools",
+        "description": "backend.src.agents.tools.git_tools",
+        "peekOfCode": "git_tools = GitTools()",
+        "detail": "backend.src.agents.tools.git_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ConversationMemory",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "class ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):\n        \"\"\"Add message to conversation history\"\"\"",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ConversationMemory:\n    \"\"\"\n    Manages conversation history and context\n    Implements conversation buffer with smart summarization\n    \"\"\"\n    def __init__(self, max_messages: int = 20):\n        self.max_messages = max_messages\n        self.conversations: dict[str, List[BaseMessage]] = {}\n    def add_message(self, session_id: str, message: BaseMessage):",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "conversation_memory",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.memory_tool",
+        "description": "backend.src.agents.tools.memory_tool",
+        "peekOfCode": "conversation_memory = ConversationMemory()",
+        "detail": "backend.src.agents.tools.memory_tool",
+        "documentation": {}
+    },
+    {
+        "label": "FileReaderInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileReaderInput(BaseModel):\n    \"\"\"Input schema for file reader tool\"\"\"\n    file_path: str = Field(description=\"Path to file to read relative to workspace root\")\nclass FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"\n        try:",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileReaderTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"\n        try:\n            # Security: prevent path traversal\n            if '..' in file_path or file_path.startswith('/'):\n                return f\"Error: Invalid file path (security violation)\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileSearchInput(BaseModel):\n    \"\"\"Input schema for file search tool\"\"\"\n    pattern: str = Field(description=\"Glob pattern to search (e.g., '*.py', 'src/**/*.ts')\")\n    max_results: int = Field(default=20, description=\"Maximum number of results\")\nclass FileSearchTool(BaseTool):\n    name: str = \"search_files\"\n    description: str = \"Search for files matching a glob pattern. Use wildcards: *.py, **/*.ts, etc.\"\n    args_schema: Type[BaseModel] = FileSearchInput\n    def _run(self, pattern: str, max_results: int = 20) -> str:\n        \"\"\"Search for files\"\"\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "FileSearchTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class FileSearchTool(BaseTool):\n    name: str = \"search_files\"\n    description: str = \"Search for files matching a glob pattern. Use wildcards: *.py, **/*.ts, etc.\"\n    args_schema: Type[BaseModel] = FileSearchInput\n    def _run(self, pattern: str, max_results: int = 20) -> str:\n        \"\"\"Search for files\"\"\"\n        try:\n            files = glob.glob(pattern, recursive=True)\n            # Filter out common directories to ignore\n            ignore_dirs = {'.git', 'node_modules', '__pycache__', '.venv', 'venv', 'dist', 'build'}",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ListDirectoryInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ListDirectoryInput(BaseModel):\n    \"\"\"Input schema for directory listing\"\"\"\n    directory: str = Field(default=\".\", description=\"Directory to list\")\nclass ListDirectoryTool(BaseTool):\n    name: str = \"list_directory\"\n    description: str = \"List contents of a directory to understand project structure\"\n    args_schema: Type[BaseModel] = ListDirectoryInput\n    def _run(self, directory: str = \".\") -> str:\n        \"\"\"List directory contents\"\"\"\n        try:",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ListDirectoryTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ListDirectoryTool(BaseTool):\n    name: str = \"list_directory\"\n    description: str = \"List contents of a directory to understand project structure\"\n    args_schema: Type[BaseModel] = ListDirectoryInput\n    def _run(self, directory: str = \".\") -> str:\n        \"\"\"List directory contents\"\"\"\n        try:\n            if '..' in directory or directory.startswith('/'):\n                return \"Error: Invalid directory path\"\n            if not os.path.exists(directory):",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ProposeEditInput",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ProposeEditInput(BaseModel):\n    \"\"\"Input schema for code edit proposal\"\"\"\n    file_path: str = Field(description=\"Path to file to edit\")\n    description: str = Field(description=\"Description of what change to make and why\")\n    old_code: Optional[str] = Field(default=None, description=\"Code snippet to replace (if editing existing code)\")\n    new_code: str = Field(description=\"New code to insert or use as replacement\")\nclass ProposeEditTool(BaseTool):\n    name: str = \"propose_edit\"\n    description: str = \"Propose a code change that requires human approval before applying\"\n    args_schema: Type[BaseModel] = ProposeEditInput",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "ProposeEditTool",
+        "kind": 6,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "class ProposeEditTool(BaseTool):\n    name: str = \"propose_edit\"\n    description: str = \"Propose a code change that requires human approval before applying\"\n    args_schema: Type[BaseModel] = ProposeEditInput\n    def _run(self, file_path: str, description: str, new_code: str, old_code: Optional[str] = None) -> str:\n        \"\"\"Propose an edit (returns special format for approval)\"\"\"\n        logger.info(f\"Proposing edit to {file_path}\")\n        # Return special format that frontend will parse\n        return f\"APPROVAL_REQUIRED|{file_path}|{description}|{old_code or ''}|{new_code}\"\n# Export all tools",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "get_workspace_tools",
+        "kind": 2,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "def get_workspace_tools() -> List[BaseTool]:\n    \"\"\"Get all workspace tools\"\"\"\n    return [\n        FileReaderTool(),\n        FileSearchTool(),\n        ListDirectoryTool(),\n        ProposeEditTool()\n    ]",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.tools.workspace_tools",
+        "description": "backend.src.agents.tools.workspace_tools",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass FileReaderInput(BaseModel):\n    \"\"\"Input schema for file reader tool\"\"\"\n    file_path: str = Field(description=\"Path to file to read relative to workspace root\")\nclass FileReaderTool(BaseTool):\n    name: str = \"read_file\"\n    description: str = \"Read the contents of a file in the workspace. Use this to examine code, configs, or documentation.\"\n    args_schema: Type[BaseModel] = FileReaderInput\n    def _run(self, file_path: str) -> str:\n        \"\"\"Read file contents\"\"\"",
+        "detail": "backend.src.agents.tools.workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "AgenticSupervisor",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "class AgenticSupervisor:\n    \"\"\"\n    Enhanced agentic supervisor with:\n    - Stronger prompts for tool usage\n    - Passive response detection\n    - Forced tool calling when needed\n    \"\"\"\n    def __init__(self):\n        self.tools = get_workspace_tools()\n        logger.info(f\"Initialized agentic supervisor with {len(self.tools)} tools: {[t.name for t in self.tools]}\")",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass AgenticSupervisor:\n    \"\"\"\n    Enhanced agentic supervisor with:\n    - Stronger prompts for tool usage\n    - Passive response detection\n    - Forced tool calling when needed\n    \"\"\"\n    def __init__(self):\n        self.tools = get_workspace_tools()",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_supervisor",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_supervisor",
+        "description": "backend.src.agents.agentic_supervisor",
+        "peekOfCode": "agentic_supervisor = AgenticSupervisor()",
+        "detail": "backend.src.agents.agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "class AgentState(TypedDict):\n    messages: List\n    task: str\n    plan: List[str]\n    current_step: int\n    files_read: List[str]\n    proposed_changes: List[dict]\n    approved: bool\n    agent_logs: List[dict]\nclass AgenticWorkflow:",
+        "detail": "backend.src.agents.agentic_workflow",
+        "documentation": {}
+    },
+    {
+        "label": "AgenticWorkflow",
+        "kind": 6,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "class AgenticWorkflow:\n    def __init__(self):\n        self.tools = [\n            FileReaderTool(),\n            FileSearchTool(),\n            CodeEditorTool()\n        ]\n        self.graph = self._build_graph()\n    def _build_graph(self):\n        workflow = StateGraph(AgentState)",
+        "detail": "backend.src.agents.agentic_workflow",
+        "documentation": {}
+    },
+    {
+        "label": "agentic_workflow",
+        "kind": 5,
+        "importPath": "backend.src.agents.agentic_workflow",
+        "description": "backend.src.agents.agentic_workflow",
+        "peekOfCode": "agentic_workflow = AgenticWorkflow()",
+        "detail": "backend.src.agents.agentic_workflow",
+        "documentation": {}
+    },
+    {
+        "label": "CodeCompletionAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "class CodeCompletionAgent:\n    def _build_enhanced_prompt(\n        self,\n        prefix: str,\n        suffix: str,\n        language: str,\n        filepath: str\n    ) -> str:\n        \"\"\"Build enhanced prompt with indentation detection\"\"\"\n        import re",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CodeCompletionAgent:\n    def _build_enhanced_prompt(\n        self,\n        prefix: str,\n        suffix: str,\n        language: str,\n        filepath: str\n    ) -> str:\n        \"\"\"Build enhanced prompt with indentation detection\"\"\"",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "completion_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.code_completion_agent",
+        "description": "backend.src.agents.code_completion_agent",
+        "peekOfCode": "completion_agent = CodeCompletionAgent()",
+        "detail": "backend.src.agents.code_completion_agent",
+        "documentation": {}
+    },
+    {
+        "label": "DebugAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "class DebugAgent:\n    \"\"\"\n    Specialized agent for debugging code\n    Inspired by Cursor's error analysis capabilities\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.tools = {\n            \"file_context\": FileContextTool(),",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass DebugAgent:\n    \"\"\"\n    Specialized agent for debugging code\n    Inspired by Cursor's error analysis capabilities\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.tools = {",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "debug_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.debug_agent",
+        "description": "backend.src.agents.debug_agent",
+        "peekOfCode": "debug_agent = DebugAgent()",
+        "detail": "backend.src.agents.debug_agent",
+        "documentation": {}
+    },
+    {
+        "label": "DocumentationAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "class DocumentationAgent:\n    \"\"\"\n    Specialized agent for generating documentation\n    Creates docstrings, README sections, and code explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass DocumentationAgent:\n    \"\"\"\n    Specialized agent for generating documentation\n    Creates docstrings, README sections, and code explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "documentation_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.documentation_agent",
+        "description": "backend.src.agents.documentation_agent",
+        "peekOfCode": "documentation_agent = DocumentationAgent()",
+        "detail": "backend.src.agents.documentation_agent",
+        "documentation": {}
+    },
+    {
+        "label": "ExplainAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "class ExplainAgent:\n    \"\"\"\n    Specialized agent for explaining code\n    Breaks down complex logic into understandable explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass ExplainAgent:\n    \"\"\"\n    Specialized agent for explaining code\n    Breaks down complex logic into understandable explanations\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "explain_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.explain_agent",
+        "description": "backend.src.agents.explain_agent",
+        "peekOfCode": "explain_agent = ExplainAgent()",
+        "detail": "backend.src.agents.explain_agent",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "class AgentState(TypedDict):\n    \"\"\"Shared state across all agents\"\"\"\n    # Messages\n    messages: Annotated[list[BaseMessage], add]\n    # Task info\n    task_type: str\n    user_query: str\n    # Code context\n    current_file: str\n    selected_code: str",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "LocoAgentGraph",
+        "kind": 6,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "class LocoAgentGraph:\n    \"\"\"\n    Multi-agent orchestration using LangGraph\n    Routes requests through supervisor to specialized agents\n    \"\"\"\n    def __init__(self):\n        self.graph = self._build_graph()\n    def _build_graph(self) -> StateGraph:\n        \"\"\"\n        Build LangGraph workflow",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Agent state definition\nclass AgentState(TypedDict):\n    \"\"\"Shared state across all agents\"\"\"\n    # Messages\n    messages: Annotated[list[BaseMessage], add]\n    # Task info\n    task_type: str\n    user_query: str\n    # Code context",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "agent_graph",
+        "kind": 5,
+        "importPath": "backend.src.agents.graph",
+        "description": "backend.src.agents.graph",
+        "peekOfCode": "agent_graph = LocoAgentGraph()",
+        "detail": "backend.src.agents.graph",
+        "documentation": {}
+    },
+    {
+        "label": "get_completion_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_completion_prompt() -> PromptTemplate:\n    return CODE_COMPLETION_PROMPT\ndef get_debug_prompt() -> PromptTemplate:\n    return DEBUG_PROMPT\ndef get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "get_debug_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_debug_prompt() -> PromptTemplate:\n    return DEBUG_PROMPT\ndef get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "get_documentation_prompt",
+        "kind": 2,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "def get_documentation_prompt() -> PromptTemplate:\n    return DOCUMENTATION_PROMPT",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "CODE_COMPLETION_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "CODE_COMPLETION_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"prefix\", \"suffix\", \"imports\", \"function_context\"],\n    template=\"\"\"You are an expert {language} code completion assistant. Your task is to generate ONLY the missing code that should appear at the cursor position.\nCONTEXT:\n- Language: {language}\n- Current imports:\n{imports}\n- Function/class context:\n{function_context}\nCODE BEFORE CURSOR:",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "DEBUG_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"code\", \"error_message\", \"traceback\"],\n    template=\"\"\"You are an expert {language} debugging assistant.\nCODE WITH ERROR:\n{code}\nERROR MESSAGE:\n{error_message}\nTRACEBACK:\n{traceback}\nAnalyze this error and provide:",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "DOCUMENTATION_PROMPT",
+        "kind": 5,
+        "importPath": "backend.src.agents.prompts",
+        "description": "backend.src.agents.prompts",
+        "peekOfCode": "DOCUMENTATION_PROMPT = PromptTemplate(\n    input_variables=[\"language\", \"code\", \"doc_style\"],\n    template=\"\"\"You are an expert {language} documentation generator.\nGenerate a comprehensive docstring for this code using {doc_style} style:\n{code}\nInclude:\n- Brief description\n- Parameters with types\n- Return value with type\n- Raises (if applicable)",
+        "detail": "backend.src.agents.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "RefactorAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "class RefactorAgent:\n    \"\"\"\n    Specialized agent for code refactoring\n    Suggests improvements, optimizations, and best practices\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass RefactorAgent:\n    \"\"\"\n    Specialized agent for code refactoring\n    Suggests improvements, optimizations, and best practices\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "refactor_agent",
+        "kind": 5,
+        "importPath": "backend.src.agents.refactor_agent",
+        "description": "backend.src.agents.refactor_agent",
+        "peekOfCode": "refactor_agent = RefactorAgent()",
+        "detail": "backend.src.agents.refactor_agent",
+        "documentation": {}
+    },
+    {
+        "label": "AgentState",
+        "kind": 6,
+        "importPath": "backend.src.agents.state",
+        "description": "backend.src.agents.state",
+        "peekOfCode": "class AgentState(TypedDict):\n    \"\"\"\n    Shared state for multi-agent system\n    Inspired by Cursor's context-aware agent architecture\n    \"\"\"\n    # Conversation history\n    messages: Annotated[Sequence[BaseMessage], add]\n    # Current task classification\n    task_type: Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\n    # Code context",
+        "detail": "backend.src.agents.state",
+        "documentation": {}
+    },
+    {
+        "label": "SupervisorAgent",
+        "kind": 6,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "class SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([\n            (\"system\", self._get_system_prompt()),",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nTaskType = Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\nclass SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "TaskType",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "TaskType = Literal[\"completion\", \"debug\", \"documentation\", \"explain\", \"refactor\", \"general\"]\nclass SupervisorAgent:\n    \"\"\"\n    Supervisor agent that routes requests to specialized agents\n    Implements multi-agent coordination pattern from LangGraph\n    \"\"\"\n    def __init__(self, provider: str = \"groq\", model: str = \"llama-3.3-70b-versatile\"):\n        self.provider = provider\n        self.model = model\n        self.prompt = ChatPromptTemplate.from_messages([",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "supervisor",
+        "kind": 5,
+        "importPath": "backend.src.agents.supervisor",
+        "description": "backend.src.agents.supervisor",
+        "peekOfCode": "supervisor = SupervisorAgent()",
+        "detail": "backend.src.agents.supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "LLMManager",
+        "kind": 6,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "class LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self.runtime_api_keys = {}  # Store API keys from requests\n        self._validate_api_keys()\n    def set_runtime_keys(self, api_keys: dict):",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nProviderType = Literal[\"ollama\", \"groq\", \"gemini\", \"openai\"]\nclass LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self.runtime_api_keys = {}  # Store API keys from requests",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "ProviderType",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "ProviderType = Literal[\"ollama\", \"groq\", \"gemini\", \"openai\"]\nclass LLMManager:\n    \"\"\"\n    Unified manager for multiple LLM providers\n    Supports Ollama (local), Groq, Gemini, and OpenAI\n    \"\"\"\n    def __init__(self):\n        self.default_provider = settings.DEFAULT_PROVIDER\n        self.runtime_api_keys = {}  # Store API keys from requests\n        self._validate_api_keys()",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "llm_manager",
+        "kind": 5,
+        "importPath": "backend.src.llm.llm_manager",
+        "description": "backend.src.llm.llm_manager",
+        "peekOfCode": "llm_manager = LLMManager()",
+        "detail": "backend.src.llm.llm_manager",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaClient",
+        "kind": 6,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "class OllamaClient:\n    \"\"\"\n    Manages Ollama connections and LLM instances\n    Handles model verification, streaming, and error recovery\n    \"\"\"\n    def __init__(\n        self, \n        base_url: str = settings.OLLAMA_BASE_URL,\n        default_model: str = settings.OLLAMA_DEFAULT_MODEL\n    ):",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass OllamaClient:\n    \"\"\"\n    Manages Ollama connections and LLM instances\n    Handles model verification, streaming, and error recovery\n    \"\"\"\n    def __init__(\n        self, \n        base_url: str = settings.OLLAMA_BASE_URL,\n        default_model: str = settings.OLLAMA_DEFAULT_MODEL",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "ollama_client",
+        "kind": 5,
+        "importPath": "backend.src.llm.ollama_client",
+        "description": "backend.src.llm.ollama_client",
+        "peekOfCode": "ollama_client = OllamaClient()",
+        "detail": "backend.src.llm.ollama_client",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionRequest",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class CompletionRequest(BaseModel):\n    \"\"\"Request model for code completion\"\"\"\n    prefix: str  # Code before cursor\n    suffix: str  # Code after cursor\n    language: str  # python, typescript, etc.\n    filepath: str  # Current file path\n    cursor_line: int\n    cursor_column: int\n    additional_context: Optional[List[str]] = None\nclass CompletionResponse(BaseModel):",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "CompletionResponse",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class CompletionResponse(BaseModel):\n    \"\"\"Response model for code completion\"\"\"\n    completion: str\n    confidence: float  # 0.0 - 1.0\n    model_used: str  # Which LLM generated it\n    latency_ms: int\nclass HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "HealthResponse",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class HealthResponse(BaseModel):\n    \"\"\"Health check response\"\"\"\n    status: str\n    ollama_available: bool\n    models_loaded: List[str]\nclass LocoSettings(BaseModel):\n    default_provider: str\n    default_model: Optional[str] = None\n    temperature: Optional[float] = 0.3\n    available_providers: list[str] = [\"ollama\", \"groq\", \"gemini\", \"openai\"]",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "LocoSettings",
+        "kind": 6,
+        "importPath": "backend.src.models.schemas",
+        "description": "backend.src.models.schemas",
+        "peekOfCode": "class LocoSettings(BaseModel):\n    default_provider: str\n    default_model: Optional[str] = None\n    temperature: Optional[float] = 0.3\n    available_providers: list[str] = [\"ollama\", \"groq\", \"gemini\", \"openai\"]",
+        "detail": "backend.src.models.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "extract_imports",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def extract_imports(code: str, language: str) -> List[str]:\n    \"\"\"\n    Extract import statements from code\n    Args:\n        code: Source code\n        language: Programming language\n    Returns:\n        List of import statements\n    \"\"\"\n    imports = []",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "extract_function_context",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def extract_function_context(prefix: str, language: str) -> Optional[str]:\n    \"\"\"\n    Extract the current function or class definition context\n    Args:\n        prefix: Code before cursor\n        language: Programming language\n    Returns:\n        Function/class signature or None\n    \"\"\"\n    if language == \"python\":",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "get_indentation",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def get_indentation(line: str) -> str:\n    \"\"\"\n    Extract indentation from a line of code\n    Args:\n        line: Line of code\n    Returns:\n        Leading whitespace\n    \"\"\"\n    match = re.match(r'^(\\s*)', line)\n    return match.group(1) if match else \"\"",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "count_indentation_level",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def count_indentation_level(code: str) -> int:\n    \"\"\"\n    Count the indentation level based on the last line\n    Args:\n        code: Code snippet\n    Returns:\n        Number of indentation units\n    \"\"\"\n    if not code.strip():\n        return 0",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "build_context_dict",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def build_context_dict(\n    prefix: str,\n    suffix: str,\n    language: str\n) -> Dict[str, str]:\n    \"\"\"\n    Build a context dictionary for the prompt\n    Args:\n        prefix: Code before cursor\n        suffix: Code after cursor",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "clean_completion",
+        "kind": 2,
+        "importPath": "backend.src.utils.context",
+        "description": "backend.src.utils.context",
+        "peekOfCode": "def clean_completion(completion: str, language: str) -> str:\n    \"\"\"\n    Clean up LLM-generated completion\n    Args:\n        completion: Raw LLM output\n        language: Programming language\n    Returns:\n        Cleaned completion\n    \"\"\"\n    # Remove markdown code fences",
+        "detail": "backend.src.utils.context",
+        "documentation": {}
+    },
+    {
+        "label": "LocoException",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class LocoException(Exception):\n    \"\"\"Base exception for Loco errors\"\"\"\n    pass\nclass OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "OllamaConnectionError",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):\n    \"\"\"Global error handler for all exceptions\"\"\"\n    if isinstance(exc, OllamaConnectionError):\n        logger.error(f\"Ollama connection failed: {exc}\")",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "ModelNotFoundError",
+        "kind": 6,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "class ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass\nasync def global_exception_handler(request: Request, exc: Exception):\n    \"\"\"Global error handler for all exceptions\"\"\"\n    if isinstance(exc, OllamaConnectionError):\n        logger.error(f\"Ollama connection failed: {exc}\")\n        return JSONResponse(\n            status_code=503,\n            content={",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.utils.error_handler",
+        "description": "backend.src.utils.error_handler",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass LocoException(Exception):\n    \"\"\"Base exception for Loco errors\"\"\"\n    pass\nclass OllamaConnectionError(LocoException):\n    \"\"\"Ollama server not responding\"\"\"\n    pass\nclass ModelNotFoundError(LocoException):\n    \"\"\"Requested model not available\"\"\"\n    pass",
+        "detail": "backend.src.utils.error_handler",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "backend.src.config",
+        "description": "backend.src.config",
+        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"Loco Backend Configuration\"\"\"\n    # Server\n    HOST: str = \"0.0.0.0\"\n    PORT: int = 8000\n    DEBUG: bool = True\n    # Ollama (Local)\n    OLLAMA_BASE_URL: str = \"http://localhost:11434\"\n    OLLAMA_DEFAULT_MODEL: str = \"qwen2.5-coder:7b\"\n    # Cloud API Keys",
+        "detail": "backend.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "backend.src.config",
+        "description": "backend.src.config",
+        "peekOfCode": "settings = Settings()",
+        "detail": "backend.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "ChatRequest",
+        "kind": 6,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "class ChatRequest(BaseModel):\n    message: str\n    code: Optional[str] = None\n    language: Optional[str] = None\n    context: Optional[str] = None\nclass ChatResponse(BaseModel):\n    message: str\n    code: Optional[str] = None\n# Configure logging\nlogging.basicConfig(",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "ChatResponse",
+        "kind": 6,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "class ChatResponse(BaseModel):\n    message: str\n    code: Optional[str] = None\n# Configure logging\nlogging.basicConfig(\n    level=logging.INFO if settings.DEBUG else logging.WARNING,\n    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'\n)\nlogger = logging.getLogger(__name__)\n# Initialize FastAPI",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Initialize FastAPI\napp = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.src.main",
+        "description": "backend.src.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"Loco - Local Code Assistant\",\n    description=\"Privacy-first AI coding assistant with flexible model support\",\n    version=\"0.2.0\",\n    debug=settings.DEBUG\n)\n# CORS middleware\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],",
+        "detail": "backend.src.main",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_agentic_supervisor",
+        "description": "backend.tests.test_agentic_supervisor",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nfrom src.agents.agentic_supervisor import agentic_supervisor\nasync def test_simple_exploration():\n    \"\"\"Test agent exploring the codebase\"\"\"\n    print(\"=\"*70)\n    print(\"TEST 1: Simple Codebase Exploration\")\n    print(\"=\"*70 + \"\\n\")\n    result = await agentic_supervisor.execute_task(\n        task=\"List all Python files in the src directory and tell me what the main.py file does\",",
+        "detail": "backend.tests.test_agentic_supervisor",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_improved_agent",
+        "description": "backend.tests.test_improved_agent",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nfrom src.agents.agentic_supervisor import agentic_supervisor\nasync def test_forced_tool_usage():\n    \"\"\"Test that agent actually uses propose_edit instead of being passive\"\"\"\n    print(\"=\"*70)\n    print(\"TEST: Forced Tool Usage (Propose Edit)\")\n    print(\"=\"*70 + \"\\n\")\n    # Create test file\n    test_file = \"test_for_docstring.py\"",
+        "detail": "backend.tests.test_improved_agent",
+        "documentation": {}
+    },
+    {
+        "label": "test_file_reader_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_file_reader_tool():\n    \"\"\"Test reading a file\"\"\"\n    print(\"📝 Testing FileReaderTool...\")\n    # Create test file in current directory\n    test_file = \"test_temp.txt\"\n    test_content = \"Hello, World!\"\n    try:\n        with open(test_file, 'w') as f:\n            f.write(test_content)\n        print(f\"  Created test file: {test_file}\")",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_file_search_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_file_search_tool():\n    \"\"\"Test searching for files\"\"\"\n    print(\"🔍 Testing FileSearchTool...\")\n    try:\n        tool = FileSearchTool()\n        result = tool._run(\"*.py\", max_results=5)\n        print(f\"  Tool result:\\n{result}\\n\")\n        if \"Found\" in result or \"No files\" in result:\n            print(\"  ✓ File search tool works\\n\")\n            return True",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_list_directory_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_list_directory_tool():\n    \"\"\"Test listing directory\"\"\"\n    print(\"📁 Testing ListDirectoryTool...\")\n    try:\n        tool = ListDirectoryTool()\n        result = tool._run(\".\")\n        print(f\"  Tool result:\\n{result}\\n\")\n        if \"Directory:\" in result:\n            print(\"  ✓ List directory tool works\\n\")\n            return True",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "test_propose_edit_tool",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def test_propose_edit_tool():\n    \"\"\"Test proposing an edit\"\"\"\n    print(\"✏️  Testing ProposeEditTool...\")\n    try:\n        tool = ProposeEditTool()\n        result = tool._run(\n            file_path=\"test.py\",\n            description=\"Add error handling\",\n            new_code=\"try:\\n    pass\\nexcept Exception as e:\\n    print(e)\",\n            old_code=\"pass\"",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"=\"*70)\n    print(\"🧪 WORKSPACE TOOLS TEST SUITE\")\n    print(\"=\"*70 + \"\\n\")\n    results = []\n    try:\n        results.append((\"FileReaderTool\", test_file_reader_tool()))\n        results.append((\"FileSearchTool\", test_file_search_tool()))\n        results.append((\"ListDirectoryTool\", test_list_directory_tool()))",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "backend_dir",
+        "kind": 5,
+        "importPath": "backend.tests.test_workspace_tools",
+        "description": "backend.tests.test_workspace_tools",
+        "peekOfCode": "backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\nsys.path.insert(0, backend_dir)\nprint(f\"Python path: {backend_dir}\")\nprint(f\"Current working directory: {os.getcwd()}\\n\")\ntry:\n    from src.agents.tools.workspace_tools import (\n        FileReaderTool,\n        FileSearchTool,\n        ListDirectoryTool,\n        ProposeEditTool",
+        "detail": "backend.tests.test_workspace_tools",
+        "documentation": {}
+    },
+    {
+        "label": "_Known",
+        "kind": 6,
+        "importPath": "node_modules.flatted.python.flatted",
+        "description": "node_modules.flatted.python.flatted",
+        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0",
+        "detail": "node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "_String",
+        "kind": 6,
+        "importPath": "node_modules.flatted.python.flatted",
+        "description": "node_modules.flatted.python.flatted",
+        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0\n    for _ in value:\n        keys.append(i)\n        i += 1\n    return keys",
+        "detail": "node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "parse",
+        "kind": 2,
+        "importPath": "node_modules.flatted.python.flatted",
+        "description": "node_modules.flatted.python.flatted",
+        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
+        "detail": "node_modules.flatted.python.flatted",
+        "documentation": {}
+    },
+    {
+        "label": "stringify",
+        "kind": 2,
+        "importPath": "node_modules.flatted.python.flatted",
+        "description": "node_modules.flatted.python.flatted",
+        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
+        "detail": "node_modules.flatted.python.flatted",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,58 @@
+# Environment files
+.env
+**/.env
+*.env
+
+# Source files (TypeScript)
+src/**
+tsconfig.json
+eslint.config.mjs
+esbuild.js
+
+# Build artifacts
+.vscode-test/**
+**/*.map
+
+# Dependencies
+node_modules/**
+
+# Test files
+**/test/**
+**/*.test.*
+
+# Documentation
+vsc-extension-quickstart.md
+PROVIDER_SELECTION_FEATURE.md
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python cache files (but keep backend source code!)
+**/__pycache__/**
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.Python
+backend/venv/
+backend/.venv/
+backend/ENV/
+backend/**/*.egg-info/
+backend/tests/**
+backend/.env
+backend/**/.env
+
+# IDE (exclude all .vscode to prevent leaking user settings/API keys)
+.vscode/**
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

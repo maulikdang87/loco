@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export class SettingsService {
     private static _instance: SettingsService;
-    private _statusBarItem: vscode.StatusBarItem;
 
     static getInstance(): SettingsService {
         if (!SettingsService._instance) {
@@ -13,15 +12,6 @@ export class SettingsService {
     }
 
     private constructor() {
-        this._statusBarItem = vscode.window.createStatusBarItem(
-            vscode.StatusBarAlignment.Right,
-            100
-        );
-        this._statusBarItem.text = '$(gear) Loco Settings';
-        this._statusBarItem.command = 'loco.openSettings';
-        this._statusBarItem.tooltip = 'Open Loco Settings';
-        this._statusBarItem.show();
-
         // Watch for settings changes
         vscode.workspace.onDidChangeConfiguration((e) => {
             if (e.affectsConfiguration('loco')) {
@@ -33,29 +23,15 @@ export class SettingsService {
     private onSettingsChanged() {
         // React to settings changes
         console.log('Loco settings changed');
-        this.validateSettings();
     }
 
     async validateSettings(): Promise<void> {
+        // Settings validation - backendManager handles status display
         const config = vscode.workspace.getConfiguration('loco');
-        const backendUrl = config.get<string>('general.backendUrl');
         const enabled = config.get<boolean>('general.enabled');
 
         if (!enabled) {
             return;
-        }
-
-        try {
-            const response = await axios.get(`${backendUrl}/api/v1/providers`, { timeout: 3000 });
-            this._statusBarItem.text = '$(check) Loco';
-            this._statusBarItem.tooltip = 'Loco: Connected';
-            this._statusBarItem.backgroundColor = undefined;
-        } catch (error) {
-            this._statusBarItem.text = '$(error) Loco';
-            this._statusBarItem.tooltip = 'Loco: Backend offline';
-            this._statusBarItem.backgroundColor = new vscode.ThemeColor(
-                'statusBarItem.errorBackground'
-            );
         }
     }
 
@@ -162,6 +138,6 @@ export class SettingsService {
     }
 
     dispose() {
-        this._statusBarItem.dispose();
+        // Cleanup if needed
     }
 }

@@ -4,16 +4,63 @@ import { InlineCompletionProvider } from './providers/completionProvider';
 import { ChatPanel } from './chat/chatPanel';
 import { AgentCommands } from './commands/agentCommands';
 import { InlinePopupProvider } from './providers/inlinePopupProvider';
+import { BackendManager } from './backend/backendManager';
 
 let backend: BackendClient;
+let backendManager: BackendManager;
 let completionProvider: InlineCompletionProvider;
 let agentCommands: AgentCommands;
 let popupProvider: InlinePopupProvider;
+let isActivated = false;
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
+    // Prevent double activation
+    if (isActivated) {
+        console.log('⚠️ Loco already activated, skipping...');
+        return;
+    }
+    
+    isActivated = true;
     console.log('🚀 Loco activating...');
 
-    // Initialize backend
+    // Initialize backend manager
+    backendManager = new BackendManager();
+    
+    // Sync status bar with actual backend state
+    await backendManager.syncStatus();
+    
+    // Check if auto-start is enabled
+    const config = vscode.workspace.getConfiguration('loco');
+    const autoStart = config.get<boolean>('general.autoStartBackend', true);
+    
+    if (autoStart) {
+        // Start backend automatically
+        const backendStarted = await backendManager.start(context);
+        if (!backendStarted) {
+            vscode.window.showWarningMessage(
+                'Loco backend failed to start. Some features may not work.',
+                'Retry', 'Settings'
+            ).then(selection => {
+                if (selection === 'Retry') {
+                    backendManager.restart(context);
+                } else if (selection === 'Settings') {
+                    vscode.commands.executeCommand('loco.openSettings');
+                }
+            });
+        }
+    } else {
+        console.log('Auto-start disabled. Backend not started.');
+        vscode.window.showInformationMessage(
+            'Loco backend auto-start is disabled. Start manually if needed.',
+            'Start Now'
+        ).then(selection => {
+            if (selection === 'Start Now') {
+                backendManager.start(context);
+            }
+        });
+    }
+
+    // Initialize backend client
     backend = new BackendClient();
 
     // Initialize popup provider
@@ -38,7 +85,20 @@ export function activate(context: vscode.ExtensionContext) {
     // Register commands
     const openChatCommand = vscode.commands.registerCommand(
         'loco.openChat',
-        () => ChatPanel.createOrShow(context.extensionUri, backend)
+        () => {
+            if (!backendManager.isRunning()) {
+                vscode.window.showWarningMessage(
+                    'Loco backend is not running. Please start it first.',
+                    'Start Backend'
+                ).then(selection => {
+                    if (selection === 'Start Backend') {
+                        backendManager.start(context);
+                    }
+                });
+                return;
+            }
+            ChatPanel.createOrShow(context.extensionUri, backend);
+        }
     );
 
     const explainCommand = vscode.commands.registerCommand(
@@ -108,6 +168,39 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    const restartBackendCommand = vscode.commands.registerCommand(
+        'loco.restartBackend',
+        async () => {
+            vscode.window.showInformationMessage('Restarting Loco backend...');
+            const success = await backendManager.restart(context);
+            if (success) {
+                vscode.window.showInformationMessage('✅ Backend restarted successfully');
+            } else {
+                vscode.window.showErrorMessage('❌ Failed to restart backend');
+            }
+        }
+    );
+
+    const stopBackendCommand = vscode.commands.registerCommand(
+        'loco.stopBackend',
+        async () => {
+            await backendManager.stop();
+            vscode.window.showInformationMessage('Loco backend stopped');
+        }
+    );
+
+    const startBackendCommand = vscode.commands.registerCommand(
+        'loco.startBackend',
+        async () => {
+            const success = await backendManager.start(context);
+            if (success) {
+                vscode.window.showInformationMessage('✅ Backend started successfully');
+            } else {
+                vscode.window.showErrorMessage('❌ Failed to start backend');
+            }
+        }
+    );
+
     // Add to subscriptions
     context.subscriptions.push(
         hoverDisposable,
@@ -123,15 +216,24 @@ export function activate(context: vscode.ExtensionContext) {
         addFileReferenceCommand,
         toggleInlineCompletionsCommand,
         clearCacheCommand,
-        backend,
+        restartBackendCommand,
+        stopBackendCommand,
+        startBackendCommand,
+        backendManager,
         popupProvider,
         agentCommands
     );
 
     console.log('✅ Loco activated');
-    vscode.window.showInformationMessage('Loco is ready! Select code and right-click.');
+    // Don't show info message on every activation (reduces noise)
 }
 
 export function deactivate() {
     console.log('👋 Loco deactivated');
+    isActivated = false;
+    
+    // Cleanup backend if needed
+    if (backendManager) {
+        backendManager.dispose();
+    }
 }

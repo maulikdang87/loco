@@ -21,7 +21,34 @@ class LLMManager:
     
     def __init__(self):
         self.default_provider = settings.DEFAULT_PROVIDER
+        self.runtime_api_keys = {}  # Store API keys from requests
         self._validate_api_keys()
+    
+    def set_runtime_keys(self, api_keys: dict):
+        """Set API keys for the current request context"""
+        self.runtime_api_keys = api_keys or {}
+    
+    def _get_api_key(self, provider: str, request_keys: dict = None) -> Optional[str]:
+        """Get API key from multiple sources (priority: request > runtime > settings)"""
+        request_keys = request_keys or {}
+        
+        # Priority 1: API key from current request
+        if provider in request_keys and request_keys[provider]:
+            return request_keys[provider]
+        
+        # Priority 2: Runtime API keys (set per-request)
+        if provider in self.runtime_api_keys and self.runtime_api_keys[provider]:
+            return self.runtime_api_keys[provider]
+        
+        # Priority 3: Environment variables via settings
+        if provider == "groq":
+            return settings.GROQ_API_KEY
+        elif provider == "gemini":
+            return settings.GEMINI_API_KEY
+        elif provider == "openai":
+            return settings.OPENAI_API_KEY
+        
+        return None
     
     def _validate_api_keys(self):
         """Warn if API keys are missing for enabled providers"""
@@ -104,8 +131,8 @@ class LLMManager:
         **kwargs
     ) -> ChatGroq:
         """Create Groq LLM instance"""
-        # Use API key from request if provided, otherwise fall back to env variable
-        api_key = api_keys.get("groq") or settings.GROQ_API_KEY
+        # Use API key from request if provided, otherwise fall back to runtime/env
+        api_key = self._get_api_key("groq", api_keys)
         
         if not api_key:
             raise ModelNotFoundError(
@@ -131,8 +158,8 @@ class LLMManager:
         **kwargs
     ) -> ChatGoogleGenerativeAI:
         """Create Gemini LLM instance"""
-        # Use API key from request if provided, otherwise fall back to env variable
-        api_key = api_keys.get("gemini") or settings.GEMINI_API_KEY
+        # Use API key from request if provided, otherwise fall back to runtime/env
+        api_key = self._get_api_key("gemini", api_keys)
         
         if not api_key:
             raise ModelNotFoundError(
@@ -161,8 +188,8 @@ class LLMManager:
         **kwargs
     ) -> ChatOpenAI:
         """Create OpenAI LLM instance"""
-        # Use API key from request if provided, otherwise fall back to env variable
-        api_key = api_keys.get("openai") or settings.OPENAI_API_KEY
+        # Use API key from request if provided, otherwise fall back to runtime/env
+        api_key = self._get_api_key("openai", api_keys)
         
         if not api_key:
             raise ModelNotFoundError(
@@ -180,8 +207,7 @@ class LLMManager:
         )
     
     def list_available_providers(self) -> dict:
-        """Returns which providers are currently available"""
-        print(bool(settings.GROQ_API_KEY))   
+        """Returns which providers are currently available""" 
         return {
             "ollama": True,  # Assume always available if running
             "groq": bool(settings.GROQ_API_KEY),

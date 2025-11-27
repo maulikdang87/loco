@@ -25,7 +25,6 @@ export interface AgentResponse {
 
 export class BackendClient {
     private client: AxiosInstance;
-    private statusBar: vscode.StatusBarItem;
     private baseURL: string;
 
     constructor() {
@@ -36,17 +35,6 @@ export class BackendClient {
             timeout: 60000,  // 60s for chat
             headers: { 'Content-Type': 'application/json' }
         });
-
-        // Status bar indicator
-        this.statusBar = vscode.window.createStatusBarItem(
-            vscode.StatusBarAlignment.Right,
-            100
-        );
-        this.statusBar.text = '$(loading~spin) Loco';
-        this.statusBar.tooltip = 'Checking Loco backend...';
-        this.statusBar.show();
-
-        this.checkConnection();
     }
 
     get baseUrl(): string {
@@ -81,18 +69,8 @@ export class BackendClient {
     async checkConnection(): Promise<boolean> {
         try {
             const response = await this.client.get<BackendStatus>('/health');
-            
-            this.statusBar.text = '$(check) Loco';
-            this.statusBar.tooltip = 'Loco: Connected';
-            this.statusBar.backgroundColor = undefined;
-            
             return response.data.status === 'ok';
         } catch (error) {
-            this.statusBar.text = '$(error) Loco';
-            this.statusBar.tooltip = 'Loco: Backend offline';
-            this.statusBar.backgroundColor = new vscode.ThemeColor(
-                'statusBarItem.errorBackground'
-            );
             return false;
         }
     }
@@ -145,6 +123,8 @@ export class BackendClient {
         // Get API keys from settings
         const apiKeys = this.getApiKeys();
 
+        console.log(`🔵 Chat request: provider=${provider}, model=${model}, api_keys=${Object.keys(apiKeys).length > 0 ? 'present' : 'none'}`);
+
         try {
             const response = await this.client.post<ChatResponse>(
                 `/api/v1/chat/${provider}`,
@@ -157,7 +137,8 @@ export class BackendClient {
             return response.data;
         } catch (error) {
             this.handleError(error);
-            return null;
+            // Re-throw so chatPanel can show detailed error
+            throw error;
         }
     }
 
@@ -166,10 +147,16 @@ export class BackendClient {
      * Automatically routes to appropriate agent
      */
     async processWithAgent(request: AgentRequest): Promise<AgentResponse | null> {
+        // Get API keys from settings (same as chat mode)
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post<AgentResponse>(
                 '/api/v1/agent/process',
-                request
+                {
+                    ...request,
+                    api_keys: apiKeys  // Send API keys to backend
+                }
             );
             return response.data;
         } catch (error) {
@@ -182,10 +169,12 @@ export class BackendClient {
      * Debug code - analyze errors and suggest fixes
      */
     async debugCode(code: string, file: string, errors?: Array<{ message: string }>): Promise<AgentResponse | null> {
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post<AgentResponse>(
                 '/api/v1/agent/debug',
-                { code, file, errors }
+                { code, file, errors, api_keys: apiKeys }
             );
             return response.data;
         } catch (error) {
@@ -198,10 +187,12 @@ export class BackendClient {
      * Explain code in detail
      */
     async explainCode(code: string, file: string, context?: string): Promise<AgentResponse | null> {
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post<AgentResponse>(
                 '/api/v1/agent/explain',
-                { code, file, context }
+                { code, file, context, api_keys: apiKeys }
             );
             return response.data;
         } catch (error) {
@@ -214,10 +205,12 @@ export class BackendClient {
      * Generate documentation/docstrings
      */
     async documentCode(code: string, file: string): Promise<AgentResponse | null> {
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post<AgentResponse>(
                 '/api/v1/agent/document',
-                { code, file }
+                { code, file, api_keys: apiKeys }
             );
             return response.data;
         } catch (error) {
@@ -230,10 +223,12 @@ export class BackendClient {
      * Suggest refactorings
      */
     async refactorCode(code: string, file: string, context?: string): Promise<AgentResponse | null> {
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post<AgentResponse>(
                 '/api/v1/agent/refactor',
-                { code, file, context }
+                { code, file, context, api_keys: apiKeys }
             );
             return response.data;
         } catch (error) {
@@ -251,10 +246,12 @@ export class BackendClient {
         provider?: string;
         model?: string;
     }): Promise<any> {
+        const apiKeys = this.getApiKeys();
+        
         try {
             const response = await this.client.post(
                 '/api/v1/agent/task',
-                request
+                { ...request, api_keys: apiKeys }
             );
             return response.data;
         } catch (error) {
@@ -323,9 +320,5 @@ export class BackendClient {
         } else {
             console.error('Unknown error:', error);
         }
-    }
-
-    dispose() {
-        this.statusBar.dispose();
     }
 }

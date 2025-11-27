@@ -196,6 +196,11 @@ export class ChatPanel {
 
             console.log('Sending chat request with provider:', this.currentProvider);
             console.log('Request:', JSON.stringify(request, null, 2));
+            console.log('📡 API Keys configured:', Object.keys(this.backend['getApiKeys']?.() || {}).length > 0 ? 'Yes' : 'No');
+            
+            // Check if backend is actually running before sending
+            const backendRunning = await this.backend.checkConnection();
+            console.log('🔍 Backend connection check:', backendRunning ? 'OK' : 'FAILED');
 
             // Get response from backend
             const response = await this.backend.chat(request);
@@ -221,12 +226,49 @@ export class ChatPanel {
                 this.chatHistory.push(assistantMessage);
                 this.updateChat();
             } else {
-                vscode.window.showErrorMessage('Failed to get response. Check if backend is running.');
+                const errorMsg = `Failed to get response from ${this.currentProvider}. Check:\n` +
+                    `• Backend is running (check status bar)\n` +
+                    `• API key for ${this.currentProvider} is configured in VS Code settings\n` +
+                    `• Provider ${this.currentProvider} is available`;
+                vscode.window.showErrorMessage(errorMsg);
+                console.error('❌ Chat response was null/undefined');
             }
-        } catch (error) {
+        } catch (error: any) {
             this.showThinking(false);
-            console.error('Chat error:', error);
-            vscode.window.showErrorMessage(`Chat error: ${error}`);
+            console.error('❌ Chat error:', error);
+            
+            // Better error messages based on error type
+            let errorMsg = `Chat error with ${this.currentProvider}: `;
+            
+            // Check if backend is not running
+            if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
+                errorMsg = '❌ Backend is not running. Check status bar and try restarting Loco.';
+                vscode.window.showErrorMessage(errorMsg, 'Restart Backend').then(choice => {
+                    if (choice === 'Restart Backend') {
+                        vscode.commands.executeCommand('loco.restartBackend');
+                    }
+                });
+                return;
+            }
+            
+            // Check HTTP status codes
+            if (error.response?.status === 401) {
+                errorMsg = `❌ ${this.currentProvider.toUpperCase()} API key not configured.\n\nPlease add it in VS Code Settings:\n1. Press Cmd/Ctrl+Shift+P\n2. Type "Preferences: Open Settings (UI)"\n3. Search for "loco.apiKeys.${this.currentProvider}"\n4. Enter your API key`;
+            } else if (error.response?.status === 400) {
+                const detail = error.response?.data?.detail || 'Invalid request';
+                errorMsg = `❌ ${detail}`;
+            } else if (error.response?.status === 500) {
+                const detail = error.response?.data?.detail || error.message || 'Internal server error';
+                errorMsg = `❌ Backend error: ${detail}`;
+            } else if (error.response?.data?.detail) {
+                errorMsg += error.response.data.detail;
+            } else if (error.message) {
+                errorMsg += error.message;
+            } else {
+                errorMsg += String(error);
+            }
+            
+            vscode.window.showErrorMessage(errorMsg);
         }
     }
 
@@ -619,6 +661,7 @@ export class ChatPanel {
         }
 
         console.log('Handling agent task:', task);
+        console.log('🔑 API Keys available:', Object.keys(this.backend['getApiKeys']?.() || {}).join(', '));
 
         // Add user message
         this.chatHistory.push({
@@ -655,17 +698,15 @@ export class ChatPanel {
                 console.log('Enhanced task with file paths:', enhancedTask);
             }
 
-            // Call backend agent endpoint
-            const response = await axios.post(`${this.backend.baseUrl}/api/v1/agent/task`, {
+            // Call backend agent endpoint using backend client (includes API keys)
+            console.log('🔑 Calling agent with API keys:', Object.keys(this.backend['getApiKeys']?.() || {}).length);
+            
+            const result = await this.backend.executeAgentTask({
                 task: enhancedTask,
                 workspace_path: workspacePath,
                 provider: this.currentProvider,  // Use selected provider
                 model: this.getModelForProvider(this.currentProvider)  // Get appropriate model
-            }, {
-                timeout: 120000
             });
-
-            const result = response.data;
             
             console.log('Agent result:', result);
 
@@ -1811,6 +1852,9 @@ export class ChatPanel {
                 let isMentionActive = false;
                 let currentMode = 'normal';  // ADD MODE TRACKING
                 let currentProvider = 'groq';  // ADD PROVIDER TRACKING - default to groq
+                
+                // Initialize code blocks storage for copy functionality
+                window.codeBlocks = {};
 
                 // Get DOM elements
                 const textarea = document.getElementById('messageInput');
@@ -2274,8 +2318,17 @@ export class ChatPanel {
                     // Add click handlers for copy buttons
                     container.querySelectorAll('.copy-btn').forEach(btn => {
                         btn.addEventListener('click', (e) => {
-                            const code = e.target.getAttribute('data-code');
-                            copyCode(code);
+                            e.preventDefault();
+                            
+                            const button = e.currentTarget;
+                            const codeId = button.getAttribute('data-code-id');
+                            
+                            if (codeId && window.codeBlocks && window.codeBlocks[codeId]) {
+                                const code = window.codeBlocks[codeId];
+                                copyCode(code);
+                            } else {
+                                console.error('Code not found for ID:', codeId);
+                            }
                         });
                     });
 
@@ -2303,11 +2356,16 @@ export class ChatPanel {
                         if (codeBlockLines.length > 0) {
                             const codeContent = codeBlockLines.join('\\n');
                             const highlighted = highlightCode(codeContent, codeBlockLang);
-                            const btnCode = escapeHtml(codeContent);
+                            // Generate unique ID for this code block
+                            const codeId = 'code_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                            // Store code in a global map that can be accessed securely
+                            window.codeBlocks = window.codeBlocks || {};
+                            window.codeBlocks[codeId] = codeContent;
+                            
                             result.push('<div style="position: relative; margin: 12px 0;">');
                             result.push('<div class="code-header">');
                             result.push('<span class="code-language">' + escapeHtml(codeBlockLang || 'code') + '</span>');
-                            result.push('<button class="copy-btn" data-code="' + btnCode + '" style="margin: 0; padding: 3px 8px;">Copy</button>');
+                            result.push('<button class="copy-btn" data-code-id="' + codeId + '" style="margin: 0; padding: 3px 8px;">Copy</button>');
                             result.push('</div>');
                             result.push('<pre style="margin: 0; border-radius: 0 0 10px 10px;"><code class="language-' + escapeHtml(codeBlockLang) + '">' + highlighted + '</code></pre>');
                             result.push('</div>');

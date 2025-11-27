@@ -1,22 +1,39 @@
 {
-  "name": "loco",
-  "displayName": "Loco - AI Assistant",
-  "description": "AI code assistant with contextual chat and inline completions",
-  "version": "0.1.0",
-  "publisher": "your-name",
+  "name": "loco-ai",
+  "displayName": "LoCo - AI Code Assistant",
+  "description": "AI-powered code assistant with contextual chat, code actions, and multi-provider support (Groq, Gemini, Ollama)",
+  "version": "0.1.38",
+  "publisher": "maulikdang",
+  "author": "Maulik Dang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maulikdang87/loco"
+  },
+  "bugs": {
+    "url": "https://github.com/maulikdang87/loco/issues"
+  },
+  "homepage": "https://github.com/maulikdang87/loco#readme",
   "engines": {
     "vscode": "^1.105.0"
   },
   "categories": [
     "Programming Languages",
-    "Machine Learning"
+    "Machine Learning",
+    "Other"
   ],
   "keywords": [
     "ai",
     "copilot",
     "chat",
     "code-completion",
-    "groq"
+    "groq",
+    "gemini",
+    "ollama",
+    "assistant",
+    "productivity",
+    "refactoring",
+    "documentation"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -74,6 +91,21 @@
         "command": "loco.showAvailableModels",
         "title": "Loco: Show Available Models",
         "icon": "$(list-unordered)"
+      },
+      {
+        "command": "loco.restartBackend",
+        "title": "Loco: Restart Backend Server",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "loco.startBackend",
+        "title": "Loco: Start Backend Server",
+        "icon": "$(play)"
+      },
+      {
+        "command": "loco.stopBackend",
+        "title": "Loco: Stop Backend Server",
+        "icon": "$(debug-stop)"
       }
     ],
     "keybindings": [
@@ -109,6 +141,18 @@
           "default": "http://localhost:8000",
           "description": "Backend server URL",
           "order": 2
+        },
+        "loco.general.backendPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom path to backend folder (leave empty for auto-detection)",
+          "order": 3
+        },
+        "loco.general.autoStartBackend": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start backend server when extension activates",
+          "order": 4
         },
         "loco.apiKeys.groq": {
           "type": "string",
@@ -338,6 +382,7 @@
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "copy-backend": "node scripts/copy-backend.js",
     "package": "npm run check-types && npm run lint && node esbuild.js --production",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
